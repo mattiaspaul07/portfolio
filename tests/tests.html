@@ -41,7 +41,10 @@ test("projects panel shows the featured card first", () => {
 test("missing optional fields never print undefined", () => {
   KEYS.forEach(k => assertEqual(renderSection(k).includes("undefined"), false, k));
 });
-test("placeholders are labelled", () => assertEqual(renderSection("projects").includes("Placeholder"), true, "projects"));
+test("placeholders are labelled", () => assertEqual(placeholderBox({ title: "Placeholder project", text: "Waiting." }).includes("<b>Placeholder project.</b>"), true, "label"));
+test("no placeholders are left on the site", () => {
+  KEYS.forEach(k => assertEqual(renderSection(k).includes("Placeholder"), false, k));
+});
 test("education has a certificates and education toggle", () => {
   const html = renderSection("education");
   assertEqual(html.includes('data-tab="certs"') && html.includes('data-tab="edu"'), true, "tabs");

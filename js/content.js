@@ -49,7 +49,6 @@ const SITE = {
       tools: "Puzzel, Zendesk",
       outcome: "The surge did not clutter the established groups. New colleagues could be onboarded to this one queue faster, and staffing could be matched to it.",
       credit: "A team effort across customer service, analytics, sales and back office; I made the changes in the support systems." },
-    { placeholder: true, title: "Placeholder project", text: "Waiting for details." }
   ],
   tools: [
     { name: "Zendesk", sentence: "Owned the Lyse group's Zendesk and now set it up and optimise it for Kundelab clients." },
