@@ -23,7 +23,7 @@ const ICONS = {
   /* where the avatar stands for each place, which way it faces, and where the marker is anchored (top centre of the object) */
   const SPOTS = {
     about:{x:6.4,y:3.2,f:"+x"}, experience:{x:1.25,y:2.9,f:"-x"}, projects:{x:7.6,y:6.7,f:"+y"},
-    toolkit:{x:2.4,y:8.2,f:"+y"}, education:{x:4.0,y:1.6,f:"-y"}, contact:{x:1.8,y:5.3,f:"-x"}, coffee:{x:6.4,y:3.8,f:"+x"}
+    toolkit:{x:2.4,y:8.2,f:"+y"}, education:{x:4.0,y:1.6,f:"-y"}, contact:{x:1.8,y:5.3,f:"-x"}, coffee:{x:6.4,y:5.4,f:"+y"}
   };
   const ANCHORS = {
     // each anchor is the top centre of its object, so the marker stem lands on the middle of the item
@@ -150,7 +150,9 @@ const wallX=(y1,y2,z1,z2)=>[[0.02,y1,z1],[0.02,y2,z1],[0.02,y2,z2],[0.02,y1,z2]]
           poly(g,[[3.6,7.2,0.5],[7.0,7.2,0.5],[7.0,7.2,0.62],[3.6,7.2,0.62]],P.teal);
           box(g,4.95,6.15,1.4,0.7,0.12,0.75,P.dark); box(g,5.25,6.3,1.4,0.1,0.1,0.15,P.dark);
           if(P.glow) poly(g,[[4.97,6.28,1.5],[5.63,6.28,1.5],[5.63,6.28,2.08],[4.97,6.28,2.08]],"#9fd3f0",{opacity:.5});
-          box(g,6.3,6.5,1.4,0.22,0.22,0.25,P.coral);
+          { const [tx,ty]=iso(5.3,7.21,0.82);   // coffee counter, written on the desk front above the stripe
+            const t=el("text",{class:"coffee-count", transform:`matrix(0.866,0.5,0,1,${tx},${ty})`, "text-anchor":"middle", "font-family":"IBM Plex Mono, Consolas, monospace", "font-size":8.5, "font-weight":500, "letter-spacing":"0.6", fill:"#2f7d6d"},g);
+            t.textContent=coffeeLabel(coffeeCount()); }
           box(g,3.95,6.4,1.4,0.35,0.25,0.12,"#1d2321");
           box(g,4.3,6.75,1.4,0.5,0.35,0.06,"#e8c35a");   // project folder
         }}
@@ -170,22 +172,23 @@ const wallX=(y1,y2,z1,z2)=>[[0.02,y1,z1],[0.02,y2,z1],[0.02,y2,z2],[0.02,y1,z2]]
         {foot:{x:7.0,y:3.1,w:0.9,d:1.5}, draw:g=>{   // coffee table with coffee
           [[7.05,3.15],[7.75,3.15],[7.05,4.45],[7.75,4.45]].forEach(([x,y])=>box(g,x,y,0,0.1,0.1,0.4,P.wood));
           box(g,7.0,3.1,0.4,0.9,1.5,0.08,P.wood);
+          box(g,7.35,3.7,0.48,0.22,0.22,0.25,P.coral);   // orange block, swapped from the desk
         }}
       ], mid);
 
       // coffee cup: a small playful interaction, not a section
-      cupG=el("g",{class:"hot", tabindex:"0", role:"button", "aria-label":"Coffee cup. Take a coffee break."},mid);
-      box(cupG,7.35,3.7,0.48,0.22,0.22,0.24,"#f7f3ea");
-      poly(cupG,[[7.38,3.73,0.721],[7.54,3.73,0.721],[7.54,3.89,0.721],[7.38,3.89,0.721]],"#5a3a26");
-      line(cupG,[[7.46,3.92,0.56],[7.46,4.04,0.6],[7.46,3.92,0.66]],"#f7f3ea",2.5);
+      cupG=el("g",{class:"hot", tabindex:"0", role:"button", "aria-label":"Coffee cup on the desk. Take a coffee break."},mid);
+      box(cupG,6.3,6.5,1.4,0.22,0.22,0.24,"#f7f3ea");
+      poly(cupG,[[6.33,6.53,1.641],[6.49,6.53,1.641],[6.49,6.69,1.641],[6.33,6.69,1.641]],"#5a3a26");
+      line(cupG,[[6.41,6.72,1.48],[6.41,6.84,1.52],[6.41,6.72,1.58]],"#f7f3ea",2.5);
       const stm=el("g",{class:"steam", "pointer-events":"none"},cupG);
-      line(stm,[[7.4,3.75,0.85],[7.43,3.78,0.98],[7.4,3.75,1.1]],"#b9c3be",1.5);
-      line(stm,[[7.5,3.8,0.85],[7.53,3.83,1.0],[7.5,3.8,1.12]],"#b9c3be",1.5);
+      line(stm,[[6.35,6.55,1.77],[6.38,6.58,1.9],[6.35,6.55,2.02]],"#b9c3be",1.5);
+      line(stm,[[6.45,6.6,1.77],[6.48,6.63,1.92],[6.45,6.6,2.04]],"#b9c3be",1.5);
       cupG.addEventListener("click",e=>{ e.stopPropagation(); coffeeBreak(); });
       cupG.addEventListener("keydown",e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); coffeeBreak(); } });
       cupG.addEventListener("mouseenter",()=>cupG.classList.add("lit")); cupG.addEventListener("mouseleave",()=>cupG.classList.remove("lit"));
       cupG.addEventListener("focus",()=>cupG.classList.add("lit")); cupG.addEventListener("blur",()=>cupG.classList.remove("lit"));
-      addSortable({x:7.35,y:3.7,w:0.3,d:0.3}, cupG);
+      addSortable({x:6.3,y:6.5,w:0.3,d:0.3}, cupG);
       cupG.style.visibility = st.sipping ? "hidden" : "";
 
       // decoration on the floor
@@ -223,7 +226,7 @@ const wallX=(y1,y2,z1,z2)=>[[0.02,y1,z1],[0.02,y2,z1],[0.02,y2,z2],[0.02,y1,z2]]
         g.insertBefore(r,g.firstChild);
       }));
 
-      { const [cx,cy]=iso(7.46,3.81,0.6);
+      { const [cx,cy]=iso(6.41,6.61,1.52);
         const hit=el("rect",{x:cx-15, y:cy-24, width:30, height:32, fill:"transparent", style:"cursor:pointer", "aria-hidden":"true"},top);
         hit.addEventListener("click",e=>{ e.stopPropagation(); coffeeBreak(); });
         hit.addEventListener("mouseenter",()=>cupG.classList.add("lit")); hit.addEventListener("mouseleave",()=>cupG.classList.remove("lit")); }
@@ -273,6 +276,9 @@ const wallX=(y1,y2,z1,z2)=>[[0.02,y1,z1],[0.02,y2,z1],[0.02,y2,z2],[0.02,y1,z2]]
       const s=SPOTS.coffee;
       walkTo(s.x,s.y,s.f,()=>{
         st.sipping=true; if(cupG) cupG.style.visibility="hidden"; drawAvatar();
+        const n=addCoffee();
+        svg.querySelectorAll(".coffee-count").forEach(t=>{ t.textContent=coffeeLabel(n); });
+        if(cupG) cupG.setAttribute("aria-label",`Coffee cup on the desk. Take a coffee break. ${coffeeLabel(n).toLowerCase()} so far.`);
         sipTimer=setTimeout(()=>{ endSip(); drawAvatar(); }, 2600);
       });
     }

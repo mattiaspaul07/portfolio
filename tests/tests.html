@@ -8,6 +8,7 @@
 <script src="../js/render.js"></script>
 <script src="../js/iso.js"></script>
 <script src="../js/walk.js"></script>
+<script src="../js/coffee.js"></script>
 <script src="test-kit.js"></script>
 <script>
 const KEYS = ["about","experience","projects","toolkit","education","contact"];
@@ -90,6 +91,31 @@ test("only the featured project carries the Featured label", () => {
 });
 test("TV 2 project is shown with its own heading", () => {
   assertEqual(renderSection("projects").includes("Handling the TV 2 surge at Lyse Dialog"), true, "title");
+});
+
+function memoryStore(){ const m = {}; return { getItem: k => (k in m ? m[k] : null), setItem: (k, v) => { m[k] = String(v); } }; }
+test("coffee counter starts at zero and counts up", () => {
+  const store = memoryStore();
+  assertEqual(coffeeCount(store), 0, "start");
+  addCoffee(store); addCoffee(store);
+  assertEqual(coffeeCount(store), 2, "after two");
+});
+test("coffee counter is kept for the rest of the visit", () => {
+  const store = memoryStore();
+  addCoffee(store); addCoffee(store); addCoffee(store);
+  assertEqual(store.getItem("mp-coffees"), "3", "stored");
+  assertEqual(coffeeCount(store), 3, "read back");
+});
+test("coffee counter still counts when storage is blocked", () => {
+  const blocked = { getItem(){ throw new Error("blocked"); }, setItem(){ throw new Error("blocked"); } };
+  const before = coffeeCount(blocked);
+  addCoffee(blocked);
+  assertEqual(coffeeCount(blocked), before + 1, "in memory");
+});
+test("coffee label reads naturally", () => {
+  assertEqual(coffeeLabel(0), "COFFEES: 0", "zero");
+  assertEqual(coffeeLabel(1), "COFFEE: 1", "one");
+  assertEqual(coffeeLabel(12), "COFFEES: 12", "many");
 });
 </script>
 </body>
