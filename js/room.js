@@ -29,7 +29,7 @@ const ICONS = {
     // each anchor is the top centre of its object, so the marker stem lands on the middle of the item
     about:[9.24,3.85,1.45],      // sofa: middle of the backrest
     experience:[0.02,2.9,5.0],   // whiteboard: middle of the top edge
-    projects:[5.3,6.21,2.15],    // desk: top of the centred monitor
+    projects:[4.5,6.21,2.15],    // desk: top of the centred monitor
     toolkit:[2.4,9.45,2.05],     // toolbox: top of the handle
     education:[4.0,0.4,3.8],     // bookshelf: middle of the top
     contact:[0.02,6.95,4.7]      // message screen: middle of the top edge
@@ -148,12 +148,12 @@ const wallX=(y1,y2,z1,z2)=>[[0.02,y1,z1],[0.02,y2,z1],[0.02,y2,z2],[0.02,y1,z2]]
         {foot:{x:3.6,y:6.0,w:3.4,d:1.2}, draw:g=>{   // desk with centred screen
           box(g,3.6,6.0,0,3.4,1.2,1.4,P.desk);
           poly(g,[[3.6,7.2,0.5],[7.0,7.2,0.5],[7.0,7.2,0.62],[3.6,7.2,0.62]],P.teal);
-          box(g,4.95,6.15,1.4,0.7,0.12,0.75,P.dark); box(g,5.25,6.3,1.4,0.1,0.1,0.15,P.dark);
-          if(P.glow) poly(g,[[4.97,6.28,1.5],[5.63,6.28,1.5],[5.63,6.28,2.08],[4.97,6.28,2.08]],"#9fd3f0",{opacity:.5});
+          box(g,4.15,6.15,1.4,0.7,0.12,0.75,P.dark); box(g,4.45,6.3,1.4,0.1,0.1,0.15,P.dark);   // screen, centred on the chair
+          if(P.glow) poly(g,[[4.17,6.28,1.5],[4.83,6.28,1.5],[4.83,6.28,2.08],[4.17,6.28,2.08]],"#9fd3f0",{opacity:.5});
           { const [tx,ty]=iso(5.3,7.21,0.82);   // coffee counter, written on the desk front above the stripe
             const t=el("text",{class:"coffee-count", transform:`matrix(0.866,0.5,0,1,${tx},${ty})`, "text-anchor":"middle", "font-family":"IBM Plex Mono, Consolas, monospace", "font-size":8.5, "font-weight":500, "letter-spacing":"0.6", fill:"#2f7d6d"},g);
             t.textContent=coffeeLabel(coffeeCount()); }
-          box(g,3.95,6.4,1.4,0.35,0.25,0.12,"#1d2321");
+          box(g,5.25,6.4,1.4,0.35,0.25,0.12,"#1d2321");   // headset, moved right to make room
           box(g,4.3,6.75,1.4,0.5,0.35,0.06,"#e8c35a");   // project folder
         }}
       ], mid);
