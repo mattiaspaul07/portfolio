@@ -17,5 +17,5 @@ function addCoffee(store = defaultStore()) {
   return next;
 }
 function coffeeLabel(n) {
-  return (n === 1 ? "COFFEE: " : "COFFEES: ") + n;
+  return "COFFEE #" + n;
 }

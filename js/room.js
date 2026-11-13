@@ -278,7 +278,7 @@ const wallX=(y1,y2,z1,z2)=>[[0.02,y1,z1],[0.02,y2,z1],[0.02,y2,z2],[0.02,y1,z2]]
         st.sipping=true; if(cupG) cupG.style.visibility="hidden"; drawAvatar();
         const n=addCoffee();
         svg.querySelectorAll(".coffee-count").forEach(t=>{ t.textContent=coffeeLabel(n); });
-        if(cupG) cupG.setAttribute("aria-label",`Coffee cup on the desk. Take a coffee break. ${coffeeLabel(n).toLowerCase()} so far.`);
+        if(cupG) cupG.setAttribute("aria-label",`Coffee cup on the desk. Take a coffee break. Coffees so far: ${n}.`);
         sipTimer=setTimeout(()=>{ endSip(); drawAvatar(); }, 2600);
       });
     }

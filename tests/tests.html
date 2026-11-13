@@ -113,9 +113,9 @@ test("coffee counter still counts when storage is blocked", () => {
   assertEqual(coffeeCount(blocked), before + 1, "in memory");
 });
 test("coffee label reads naturally", () => {
-  assertEqual(coffeeLabel(0), "COFFEES: 0", "zero");
-  assertEqual(coffeeLabel(1), "COFFEE: 1", "one");
-  assertEqual(coffeeLabel(12), "COFFEES: 12", "many");
+  assertEqual(coffeeLabel(0), "COFFEE #0", "zero");
+  assertEqual(coffeeLabel(1), "COFFEE #1", "one");
+  assertEqual(coffeeLabel(12), "COFFEE #12", "many");
 });
 </script>
 </body>
