@@ -35,7 +35,7 @@ test("certificates are newest first", () => {
 test("esc escapes HTML", () => assertEqual(esc(`<a & "b">`), "&lt;a &amp; &quot;b&quot;&gt;", "esc"));
 test("projects panel shows the featured card first", () => {
   const html = renderSection("projects");
-  assertEqual(html.indexOf("Unifying customer service") < html.indexOf("Placeholder project"), true, "order");
+  assertEqual(html.indexOf("Unifying customer service") >= 0 && html.indexOf("Unifying customer service") < html.indexOf("Handling the TV 2 surge"), true, "order");
   assertEqual(html.includes("My contribution"), true, "label");
 });
 test("missing optional fields never print undefined", () => {
