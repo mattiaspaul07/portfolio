@@ -30,7 +30,8 @@ button{font:inherit}
 .nav button{color:var(--fg); background:none; border:1px solid transparent; border-radius:999px; padding:5px 12px; cursor:pointer; display:inline-flex; align-items:center; gap:6px; font-size:.92rem}
 .nav button svg{width:16px; height:16px}
 .nav button:hover{background:var(--chip)}
-.nav button[aria-current="true"]{background:var(--chip); border-color:var(--line); font-weight:700}
+/* selected item: same font weight as the others, so nothing around it moves */
+.nav button[aria-current="true"]{background:var(--chip); border-color:var(--line); color:var(--accent)}
 .actions{display:flex; align-items:center; gap:8px}
 .cta{font-size:.9rem; font-weight:700; padding:6px 14px; border-radius:999px; border:1px solid var(--accent); background:var(--accent); color:var(--accent-ink); text-decoration:none; cursor:pointer}
 .ghost{font-size:.88rem; padding:5px 12px; border-radius:999px; border:1px solid var(--line); color:var(--fg); text-decoration:none}
@@ -81,7 +82,7 @@ button{font:inherit}
 .tools span{color:var(--muted); font-size:.94rem}
 .tabs{display:inline-flex; justify-self:start; border:1px solid var(--line); border-radius:999px; padding:3px; gap:2px; background:var(--bg)}
 .tabs button{border:0; background:none; color:var(--fg); padding:5px 14px; border-radius:999px; cursor:pointer; font-size:.9rem}
-.tabs button[aria-selected="true"]{background:var(--accent); color:var(--accent-ink); font-weight:700}
+.tabs button[aria-selected="true"]{background:var(--accent); color:var(--accent-ink)}
 .copyrow{display:flex; flex-wrap:wrap; gap:8px; align-items:center}
 .copyrow code{font-family:var(--mono); font-size:.92rem; user-select:all; overflow-wrap:anywhere}
 .btn{font-size:.9rem; padding:6px 12px; border-radius:6px; border:1px solid var(--accent); background:var(--accent); color:var(--accent-ink); cursor:pointer}

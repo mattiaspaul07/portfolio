@@ -38,8 +38,8 @@ const SITE = {
         { value: "3 days", label: "Until a pending ticket gets its first automatic reminder" }
       ],
       challenge: "KS Energi moved its customer service to Zendesk in February 2021. Agents had to work across several systems, and from early December 2021 to late January 2022 rising energy prices brought a surge of enquiries, about ten times the usual volume.",
-      contribution: "I handled much of the Zendesk configuration: Bump Bump Solve for automatic reminders on pending tickets, closing them after the second reminder; follow-up on on-hold tickets, with an update to the customer after 3 days and the ticket reopening for the agent after a week; views that combine personal and unassigned tickets, raise customer replies to high priority and serve the next ticket with the Play button; and auto-replies with the top 3 answers on invoice and payment tickets.",
-      tools: "Zendesk Suite, Zendesk Explore, Bump Bump Solve",
+      contribution: "I handled much of the Zendesk configuration: Bump-Bump-Solve for automatic reminders on pending tickets, closing them after the second reminder; follow-up on on-hold tickets, with an update to the customer after 3 days and the ticket reopening for the agent after a week; views that combine personal and unassigned tickets, raise customer replies to high priority and serve the next ticket with the Play button; and auto-replies with the top 3 answers on invoice and payment tickets.",
+      tools: "Zendesk Suite, Bump-Bump-Solve",
       outcome: "Average handling time fell from 29 to 5 minutes per ticket. During the surge, the team used Explore to adjust opening hours and staffing, and was back in control within about three weeks of the January peak.",
       credit: "Results credited to the KS Energi and Lyse Dialog customer service team, as described in Zendesk's customer story and the team's own reporting.",
       sourceUrl: "https://www.zendesk.co.uk/customer/lyse/", sourceLabel: "Read the Zendesk customer story" },
