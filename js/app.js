@@ -6,7 +6,7 @@ const nav = document.getElementById("nav");
 const panel = document.getElementById("panel");
 
 function select(key, { focus } = {}) {
-  if (!SITE.sections[key]) key = "projects";
+  if (!SITE.sections[key]) key = DEFAULT_SECTION;
   state.current = key;
   panel.innerHTML = renderSection(key);
   nav.querySelectorAll("button").forEach(b => b.setAttribute("aria-current", b.dataset.key === key ? "true" : "false"));
@@ -61,4 +61,4 @@ buildNav();
 if (typeof drawRoom === "function") {
   state.room = drawRoom(document.getElementById("room"), { onPick: key => select(key, { focus: true }) });
 }
-select("projects");
+select(DEFAULT_SECTION);

@@ -154,6 +154,11 @@ test("about me opens with the portrait and the headline", () => {
 });
 
 test("title uses the @ form", () => assertEqual(SITE.person.title, "Senior Consultant @ Kundelab", "title"));
+
+test("About me is the default section", () => {
+  assertEqual(DEFAULT_SECTION, "about", "default");
+  assertEqual(renderSection("unknown-key").includes("Personal intro"), true, "unknown keys fall back to About me");
+});
 </script>
 </body>
 </html>

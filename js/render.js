@@ -1,5 +1,6 @@
 // Turns SITE content into HTML for the section panel and the résumé view.
 const SECTION_ORDER = ["about", "experience", "projects", "toolkit", "education", "contact"];
+const DEFAULT_SECTION = "about";   // the section shown when the page loads
 
 function esc(text) {
   return String(text).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -68,7 +69,7 @@ const RENDERERS = {
 };
 
 function renderSection(key) {
-  return (RENDERERS[key] || RENDERERS.projects)(2);
+  return (RENDERERS[key] || RENDERERS[DEFAULT_SECTION])(2);
 }
 
 function renderResume() {
