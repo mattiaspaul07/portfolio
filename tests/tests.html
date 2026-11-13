@@ -83,6 +83,14 @@ test("resume shows both education lists without a toggle", () => {
   assertEqual(html.includes("data-tab"), false, "no toggle");
   assertEqual(html.includes("Lean Green Belt") && html.includes("BI Norwegian Business School"), true, "both lists");
 });
+
+test("only the featured project carries the Featured label", () => {
+  const html = renderSection("projects");
+  assertEqual((html.match(/Featured project/g) || []).length, SITE.projects.filter(p => p.featured).length, "chips");
+});
+test("TV 2 project is shown with its own heading", () => {
+  assertEqual(renderSection("projects").includes("Handling the TV 2 surge at Lyse Dialog"), true, "title");
+});
 </script>
 </body>
 </html>

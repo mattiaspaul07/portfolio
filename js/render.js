@@ -19,10 +19,10 @@ function timeline(rows) {
     `<li><span class="yr">${esc(r.period)}</span><span><b>${esc(r.title)}</b>${r.detail ? esc(r.detail) : ""}</span></li>`).join("")}</ol>`;
 }
 
-function featuredProject(p) {
+function projectCard(p) {
   const rows = [["Challenge", p.challenge], ["My contribution", p.contribution], ["Tools", p.tools], ["Outcome", p.outcome]]
     .filter(([, v]) => v).map(([k, v]) => `<dt>${k}</dt><dd>${esc(v)}</dd>`).join("");
-  return `<article class="card feature"><span class="chip">Featured project</span>
+  return `<article class="card${p.featured ? " feature" : ""}">${p.featured ? '<span class="chip">Featured project</span>' : ""}
     <span class="title">${esc(p.title)}</span><dl>${rows}</dl>
     ${p.credit ? `<span class="credit">${esc(p.credit)}</span>` : ""}
     ${p.sourceUrl ? `<a href="${esc(p.sourceUrl)}" target="_blank" rel="noopener">${esc(p.sourceLabel || "Source")}</a>` : ""}</article>`;
@@ -45,7 +45,7 @@ const RENDERERS = {
   experience: (lvl) => heading("experience", lvl)
     + timeline(SITE.experience.map(r => ({ period: r.period, title: `${r.title}, ${r.company}`, detail: r.summary }))),
   projects: (lvl) => heading("projects", lvl)
-    + SITE.projects.map(p => p.featured ? featuredProject(p) : p.placeholder ? placeholderBox(p) : featuredProject(p)).join(""),
+    + SITE.projects.map(p => p.placeholder ? placeholderBox(p) : projectCard(p)).join(""),
   toolkit: (lvl) => heading("toolkit", lvl)
     + `<ul class="tools">${SITE.tools.map(t => `<li><b>${esc(t.name)}</b><span>${esc(t.sentence)}</span></li>`).join("")}</ul>`,
   education: (lvl, opts = {}) => heading("education", lvl) + (opts.plain
