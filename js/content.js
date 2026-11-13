@@ -9,11 +9,11 @@ const SITE = {
   },
   sections: {
     about:      { menu: "About",      title: "About me",                     object: "Sofa" },
-    experience: { menu: "Experience", title: "Experience",                   object: "Whiteboard" },
-    projects:   { menu: "Projects",   title: "Projects",                     object: "Desk" },
-    toolkit:    { menu: "Toolkit",    title: "My toolkit",                   object: "Toolbox" },
-    education:  { menu: "Education",  title: "Education and certifications", object: "Bookshelf" },
-    contact:    { menu: "Contact",    title: "Contact",                      object: "Pin board" }
+    experience: { menu: "Experience", title: "Experience",                   object: "Whiteboard", heading: "From the phones to the Zendesk admin" },
+    projects:   { menu: "Projects",   title: "Projects",                     object: "Desk", heading: "On my desk" },
+    toolkit:    { menu: "Toolkit",    title: "My toolkit",                   object: "Toolbox", heading: "The tools I work with" },
+    education:  { menu: "Education",  title: "Education and certifications", object: "Bookshelf", heading: "On the shelf" },
+    contact:    { menu: "Contact",    title: "Contact",                      object: "Pin board", heading: "Let's talk" }
   },
   about: { placeholder: true, text: "Personal introduction: background, interests outside work, and how you approach work with clients." },
   languages: ["Norwegian, native", "English", "German"],

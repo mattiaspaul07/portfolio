@@ -72,6 +72,17 @@ test("path to a blocked spot ends at the nearest free cell", () => {
   assertEqual(desk.some(f => end.x > f.x - 0.3 && end.x < f.x + f.w + 0.3 && end.y > f.y - 0.3 && end.y < f.y + f.d + 0.3), false, "free");
 });
 test("walking from a spot to itself is an empty path", () => assertEqual(findPath([], 3, 3, 3.1, 3.1).length, 1, "single cell"));
+
+test("resume lists every section in menu order", () => {
+  const html = renderResume();
+  const pos = ["About me","Experience","Projects","My toolkit","Education and certifications","Contact"].map(t => html.indexOf(">" + t + "<"));
+  assertEqual(pos.every((p, i) => p >= 0 && (i === 0 || p > pos[i - 1])), true, "order");
+});
+test("resume shows both education lists without a toggle", () => {
+  const html = renderResume();
+  assertEqual(html.includes("data-tab"), false, "no toggle");
+  assertEqual(html.includes("Lean Green Belt") && html.includes("BI Norwegian Business School"), true, "both lists");
+});
 </script>
 </body>
 </html>

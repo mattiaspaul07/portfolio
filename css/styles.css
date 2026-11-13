@@ -126,3 +126,10 @@ button{font:inherit}
   .topbar{position:static}
   body{background:#fff; color:#000}
 }
+.resume-page .resume{border:0; box-shadow:none; border-radius:0; background:var(--panel)}
+.resume-page{background:var(--bg)}
+@media print{
+  .resume-page .resume{padding:0}
+  .resume .btn,.ph{display:none !important}
+  .resume section{break-inside:avoid-page}
+}
