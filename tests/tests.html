@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Portfolio tests</title></head>
+<body style="font:15px/1.6 system-ui, sans-serif; padding:16px">
+<h1>Portfolio tests</h1>
+<main id="results"></main>
+<script src="../js/content.js"></script>
+<script src="../js/render.js"></script>
+<script src="../js/iso.js"></script>
+<script src="test-kit.js"></script>
+<script>
+const KEYS = ["about","experience","projects","toolkit","education","contact"];
+
+test("every section has a menu name and an object", () => {
+  KEYS.forEach(k => {
+    assertEqual(typeof SITE.sections[k].menu, "string", k + " menu");
+    assertEqual(typeof SITE.sections[k].object, "string", k + " object");
+  });
+});
+test("no private details in content", () => {
+  const all = JSON.stringify(SITE);
+  [/\+47/, /Storhaugen/, /1999/, /Samboer/i, /Gjøse/, /Bratten/].forEach(rx =>
+    assertEqual(rx.test(all), false, "forbidden " + rx));
+});
+test("exactly one featured project", () => {
+  assertEqual(SITE.projects.filter(p => p.featured).length, 1, "featured");
+});
+test("certificates are newest first", () => {
+  const order = SITE.certificates.map(c => c.sortKey);
+  assertEqual(order, [...order].sort().reverse(), "order");
+});
+</script>
+</body>
+</html>
