@@ -45,6 +45,7 @@ function educationRows() {
 
 const RENDERERS = {
   about: (lvl) => heading("about", lvl)
+    + `<div class="intro-card"><img class="portrait" src="assets/portrait.jpg" width="96" height="96" alt="Portrait of Mattias Paul"><p class="headline">${esc(SITE.person.headline)}</p></div>`
     + (SITE.about.placeholder ? placeholderBox(SITE.about) : SITE.about.paragraphs.map(t => `<p>${esc(t)}</p>`).join(""))
     + `<div class="card"><b>Languages</b><div class="chips">${SITE.languages.map(l => `<span class="chip">${esc(l)}</span>`).join("")}</div></div>`,
   experience: (lvl) => heading("experience", lvl)

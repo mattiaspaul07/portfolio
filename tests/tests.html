@@ -145,6 +145,13 @@ test("projects without key numbers show no number tiles", () => {
 test("featured project credits the deck's results to the team", () => {
   assertEqual(SITE.projects[0].credit.includes("team"), true, "credit");
 });
+
+test("about me opens with the portrait and the headline", () => {
+  const html = renderSection("about");
+  assertEqual(html.includes('class="portrait"') && html.includes('alt="Portrait of Mattias Paul"'), true, "portrait");
+  assertEqual(html.includes(esc(SITE.person.headline)), true, "headline");
+  assertEqual(html.indexOf('class="portrait"') < html.indexOf("<p>I started"), true, "before the intro text");
+});
 </script>
 </body>
 </html>
