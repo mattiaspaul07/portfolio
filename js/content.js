@@ -2,7 +2,7 @@
 // Never add: home address, date of birth, relationship status, phone number, referees, credential IDs.
 const SITE = {
   person: {
-    name: "Mattias Paul", title: "Senior Consultant, Kundelab",
+    name: "Mattias Paul", title: "Senior Consultant @ Kundelab",
     headline: "Hi, I'm Mattias. I connect people, processes and technology.",
     email: "mattias.paul07@gmail.com",
     linkedin: "https://www.linkedin.com/in/mattias-paul-a3ab39181/"

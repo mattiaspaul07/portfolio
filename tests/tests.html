@@ -152,6 +152,8 @@ test("about me opens with the portrait and the headline", () => {
   assertEqual(html.includes(esc(SITE.person.headline)), true, "headline");
   assertEqual(html.indexOf('class="portrait"') < html.indexOf("<p>I started"), true, "before the intro text");
 });
+
+test("title uses the @ form", () => assertEqual(SITE.person.title, "Senior Consultant @ Kundelab", "title"));
 </script>
 </body>
 </html>
