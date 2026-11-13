@@ -51,6 +51,11 @@ test("special characters in content render as text", () => {
   assertEqual(renderSection("education").includes("videregående"), true, "unicode");
   assertEqual(renderSection("projects").includes("Zendesk&#39;s customer story"), true, "apostrophe escaped");
 });
+
+test("iso maps one unit along x", () => assertEqual(iso(1,0,0).map(v => +v.toFixed(2)), [17.32, 10], "x"));
+test("iso lifts by z", () => assertEqual(iso(0,0,1), [0, -20], "z"));
+test("shade returns hex", () => assertEqual(shade("#808080", 0.5), "#404040", "shade"));
+test("shade clamps at white", () => assertEqual(shade("#ffffff", 2), "#ffffff", "clamp"));
 </script>
 </body>
 </html>
