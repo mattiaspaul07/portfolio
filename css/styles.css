@@ -44,7 +44,7 @@ button{font:inherit}
 .hello{display:grid; grid-template-columns:auto 1fr; gap:8px 16px; align-items:center}
 .portrait{width:96px; height:96px; border-radius:18px; object-fit:cover; display:block; box-shadow:0 2px 0 var(--line)}
 .hello h1{font-size:clamp(1.3rem, 2.6vw, 1.85rem)}
-.hint{display:inline-flex; align-items:center; gap:8px; font-size:.9rem}
+.hint{justify-self:center; justify-content:center; text-align:center; display:inline-flex; align-items:center; gap:8px; font-size:.9rem}
 .hint i{width:10px; height:10px; border-radius:50%; background:var(--mark); flex:none}
 #room{width:100%; max-width:760px; height:auto; display:block; margin:0 auto; touch-action:manipulation}
 
