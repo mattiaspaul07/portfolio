@@ -29,6 +29,28 @@ test("certificates are newest first", () => {
   const order = SITE.certificates.map(c => c.sortKey);
   assertEqual(order, [...order].sort().reverse(), "order");
 });
+
+test("esc escapes HTML", () => assertEqual(esc(`<a & "b">`), "&lt;a &amp; &quot;b&quot;&gt;", "esc"));
+test("projects panel shows the featured card first", () => {
+  const html = renderSection("projects");
+  assertEqual(html.indexOf("Unifying customer service") < html.indexOf("Placeholder project"), true, "order");
+  assertEqual(html.includes("My contribution"), true, "label");
+});
+test("missing optional fields never print undefined", () => {
+  KEYS.forEach(k => assertEqual(renderSection(k).includes("undefined"), false, k));
+});
+test("placeholders are labelled", () => assertEqual(renderSection("about").includes("Placeholder"), true, "about"));
+test("education has a certificates and education toggle", () => {
+  const html = renderSection("education");
+  assertEqual(html.includes('data-tab="certs"') && html.includes('data-tab="edu"'), true, "tabs");
+});
+test("certificate without validUntil or issuer shows only its name", () => {
+  assertEqual(renderSection("education").includes("<b>Lean Green Belt</b></span>"), true, "lean");
+});
+test("special characters in content render as text", () => {
+  assertEqual(renderSection("education").includes("videregående"), true, "unicode");
+  assertEqual(renderSection("projects").includes("Zendesk&#39;s customer story"), true, "apostrophe escaped");
+});
 </script>
 </body>
 </html>
