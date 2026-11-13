@@ -68,7 +68,7 @@ A personal résumé and portfolio site for Mattias Paul, Senior Consultant at Ku
 
 - **Header (always visible):** name and title ("Senior Consultant, Kundelab"), section menu (About, Experience, Projects, Toolkit, Education, Contact), Download CV button, sound icon (off by default).
 - **Left: introduction and room.** Portrait (rounded square, about 96 px), headline "Hi, I'm Mattias. I connect people, processes and technology.", hint line "Explore my workspace to get to know me, or use the menu above.", then the room.
-- **Right: section panel.** Opens with Projects by default, so the featured Lyse case study is the first thing visitors read.
+- **Right: section panel.** Opens with About me by default (changed from Projects on 2026-11-13 at Mattias's request), so visitors meet the portrait and personal intro first.
 - **Phone:** menu becomes a sideways-scrolling row of tabs under the header; sections open as a bottom sheet below the room; portrait about 64 px.
 - **Résumé view:** a separate plain page (`resume.html`) with all sections in order, no animation, printable from the browser.
 
