@@ -40,7 +40,7 @@ function educationRows() {
 
 const RENDERERS = {
   about: (lvl) => heading("about", lvl)
-    + (SITE.about.placeholder ? placeholderBox(SITE.about) : `<p>${esc(SITE.about.text)}</p>`)
+    + (SITE.about.placeholder ? placeholderBox(SITE.about) : SITE.about.paragraphs.map(t => `<p>${esc(t)}</p>`).join(""))
     + `<div class="card"><b>Languages</b><div class="chips">${SITE.languages.map(l => `<span class="chip">${esc(l)}</span>`).join("")}</div></div>`,
   experience: (lvl) => heading("experience", lvl)
     + timeline(SITE.experience.map(r => ({ period: r.period, title: `${r.title}, ${r.company}`, detail: r.summary }))),

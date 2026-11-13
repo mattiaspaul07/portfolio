@@ -41,7 +41,7 @@ test("projects panel shows the featured card first", () => {
 test("missing optional fields never print undefined", () => {
   KEYS.forEach(k => assertEqual(renderSection(k).includes("undefined"), false, k));
 });
-test("placeholders are labelled", () => assertEqual(renderSection("about").includes("Placeholder"), true, "about"));
+test("placeholders are labelled", () => assertEqual(renderSection("projects").includes("Placeholder"), true, "projects"));
 test("education has a certificates and education toggle", () => {
   const html = renderSection("education");
   assertEqual(html.includes('data-tab="certs"') && html.includes('data-tab="edu"'), true, "tabs");
@@ -116,6 +116,18 @@ test("coffee label reads naturally", () => {
   assertEqual(coffeeLabel(0), "COFFEE #0", "zero");
   assertEqual(coffeeLabel(1), "COFFEE #1", "one");
   assertEqual(coffeeLabel(12), "COFFEE #12", "many");
+});
+
+test("about shows the personal intro once, with its own heading", () => {
+  const html = renderSection("about");
+  assertEqual((html.match(/>About me</g) || []).length, 1, "About me appears once");
+  assertEqual(html.includes("<h2>Personal intro</h2>"), true, "heading");
+  assertEqual(html.includes("Placeholder"), false, "no placeholder");
+  assertEqual((html.match(/<p>/g) || []).length, 3, "three paragraphs");
+  assertEqual(html.includes("based in Stavanger"), true, "text");
+});
+test("experience heading uses first-tier agent wording", () => {
+  assertEqual(renderSection("experience").includes("From first-tier agent to the Zendesk admin"), true, "heading");
 });
 </script>
 </body>

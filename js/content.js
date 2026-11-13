@@ -8,14 +8,18 @@ const SITE = {
     linkedin: "https://www.linkedin.com/in/mattias-paul-a3ab39181/"
   },
   sections: {
-    about:      { menu: "About",      title: "About me",                     object: "Sofa" },
-    experience: { menu: "Experience", title: "Experience",                   object: "Whiteboard", heading: "From the phones to the Zendesk admin" },
+    about:      { menu: "About",      title: "About me",                     object: "Sofa", heading: "Personal intro" },
+    experience: { menu: "Experience", title: "Experience",                   object: "Whiteboard", heading: "From first-tier agent to the Zendesk admin" },
     projects:   { menu: "Projects",   title: "Projects",                     object: "Desk", heading: "On my desk" },
     toolkit:    { menu: "Toolkit",    title: "My toolkit",                   object: "Toolbox", heading: "The tools I work with" },
     education:  { menu: "Education",  title: "Education and certifications", object: "Bookshelf", heading: "On the shelf" },
     contact:    { menu: "Contact",    title: "Contact",                      object: "Pin board", heading: "Let's talk" }
   },
-  about: { placeholder: true, text: "Personal introduction: background, interests outside work, and how you approach work with clients." },
+  about: { paragraphs: [
+    "I started in first-line support while studying marketing, discovering how much good systems matter to both customers and colleagues. Curiosity led me into IT, where I found my place helping people work smarter through better tools and processes.",
+    "Today, I’m based in Stavanger and work as a consultant at Kundelab, helping teams build better customer experiences with Zendesk. I enjoy making sense of messy challenges and working with people to turn ideas into practical improvements.",
+    "Outside work, competing nationally in sports has shaped my drive, discipline, and approach to setbacks. I bring that same mindset to learning: stay curious, keep improving, and be ready for the next challenge."
+  ] },
   languages: ["Norwegian, native", "English", "German"],
   experience: [
     { period: "Jun 2026 – now", title: "Senior Consultant", company: "Kundelab", summary: "Zendesk setup and optimisation, automation, project management, workshops and training." },
