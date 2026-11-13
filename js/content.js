@@ -32,11 +32,16 @@ const SITE = {
   projects: [
     { featured: true,
       title: "Unifying customer service on Zendesk at Lyse Dialog",
-      challenge: "Agents had to work across several systems. When energy prices rose sharply, ticket volume grew about tenfold.",
-      contribution: "I handled much of the Zendesk configuration, including personal work views, automated follow-ups and prioritisation.",
-      tools: "Zendesk Suite, Bump Bump Solve",
-      outcome: "The team halved the ticket backlog and was back in control within a few weeks.",
-      credit: "Outcome credited to the Lyse Dialog customer service team, as described in Zendesk's customer story.",
+      keyNumbers: [
+        { value: "29 → 5", label: "Average handling time per ticket, in minutes (Feb 2021 to Mar 2022)" },
+        { value: "2.8K → 511", label: "Tickets per week at the January 2022 peak, and three weeks later" },
+        { value: "3 days", label: "Until a pending ticket gets its first automatic reminder" }
+      ],
+      challenge: "KS Energi moved its customer service to Zendesk in February 2021. Agents had to work across several systems, and from early December 2021 to late January 2022 rising energy prices brought a surge of enquiries, about ten times the usual volume.",
+      contribution: "I handled much of the Zendesk configuration: Bump Bump Solve for automatic reminders on pending tickets, closing them after the second reminder; follow-up on on-hold tickets, with an update to the customer after 3 days and the ticket reopening for the agent after a week; views that combine personal and unassigned tickets, raise customer replies to high priority and serve the next ticket with the Play button; and auto-replies with the top 3 answers on invoice and payment tickets.",
+      tools: "Zendesk Suite, Zendesk Explore, Bump Bump Solve",
+      outcome: "Average handling time fell from 29 to 5 minutes per ticket. During the surge, the team used Explore to adjust opening hours and staffing, and was back in control within about three weeks of the January peak.",
+      credit: "Results credited to the KS Energi and Lyse Dialog customer service team, as described in Zendesk's customer story and the team's own reporting.",
       sourceUrl: "https://www.zendesk.co.uk/customer/lyse/", sourceLabel: "Read the Zendesk customer story" },
     { title: "Handling the TV 2 surge at Lyse Dialog",
       challenge: "When negotiations between TV 2 and Altibox broke down, enquiries surged. It was all hands on deck: customer service, analytics, sales and back office.",

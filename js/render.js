@@ -19,11 +19,16 @@ function timeline(rows) {
     `<li><span class="yr">${esc(r.period)}</span><span><b>${esc(r.title)}</b>${r.detail ? esc(r.detail) : ""}</span></li>`).join("")}</ol>`;
 }
 
+function keyNumbers(p) {
+  if (!p.keyNumbers || !p.keyNumbers.length) return "";
+  return `<div class="kpis">${p.keyNumbers.map(k => `<div class="kpi"><b>${esc(k.value)}</b><span>${esc(k.label)}</span></div>`).join("")}</div>`;
+}
+
 function projectCard(p) {
   const rows = [["Challenge", p.challenge], ["My contribution", p.contribution], ["Tools", p.tools], ["Outcome", p.outcome]]
     .filter(([, v]) => v).map(([k, v]) => `<dt>${k}</dt><dd>${esc(v)}</dd>`).join("");
   return `<article class="card${p.featured ? " feature" : ""}">${p.featured ? '<span class="chip">Featured project</span>' : ""}
-    <span class="title">${esc(p.title)}</span><dl>${rows}</dl>
+    <span class="title">${esc(p.title)}</span>${keyNumbers(p)}<dl>${rows}</dl>
     ${p.credit ? `<span class="credit">${esc(p.credit)}</span>` : ""}
     ${p.sourceUrl ? `<a href="${esc(p.sourceUrl)}" target="_blank" rel="noopener">${esc(p.sourceLabel || "Source")}</a>` : ""}</article>`;
 }

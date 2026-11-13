@@ -129,6 +129,22 @@ test("about shows the personal intro once, with its own heading", () => {
 test("experience heading uses first-tier agent wording", () => {
   assertEqual(renderSection("experience").includes("From first-tier agent to the Zendesk admin"), true, "heading");
 });
+
+test("featured project shows its key numbers", () => {
+  const html = renderSection("projects");
+  assertEqual((html.match(/class="kpi"/g) || []).length, SITE.projects[0].keyNumbers.length, "tiles");
+  assertEqual(html.indexOf('class="kpis"') < html.indexOf("<dl>"), true, "numbers come before the details");
+});
+test("projects without key numbers show no number tiles", () => {
+  const tv2 = SITE.projects.find(p => p.title.startsWith("Handling the TV 2"));
+  assertEqual(tv2.keyNumbers === undefined, true, "fixture");
+  const html = renderSection("projects");
+  const tv2Part = html.slice(html.indexOf("Handling the TV 2"));
+  assertEqual(tv2Part.includes('class="kpi"'), false, "no tiles on TV 2");
+});
+test("featured project credits the deck's results to the team", () => {
+  assertEqual(SITE.projects[0].credit.includes("team"), true, "credit");
+});
 </script>
 </body>
 </html>
