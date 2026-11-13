@@ -68,8 +68,8 @@ const SITE = {
     { sortKey: "2026-04", issued: "Apr 2026", name: "Zendesk AI", issuer: "Zendesk" },
     { sortKey: "2025-02", issued: "Feb 2025", name: "Microsoft Certified: Azure Fundamentals (AZ-900)", issuer: "Microsoft" },
     { sortKey: "2025-01", issued: "Jan 2025", name: "Professional Scrum Master I (PSM I)", issuer: "Scrum.org" },
-    { sortKey: "2023-02", issued: "Feb 2023", name: "CFT Training", issuer: "Puzzel" },
-    { sortKey: "2023-00", issued: "2023", name: "Lean Green Belt" }
+    { sortKey: "2023-03", issued: "Mar 2023", name: "Lean Green Belt" },
+    { sortKey: "2023-02", issued: "Feb 2023", name: "CFT Training", issuer: "Puzzel" }
   ],
   education: [
     { period: "2018 – 2022", title: "Bachelor in Marketing Management", school: "BI Norwegian Business School" },

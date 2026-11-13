@@ -159,6 +159,12 @@ test("About me is the default section", () => {
   assertEqual(DEFAULT_SECTION, "about", "default");
   assertEqual(renderSection("unknown-key").includes("Personal intro"), true, "unknown keys fall back to About me");
 });
+
+test("Lean Green Belt is dated March 2023", () => {
+  const lean = SITE.certificates.find(c => c.name === "Lean Green Belt");
+  assertEqual(lean.issued, "Mar 2023", "issued");
+  assertEqual(lean.sortKey, "2023-03", "sort key");
+});
 </script>
 </body>
 </html>
