@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Mattias Paul</title>
+  <meta name="description" content="Mattias Paul, Senior Consultant at Kundelab. Zendesk setup, automation and support systems. Explore my workspace.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Caveat:wght@700&family=IBM+Plex+Mono:wght@500&display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <a class="skip" href="#panel">Skip to content</a>
+  <header class="topbar">
+    <div class="brand">Mattias Paul<small>Senior Consultant, Kundelab</small></div>
+    <nav id="nav" class="nav" aria-label="Sections"></nav>
+    <div class="actions">
+      <a class="ghost" href="resume.html">Résumé view</a>
+      <a id="cv" class="cta" href="assets/Mattias-Paul-CV.pdf" download>Download CV</a>
+      <button id="sound" type="button" class="iconbtn" aria-pressed="false" aria-label="Sound off" title="Sound off">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 6h3l4-3v10l-4-3H2z"/><path class="x" d="M11 6l4 4M15 6l-4 4"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="body">
+    <div class="scene">
+      <div class="hello">
+        <img class="portrait" src="assets/portrait.jpg" width="96" height="96" alt="Portrait of Mattias Paul">
+        <h1>Hi, I'm Mattias. I connect people, processes and technology.</h1>
+        <p class="hint"><i aria-hidden="true"></i>Explore my workspace to get to know me, or use the menu above.</p>
+      </div>
+      <svg id="room" viewBox="-205 -150 410 360" role="group" aria-label="My workspace. Each marked object opens a section."></svg>
+    </div>
+    <section id="panel" class="panel" aria-live="polite"></section>
+  </main>
+
+  <script src="js/content.js"></script>
+  <script src="js/render.js"></script>
+  <script src="js/iso.js"></script>
+  <script src="js/room.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
