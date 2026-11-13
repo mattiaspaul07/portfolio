@@ -1,12 +1,5 @@
 // Connects the menu, the room and the section panel.
-const ICONS = {
-  about: '<circle cx="0" cy="-3" r="2.6"/><path d="M-5 5.5a5 5 0 0 1 10 0"/>',
-  experience: '<path d="M-6 3h12"/><circle cx="-4" cy="3" r="1.3"/><circle cx="0" cy="3" r="1.3"/><circle cx="4" cy="3" r="1.3"/><path d="M-4 -1v-4M0 -1v-2M4 -1v-5"/>',
-  projects: '<path d="M-6 -4h4l1.5 2h6.5v8h-12z"/>',
-  toolkit: '<path d="M-6 -1h12v6h-12z"/><path d="M-3 -1v-2.5h6v2.5"/><path d="M-6 2h12"/>',
-  education: '<path d="M-6 -5h4.5a1.5 1.5 0 0 1 1.5 1.5v10a1.5 1.5 0 0 0 -1.5 -1.5h-4.5zM6 -5h-4.5a1.5 1.5 0 0 0 -1.5 1.5v10a1.5 1.5 0 0 1 1.5 -1.5h4.5z"/>',
-  contact: '<path d="M-6 -5h12v8h-6l-3.5 3v-3h-2.5z"/>'
-};
+const ICONS = window.ROOM_ICONS;   // defined in room.js, shared by menu and markers
 
 const state = { current: null, room: null };
 const nav = document.getElementById("nav");
@@ -66,10 +59,6 @@ sound.addEventListener("click", () => {
 
 buildNav();
 if (typeof drawRoom === "function") {
-  state.room = drawRoom(document.getElementById("room"), {
-    start: "projects",
-    onPick: key => select(key, { focus: true }),
-    onHover: key => state.room && state.room.setHover(key)
-  });
+  state.room = drawRoom(document.getElementById("room"), { onPick: key => select(key, { focus: true }) });
 }
 select("projects");
