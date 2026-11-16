@@ -170,6 +170,17 @@ const wallX=(y1,y2,z1,z2)=>[[0.02,y1,z1],[0.02,y2,z1],[0.02,y2,z2],[0.02,y1,z2]]
           box(g,8.62,3.05,0.74,0.2,0.5,0.45,P.coral); box(g,8.62,4.25,0.74,0.2,0.45,0.42,"#e8c35a");
           box(g,9.08,2.6,0.5,0.32,2.5,0.95,T);
           box(g,8.3,4.8,0.5,1.1,0.3,0.5,T);
+          // Viking scarf left lying over the sofa's backrest (decoration, no crest)
+          { const NAVY="#1f2a4a", WHITE="#f4f1ea", y1=3.25, y2=3.75, zt=1.452, xb=9.402;
+            poly(g,[[9.06,y1,zt],[xb,y1,zt],[xb,y2,zt],[9.06,y2,zt]],NAVY);                       // over the top
+            poly(g,[[9.06,y1,zt],[xb,y1,zt],[xb,y1+0.07,zt],[9.06,y1+0.07,zt]],WHITE);
+            poly(g,[[9.06,y2-0.07,zt],[xb,y2-0.07,zt],[xb,y2,zt],[9.06,y2,zt]],WHITE);
+            const zb=0.62;                                                                      // hanging down the back
+            poly(g,[[xb,y1,zb],[xb,y2,zb],[xb,y2,zt],[xb,y1,zt]],NAVY);
+            poly(g,[[xb,y1,zb],[xb,y1+0.07,zb],[xb,y1+0.07,zt],[xb,y1,zt]],WHITE);
+            poly(g,[[xb,y2-0.07,zb],[xb,y2,zb],[xb,y2,zt],[xb,y2-0.07,zt]],WHITE);
+            for(let z=zb+0.12;z<zt-0.1;z+=0.24) poly(g,[[xb,y1+0.07,z],[xb,y2-0.07,z],[xb,y2-0.07,z+0.1],[xb,y1+0.07,z+0.1]],WHITE);
+            for(let y=y1+0.03;y<y2;y+=0.06) line(g,[[xb,y,zb],[xb,y,zb-0.13]],"#8a92a6",1); }
         }},
         {foot:{x:7.0,y:3.1,w:0.9,d:1.5}, draw:g=>{   // coffee table with coffee
           [[7.05,3.15],[7.75,3.15],[7.05,4.45],[7.75,4.45]].forEach(([x,y])=>box(g,x,y,0,0.1,0.1,0.4,P.wood));
