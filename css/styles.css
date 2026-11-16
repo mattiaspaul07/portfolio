@@ -54,7 +54,7 @@ button{font:inherit}
 .intro-card .headline{font-family:var(--display); font-weight:700; font-size:clamp(1.2rem, 2vw, 1.5rem); line-height:1.25; text-wrap:balance}
 
 .photo{margin:0; display:grid; gap:6px}
-.photo img{width:100%; height:auto; max-height:420px; object-fit:cover; border-radius:10px; display:block; background:var(--chip)}
+.photo img{width:100%; height:auto; max-height:520px; object-fit:cover; object-position:center top; border-radius:10px; display:block; background:var(--chip)}   /* crop from the bottom so heads stay in view */
 .photo figcaption{font-size:.82rem; color:var(--muted)}
 
 /* project cards: actions and the "How I built it" toggle */
