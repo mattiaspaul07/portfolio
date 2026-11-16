@@ -3,7 +3,7 @@
 const SITE = {
   person: {
     name: "Mattias Paul", title: "Senior Consultant @ Kundelab",
-    headline: "Hi, I'm Mattias. I connect people, processes and technology.",
+    headline: "Hi, I’m Mattias. I make customer service work better both for the people asking for help and the people giving it.",
     email: "mattias.paul07@gmail.com",
     linkedin: "https://www.linkedin.com/in/mattias-paul-a3ab39181/"
   },
@@ -16,9 +16,10 @@ const SITE = {
     contact:    { menu: "Contact",    title: "Contact",                      object: "Pin board", heading: "Let's talk" }
   },
   about: { paragraphs: [
-    "I started in first-line support while studying marketing, discovering how much good systems matter to both customers and colleagues. Curiosity led me into IT, where I found my place helping people work smarter through better tools and processes.",
-    "Today, I’m based in Stavanger and work as a consultant at Kundelab, helping teams build better customer experiences with Zendesk. I enjoy making sense of messy challenges and working with people to turn ideas into practical improvements.",
-    "Outside work, competing nationally in sports has shaped my drive, discipline, and approach to setbacks. I bring that same mindset to learning: stay curious, keep improving, and be ready for the next challenge."
+    "I started on the front line, answering calls and chats. That’s where I learned how much difference a good system makes and how frustrating a bad one can be. Since then, I’ve led support systems at Lyse, worked in Customer Success at Aritma, and become a Senior Consultant at Kundelab.",
+    "These days, I help teams get more out of Zendesk: simpler workflows, useful automation, and tools people feel comfortable using. I like untangling messy problems with the people who deal with them every day.",
+    "Based in Stavanger. Curious by default.",
+    "Have a look around my workspace. My avatar will show you around."
   ] },
   // Hidden extras: found by exploring the room, no marker or menu item, not in the résumé.
   extras: {

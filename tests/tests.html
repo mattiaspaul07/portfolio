@@ -126,8 +126,9 @@ test("about shows the personal intro once, with its own heading", () => {
   assertEqual((html.match(/>About me</g) || []).length, 1, "About me appears once");
   assertEqual(html.includes("<h2>Personal intro</h2>"), true, "heading");
   assertEqual(html.includes("Placeholder"), false, "no placeholder");
-  assertEqual((html.match(/<p>/g) || []).length, 3, "three paragraphs");
-  assertEqual(html.includes("based in Stavanger"), true, "text");
+  assertEqual((html.match(/<p>/g) || []).length, 4, "four paragraphs");
+  assertEqual(html.includes("Based in Stavanger. Curious by default."), true, "closing line");
+  assertEqual(SITE.person.headline, "Hi, I’m Mattias. I make customer service work better both for the people asking for help and the people giving it.", "headline");
 });
 test("experience heading uses first-tier agent wording", () => {
   assertEqual(renderSection("experience").includes("From first-tier agent to the Zendesk admin"), true, "heading");
@@ -153,7 +154,7 @@ test("about me opens with the portrait and the headline", () => {
   const html = renderSection("about");
   assertEqual(html.includes('class="portrait"') && html.includes('alt="Portrait of Mattias Paul"'), true, "portrait");
   assertEqual(html.includes(esc(SITE.person.headline)), true, "headline");
-  assertEqual(html.indexOf('class="portrait"') < html.indexOf("<p>I started"), true, "before the intro text");
+  assertEqual(html.indexOf('class="portrait"') < html.indexOf("<p>I started on the front line"), true, "before the intro text");
 });
 
 test("title uses the @ form", () => assertEqual(SITE.person.title, "Senior Consultant @ Kundelab", "title"));
