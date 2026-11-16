@@ -168,6 +168,19 @@ test("Lean Green Belt is dated March 2023", () => {
   assertEqual(lean.issued, "Mar 2023", "issued");
   assertEqual(lean.sortKey, "2023-03", "sort key");
 });
+
+test("running story is an extra, not a section", () => {
+  assertEqual(SITE.sections.running === undefined, true, "no section");
+  assertEqual(SITE.extras.running.title, "On the track", "title");
+  assertEqual(SITE.extras.running.paragraphs.length, 2, "two paragraphs");
+  assertEqual(SITE.extras.running.paragraphs[0].includes("an Olympic champion"), true, "wording");
+});
+test("running story renders with its own label", () => {
+  const html = renderSection("running");
+  assertEqual(html.includes(">Behind the door<") && html.includes("<h2>On the track</h2>"), true, "heading");
+  assertEqual(html.includes("Ingebrigtsen"), true, "story text");
+});
+test("running story stays out of the résumé", () => assertEqual(renderResume().includes("On the track"), false, "resume"));
 </script>
 </body>
 </html>

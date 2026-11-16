@@ -20,6 +20,13 @@ const SITE = {
     "Today, I’m based in Stavanger and work as a consultant at Kundelab, helping teams build better customer experiences with Zendesk. I enjoy making sense of messy challenges and working with people to turn ideas into practical improvements.",
     "Outside work, competing nationally in sports has shaped my drive, discipline, and approach to setbacks. I bring that same mindset to learning: stay curious, keep improving, and be ready for the next challenge."
   ] },
+  // Hidden extras: found by exploring the room, no marker or menu item, not in the résumé.
+  extras: {
+    running: { label: "Behind the door", title: "On the track", object: "Medal and running shoes", paragraphs: [
+      "I ran middle distance at national level and won a few regional titles in my age group. Most of the time, though, I finished behind my friend Jakob Ingebrigtsen, who went on to become an Olympic champion.",
+      "Training alongside him and his brothers taught me a lot about myself, and about what others did to succeed. The biggest lesson: surround yourself with people who are better than you. The good news is that in IT, you don’t need world-class genetics. Curiosity and steady practice take you a long way."
+    ] }
+  },
   languages: ["Norwegian, native", "English", "German"],
   experience: [
     { period: "Jun 2026 – now", title: "Senior Consultant", company: "Kundelab", summary: "Zendesk setup and optimisation, automation, project management, workshops and training." },

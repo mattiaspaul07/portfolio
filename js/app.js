@@ -6,7 +6,7 @@ const nav = document.getElementById("nav");
 const panel = document.getElementById("panel");
 
 function select(key, { focus } = {}) {
-  if (!SITE.sections[key]) key = DEFAULT_SECTION;
+  if (!SITE.sections[key] && !(SITE.extras && SITE.extras[key])) key = DEFAULT_SECTION;
   state.current = key;
   panel.innerHTML = renderSection(key);
   nav.querySelectorAll("button").forEach(b => b.setAttribute("aria-current", b.dataset.key === key ? "true" : "false"));

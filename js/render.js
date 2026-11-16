@@ -68,7 +68,13 @@ const RENDERERS = {
        <p><a href="${esc(SITE.person.linkedin)}" target="_blank" rel="noopener">LinkedIn profile</a></p>`
 };
 
+function renderExtra(key) {
+  const x = SITE.extras[key];
+  return `<span class="kicker">${esc(x.label)}</span><h2>${esc(x.title)}</h2>${x.paragraphs.map(t => `<p>${esc(t)}</p>`).join("")}`;
+}
+
 function renderSection(key) {
+  if (SITE.extras && SITE.extras[key]) return renderExtra(key);
   return (RENDERERS[key] || RENDERERS[DEFAULT_SECTION])(2);
 }
 

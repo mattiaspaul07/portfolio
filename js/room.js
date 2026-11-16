@@ -23,7 +23,7 @@ const ICONS = {
   /* where the avatar stands for each place, which way it faces, and where the marker is anchored (top centre of the object) */
   const SPOTS = {
     about:{x:6.4,y:3.2,f:"+x"}, experience:{x:1.25,y:2.9,f:"-x"}, projects:{x:7.6,y:6.7,f:"+y"},
-    toolkit:{x:2.4,y:8.2,f:"+y"}, education:{x:4.0,y:1.6,f:"-y"}, contact:{x:1.8,y:5.3,f:"-x"}, coffee:{x:6.2,y:5.4,f:"+y"}
+    toolkit:{x:2.4,y:8.2,f:"+y"}, education:{x:4.0,y:1.6,f:"-y"}, contact:{x:1.8,y:5.3,f:"-x"}, running:{x:1.4,y:1.9,f:"-y"}, coffee:{x:6.2,y:5.4,f:"+y"}
   };
   const ANCHORS = {
     // each anchor is the top centre of its object, so the marker stem lands on the middle of the item
@@ -73,7 +73,8 @@ const wallX=(y1,y2,z1,z2)=>[[0.02,y1,z1],[0.02,y2,z1],[0.02,y2,z2],[0.02,y1,z2]]
       line(win,[[5.6,0.02,3.95],[8.9,0.02,3.95]],"#f7f3ea",3);
 
       // door with medal (decoration, not a destination)
-      const door=el("g",{"pointer-events":"none"},back);
+      // door with medal: a hidden extra (no marker) that opens the running story
+      const door=el("g",{class:"hot", tabindex:"0", role:"button", "aria-label":"Medal and running shoes. Opens a story from the track."},back);
       poly(door,wallY(0.8,2.4,0,4.4),P.teal);
       poly(door,wallY(0.95,2.25,0.2,4.25),shade(P.teal,1.12));
       poly(door,wallY(1.15,2.05,3.2,3.7),"#f7f3ea");
@@ -81,6 +82,7 @@ const wallX=(y1,y2,z1,z2)=>[[0.02,y1,z1],[0.02,y2,z1],[0.02,y2,z2],[0.02,y1,z2]]
       line(door,[[2.0,0.04,1.98],[2.06,0.04,1.42]],"#2f7d6d",3); line(door,[[2.16,0.04,1.98],[2.1,0.04,1.42]],"#e07a5f",3);
       poly(door,Array.from({length:12},(_,i)=>[2.08+0.13*Math.cos(i*Math.PI/6),0.04,1.3+0.13*Math.sin(i*Math.PI/6)]),"#e2b13c",{stroke:"#b3862a","stroke-width":1.2});
       poly(door,[[0.9,0,0.01],[2.3,0,0.01],[2.3,1.2,0.01],[0.9,1.2,0.01]],P.coral,{opacity:.85});
+      extra("running", door, true);
 
       // wall destinations
       hot("experience",[{draw:g=>{
@@ -203,7 +205,7 @@ const wallX=(y1,y2,z1,z2)=>[[0.02,y1,z1],[0.02,y2,z1],[0.02,y2,z2],[0.02,y1,z2]]
         line(bench,[[2.05,9.45,1.78],[2.05,9.45,2.05],[2.75,9.45,2.05],[2.75,9.45,1.78]],P.dark,3);
         box(bench,3.2,9.2,1.12,0.08,0.5,0.05,"#9aa3a8"); box(bench,3.18,9.65,1.12,0.12,0.15,0.07,P.coral);
       }}], mid);
-      const run=el("g",{"pointer-events":"none"},mid);   // running sneakers on the door mat
+      const run=el("g",{class:"hot", "aria-hidden":"true"},mid);   // running sneakers on the door mat, part of the running story
       [[1.85,0.4],[2.2,0.5]].forEach(([x,y])=>{
         box(run,x,y,0,0.26,0.72,0.08,"#33404a");                       // white sole
         box(run,x+0.02,y,0.08,0.22,0.3,0.2,"#fbfaf6");                  // heel
@@ -213,7 +215,7 @@ const wallX=(y1,y2,z1,z2)=>[[0.02,y1,z1],[0.02,y2,z1],[0.02,y2,z2],[0.02,y1,z2]]
         line(run,[[x+0.06,y+0.44,0.23],[x+0.18,y+0.44,0.23]],"#33404a",1.4);
         line(run,[[x+0.24,y+0.08,0.14],[x+0.24,y+0.55,0.14]],"#3b7fc4",2); // side stripe
       });
-      addSortable({x:1.85,y:0.4,w:0.61,d:0.82},run); blockers.push({x:1.85,y:0.4,w:0.61,d:0.82});
+      extra("running", run, false); addSortable({x:1.85,y:0.4,w:0.61,d:0.82},run); blockers.push({x:1.85,y:0.4,w:0.61,d:0.82});
 
       sortables.sort((a,b)=>(a.foot.x+a.foot.w/2+a.foot.y+a.foot.d/2)-(b.foot.x+b.foot.w/2+b.foot.y+b.foot.d/2));
       sortables.forEach(s=>mid.appendChild(s.g));
@@ -263,6 +265,16 @@ const wallX=(y1,y2,z1,z2)=>[[0.02,y1,z1],[0.02,y2,z1],[0.02,y2,z2],[0.02,y1,z2]]
         g.addEventListener("mouseenter",()=>light(key,true)); g.addEventListener("mouseleave",()=>light(key,false));
         if(p.foot){ addSortable(p.foot,g); blockers.push(p.foot); }
       });
+    }
+    // hidden extras: clickable objects without a marker or menu item
+    function extra(key, g, focusable){
+      (hots[key] = hots[key] || {groups:[]}).groups.push(g);
+      g.addEventListener("click",e=>{ e.stopPropagation(); pick(key); });
+      g.addEventListener("mouseenter",()=>light(key,true)); g.addEventListener("mouseleave",()=>light(key,false));
+      if(focusable){
+        g.addEventListener("keydown",e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); pick(key); } });
+        g.addEventListener("focus",()=>light(key,true)); g.addEventListener("blur",()=>light(key,false));
+      }
     }
     let hovered=null;
     function light(key,on){ hovered = on ? key : (hovered===key ? null : hovered); refresh(); }
