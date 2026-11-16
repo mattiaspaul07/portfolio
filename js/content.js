@@ -49,6 +49,13 @@ const SITE = {
         { value: "2.8K → 511", label: "Tickets per week at the January 2022 peak, and three weeks later" },
         { value: "3 days", label: "Until a pending ticket gets its first automatic reminder" }
       ],
+      workflow: [
+        { step: "Where agents work", before: "Several systems to log into for one customer case.", after: "One Zendesk workspace for all channels." },
+        { step: "Choosing the next ticket", before: "Agents scan a long list and decide what to do next.", after: "One view with personal and unassigned tickets; the Play button serves the next one." },
+        { step: "Customer replies", before: "A reply waits its turn in the queue.", after: "A customer reply raises the ticket to high priority." },
+        { step: "Waiting on the customer", before: "Agents chase customers by hand.", after: "Automatic reminders after 3 days; solved after the second reminder." },
+        { step: "Waiting on others", before: "Tickets on hold can be forgotten.", after: "The customer gets an update after 3 days; after a week the ticket reopens for the agent." }
+      ],
       challenge: "KS Energi moved its customer service to Zendesk in February 2021. Agents had to work across several systems, and from early December 2021 to late January 2022 rising energy prices brought a surge of enquiries, about ten times the usual volume.",
       contribution: "I handled much of the Zendesk configuration: Bump-Bump-Solve for automatic reminders on pending tickets, closing them after the second reminder; follow-up on on-hold tickets, with an update to the customer after 3 days and the ticket reopening for the agent after a week; views that combine personal and unassigned tickets, raise customer replies to high priority and serve the next ticket with the Play button; and auto-replies with the top 3 answers on invoice and payment tickets.",
       tools: "Zendesk Suite, Bump-Bump-Solve",

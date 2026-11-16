@@ -194,6 +194,20 @@ test("first photo comes before the story, the second after it", () => {
   assertEqual(html.indexOf("track-mountains.jpg") < html.indexOf("<p>I ran"), true, "hero first");
   assertEqual(html.indexOf("track-bike.jpg") > html.indexOf("Curiosity and steady practice"), true, "second after text");
 });
+
+test("featured project shows a before/after workflow", () => {
+  const rows = SITE.projects[0].workflow;
+  assertEqual(Array.isArray(rows) && rows.length >= 3, true, "rows");
+  const html = renderSection("projects");
+  assertEqual(html.includes('class="beforeafter"'), true, "block");
+  assertEqual((html.match(/class="ba-row"/g) || []).length, rows.length, "one row per step");
+  assertEqual(html.indexOf('class="beforeafter"') > html.indexOf("<dt>Outcome</dt>"), true, "after the details");
+});
+test("before/after rows label both sides for screen readers", () => {
+  const html = renderSection("projects");
+  const row = html.slice(html.indexOf('class="ba-row"'), html.indexOf('class="ba-row"') + 600);
+  assertEqual(row.includes("Before") && row.includes("After"), true, "labels");
+});
 </script>
 </body>
 </html>

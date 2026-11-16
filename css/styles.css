@@ -56,6 +56,25 @@ button{font:inherit}
 .photo img{width:100%; height:auto; max-height:420px; object-fit:cover; border-radius:10px; display:block; background:var(--chip)}
 .photo figcaption{font-size:.82rem; color:var(--muted)}
 
+/* before/after workflow */
+.beforeafter{display:grid; gap:8px; margin-top:4px}
+.beforeafter h3{font-size:1rem; margin:0}
+.ba-head{display:grid; grid-template-columns:1fr 1fr; gap:10px; font-family:var(--mono); font-size:.72rem; letter-spacing:.08em; text-transform:uppercase}
+.ba-head span:first-child{color:var(--muted)}
+.ba-head span:last-child{color:var(--accent)}
+.ba-row{display:grid; grid-template-columns:1fr 1fr; gap:4px 10px; padding-top:8px; border-top:1px solid var(--line)}
+.ba-step{grid-column:1 / -1; font-size:.86rem}
+.ba-row p{margin:0; font-size:.88rem; line-height:1.45; padding:8px 10px; border-radius:8px}
+.ba-before{background:var(--bg); color:var(--muted)}
+.ba-after{background:var(--chip)}
+.ba-tag{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap}
+@media (max-width:480px){
+  .ba-head{display:none}
+  .ba-row{grid-template-columns:1fr}
+  .ba-tag{position:static; width:auto; height:auto; clip:auto; display:block; font-family:var(--mono); font-size:.68rem; letter-spacing:.08em; text-transform:uppercase; margin-bottom:2px}
+  .ba-after .ba-tag{color:var(--accent)}
+}
+
 /* panel */
 .panel{background:var(--panel); border-left:1px solid var(--line); padding:26px 28px 40px; display:grid; gap:14px; align-content:start; min-width:0}
 .panel h2{font-size:1.45rem}

@@ -20,6 +20,15 @@ function timeline(rows) {
     `<li><span class="yr">${esc(r.period)}</span><span><b>${esc(r.title)}</b>${r.detail ? esc(r.detail) : ""}</span></li>`).join("")}</ol>`;
 }
 
+function workflow(p) {
+  if (!p.workflow || !p.workflow.length) return "";
+  return `<div class="beforeafter"><h3>How the workflow changed</h3>
+    <div class="ba-head" aria-hidden="true"><span>Before</span><span>After</span></div>
+    ${p.workflow.map(w => `<div class="ba-row"><b class="ba-step">${esc(w.step)}</b>
+      <p class="ba-before"><span class="ba-tag">Before</span>${esc(w.before)}</p>
+      <p class="ba-after"><span class="ba-tag">After</span>${esc(w.after)}</p></div>`).join("")}</div>`;
+}
+
 function keyNumbers(p) {
   if (!p.keyNumbers || !p.keyNumbers.length) return "";
   return `<div class="kpis">${p.keyNumbers.map(k => `<div class="kpi"><b>${esc(k.value)}</b><span>${esc(k.label)}</span></div>`).join("")}</div>`;
@@ -30,6 +39,7 @@ function projectCard(p) {
     .filter(([, v]) => v).map(([k, v]) => `<dt>${k}</dt><dd>${esc(v)}</dd>`).join("");
   return `<article class="card${p.featured ? " feature" : ""}">${p.featured ? '<span class="chip">Featured project</span>' : ""}
     <span class="title">${esc(p.title)}</span>${keyNumbers(p)}<dl>${rows}</dl>
+    ${workflow(p)}
     ${p.credit ? `<span class="credit">${esc(p.credit)}</span>` : ""}
     ${p.sourceUrl ? `<a href="${esc(p.sourceUrl)}" target="_blank" rel="noopener">${esc(p.sourceLabel || "Source")}</a>` : ""}</article>`;
 }
