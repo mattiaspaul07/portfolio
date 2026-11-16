@@ -79,9 +79,14 @@ const RENDERERS = {
        <div data-pane="certs">${timeline(certificateRows())}</div>
        <div data-pane="edu" hidden>${timeline(educationRows())}</div>`),
   contact: (lvl) => heading("contact", lvl)
-    + `<p>Want help with your Zendesk setup? Send me an email.</p>
-       <div class="copyrow"><code>${esc(SITE.person.email)}</code><button type="button" class="btn" data-copy="${esc(SITE.person.email)}">Copy</button></div>
-       <p><a href="${esc(SITE.person.linkedin)}" target="_blank" rel="noopener">LinkedIn profile</a></p>`
+    + `<p>${esc(SITE.contact.intro)}</p>
+       <div class="contact-actions">
+         <a class="cta" href="mailto:${esc(SITE.person.email)}">Email me</a>
+         <a class="ghost" href="${esc(SITE.person.linkedin)}" target="_blank" rel="noopener">Connect on LinkedIn</a>
+       </div>
+       <div class="copyrow"><code>${esc(SITE.person.email)}</code><button type="button" class="btn small" data-copy="${esc(SITE.person.email)}">Copy</button></div>
+       <div class="icebreakers"><h3>Need an icebreaker? Ask me about:</h3>
+         <ul>${SITE.contact.icebreakers.map(t => `<li>${esc(t)}</li>`).join("")}</ul></div>`
 };
 
 function renderExtra(key) {

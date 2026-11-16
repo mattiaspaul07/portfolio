@@ -88,6 +88,14 @@ button{font:inherit}
   .ba-after .ba-tag{color:var(--accent)}
 }
 
+/* contact */
+.contact-actions{display:flex; flex-wrap:wrap; gap:8px}
+.contact-actions a{display:inline-flex; align-items:center; min-height:40px; padding:8px 16px}
+.copyrow .btn.small{padding:3px 10px; font-size:.82rem}
+.icebreakers{border-top:1px solid var(--line); padding-top:12px; display:grid; gap:6px}
+.icebreakers h3{font-size:1rem; margin:0}
+.icebreakers ul{margin:0; padding-left:1.15em; display:grid; gap:4px}
+
 /* panel */
 .panel{background:var(--panel); border-left:1px solid var(--line); padding:26px 28px 40px; display:grid; gap:14px; align-content:start; min-width:0}
 .panel h2{font-size:1.45rem}

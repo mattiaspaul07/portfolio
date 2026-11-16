@@ -13,7 +13,7 @@ const SITE = {
     projects:   { menu: "Projects",   title: "Projects",                     object: "Desk", heading: "On my desk" },
     toolkit:    { menu: "Toolkit",    title: "My toolkit",                   object: "Toolbox", heading: "The tools I work with" },
     education:  { menu: "Education",  title: "Education and certifications", object: "Bookshelf", heading: "On the shelf" },
-    contact:    { menu: "Contact",    title: "Contact",                      object: "Pin board", heading: "Let's talk" }
+    contact:    { menu: "Contact",    title: "Contact",                      object: "Pin board", heading: "Let’s talk. Coffee optional." }
   },
   about: { paragraphs: [
     "I started as an agent in first line support answering calls and chats. That’s where I learned how much difference a good system makes and how frustrating a bad one can be. Since then, I’ve led support systems at Lyse, worked in Customer Success at Aritma, and become a Senior Consultant at Kundelab.",
@@ -34,6 +34,14 @@ const SITE = {
   },
   // Shown one at a time in a speech bubble during each coffee break.
   coffeeTopics: ["Why I go on about omnichannel routing", "A knowledge base that helps both sides", "Views and groups that won’t become a jungle", "Training with the Ingebrigtsen brothers"],
+  contact: {
+    intro: "Untangling a Zendesk setup, looking for someone to join your next project, or just fancy comparing notes? Say hello.",
+    icebreakers: [
+      "Why I keep going on about omnichannel routing",
+      "Knowledge bases that help both sides of the conversation",
+      "Keeping views, groups, and workflows from becoming a jungle"
+    ]
+  },
   languages: ["Norwegian, native", "English", "German"],
   experience: [
     { period: "Jun 2026 – now", title: "Senior Consultant", company: "Kundelab", summary: "Zendesk setup and optimisation, automation, project management, workshops and training." },

@@ -274,6 +274,17 @@ test("project action lists use their own class, not the header's", () => {
   assertEqual(html.includes('<ul class="key-actions">'), true, "own class");
   assertEqual(html.includes('class="actions"'), false, "no clash with the header button group");
 });
+
+test("contact has the new heading, intro, two actions and icebreakers", () => {
+  const html = renderSection("contact");
+  assertEqual(html.includes("<h2>Let’s talk. Coffee optional.</h2>"), true, "heading");
+  assertEqual(html.includes("Untangling a Zendesk setup, looking for someone to join your next project, or just fancy comparing notes? Say hello."), true, "intro");
+  assertEqual(html.includes('href="mailto:' + SITE.person.email + '"') && html.includes(">Email me<"), true, "email action");
+  assertEqual(html.includes(">Connect on LinkedIn<"), true, "LinkedIn action");
+  assertEqual(html.includes("Need an icebreaker? Ask me about:"), true, "icebreaker intro");
+  assertEqual((html.match(/<li>/g) || []).length, 3, "three icebreakers");
+  assertEqual(html.includes(SITE.person.email + "</code>"), true, "address still visible for copying");
+});
 </script>
 </body>
 </html>
