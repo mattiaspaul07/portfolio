@@ -128,7 +128,7 @@ test("about shows the personal intro once, with its own heading", () => {
   assertEqual(html.includes("Placeholder"), false, "no placeholder");
   assertEqual((html.match(/<p>/g) || []).length, 4, "four paragraphs");
   assertEqual(html.includes("Based in Stavanger. Curious by default."), true, "closing line");
-  assertEqual(SITE.person.headline, "Hi, I’m Mattias. I make customer service work better both for the people asking for help and the people giving it.", "headline");
+  assertEqual(SITE.person.headline, "Hi, I'm Mattias. I connect people, processes and technology.", "headline");
 });
 test("experience heading uses first-tier agent wording", () => {
   assertEqual(renderSection("experience").includes("From first-tier agent to the Zendesk admin"), true, "heading");
@@ -219,6 +219,13 @@ test("each coffee brings the next topic, then starts over", () => {
   assertEqual(coffeeTopic(4), "AI in customer service", "fourth");
   assertEqual(coffeeTopic(5), "Views and the Play button", "wraps");
   assertEqual(coffeeTopic(0), "Views and the Play button", "zero is safe");
+});
+
+test("featured project has no Tools line", () => {
+  const html = renderSection("projects");
+  const featured = html.slice(0, html.indexOf("Handling the TV 2 surge"));
+  assertEqual(featured.includes("<dt>Tools</dt>"), false, "featured");
+  assertEqual(html.slice(html.indexOf("Handling the TV 2 surge")).includes("<dt>Tools</dt>"), true, "TV 2 keeps its tools");
 });
 </script>
 </body>
