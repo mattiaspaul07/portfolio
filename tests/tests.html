@@ -36,7 +36,7 @@ test("esc escapes HTML", () => assertEqual(esc(`<a & "b">`), "&lt;a &amp; &quot;
 test("projects panel shows the featured card first", () => {
   const html = renderSection("projects");
   assertEqual(html.indexOf("Unifying customer service") >= 0 && html.indexOf("Unifying customer service") < html.indexOf("Handling the TV 2 surge"), true, "order");
-  assertEqual(html.includes("My contribution"), true, "label");
+  assertEqual(html.includes("<dt>My role</dt>"), true, "label");
 });
 test("missing optional fields never print undefined", () => {
   KEYS.forEach(k => assertEqual(renderSection(k).includes("undefined"), false, k));
@@ -228,7 +228,31 @@ test("featured project has no Tools line", () => {
   const html = renderSection("projects");
   const featured = html.slice(0, html.indexOf("Handling the TV 2 surge"));
   assertEqual(featured.includes("<dt>Tools</dt>"), false, "featured");
-  assertEqual(html.slice(html.indexOf("Handling the TV 2 surge")).includes("<dt>Tools</dt>"), true, "TV 2 keeps its tools");
+  assertEqual(html.slice(html.indexOf("Handling the TV 2 surge")).includes("<b>Tools:</b> Puzzel, Zendesk"), true, "TV 2 keeps its tools, inside How I built it");
+});
+
+function projectParts() {
+  const html = renderSection("projects");
+  const i = html.indexOf("Handling the TV 2 surge");
+  return [html.slice(0, i), html.slice(i)];
+}
+test("project cards lead with problem, role with three actions, and outcome", () => {
+  SITE.projects.filter(p => !p.placeholder).forEach(p => assertEqual(p.actions.length, 3, p.title + " actions"));
+  projectParts().forEach((part, i) => {
+    assertEqual(part.includes("<dt>Problem</dt>") && part.includes("<dt>My role</dt>") && part.includes("<dt>Outcome</dt>"), true, "labels " + i);
+    assertEqual((part.match(/<li>/g) || []).length >= 3, true, "actions listed " + i);
+    assertEqual(part.indexOf("<dt>Problem</dt>") < part.indexOf("<dt>My role</dt>") && part.indexOf("<dt>My role</dt>") < part.indexOf("<dt>Outcome</dt>"), true, "order " + i);
+  });
+});
+test("technical detail sits behind How I built it", () => {
+  const [featured, tv2] = projectParts();
+  assertEqual(featured.includes("<summary>How I built it</summary>") && tv2.includes("<summary>How I built it</summary>"), true, "toggles");
+  assertEqual(featured.indexOf("Bump-Bump-Solve") > featured.indexOf("<details"), true, "jargon inside the toggle");
+  assertEqual(featured.indexOf('class="beforeafter"') > featured.indexOf("<details"), true, "workflow inside the toggle");
+  assertEqual(/<details[^>]* open>/.test(featured), false, "closed on the site");
+});
+test("résumé shows the technical detail expanded", () => {
+  assertEqual(/<details[^>]* open>/.test(renderResume()), true, "open in résumé");
 });
 </script>
 </body>

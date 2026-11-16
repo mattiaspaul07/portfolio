@@ -59,16 +59,33 @@ const SITE = {
         { step: "Waiting on the customer", before: "Agents chase customers by hand.", after: "Automatic reminders after 3 days; solved after the second reminder." },
         { step: "Waiting on others", before: "Tickets on hold can be forgotten.", after: "The customer gets an update after 3 days; after a week the ticket reopens for the agent." }
       ],
-      challenge: "KS Energi moved its customer service to Zendesk in February 2021. Agents had to work across several systems, and from early December 2021 to late January 2022 rising energy prices brought a surge of enquiries, about ten times the usual volume.",
-      contribution: "I handled much of the Zendesk configuration: Bump-Bump-Solve for automatic reminders on pending tickets, closing them after the second reminder; follow-up on on-hold tickets, with an update to the customer after 3 days and the ticket reopening for the agent after a week; views that combine personal and unassigned tickets, raise customer replies to high priority and serve the next ticket with the Play button; and auto-replies with the top 3 answers on invoice and payment tickets.",
-      outcome: "Average handling time fell from 29 to 5 minutes per ticket. During the surge, the team used Explore to adjust opening hours and staffing, and was back in control within about three weeks of the January peak.",
+      problem: "Agents had to work across several systems, and rising energy prices brought about ten times the usual volume of enquiries.",
+      role: "I handled much of the Zendesk configuration, in a team effort.",
+      actions: [
+        "Put every ticket in one queue that serves agents the next case",
+        "Automated follow-ups so no customer or ticket is forgotten",
+        "Set up instant answers to the most common invoice questions"
+      ],
+      outcome: "Average handling time fell from 29 to 5 minutes per ticket, and after the January 2022 peak the team was back in control within about three weeks.",
+      howBuilt: [
+        "KS Energi moved its customer service to Zendesk in February 2021. The surge ran from early December 2021 to late January 2022; during it, the team used Zendesk Explore to adjust opening hours and staffing.",
+        "In Zendesk I set up Bump-Bump-Solve for automatic reminders on pending tickets, closing them after the second reminder; follow-up on on-hold tickets, with an update to the customer after 3 days and the ticket reopening for the agent after a week; views that combine personal and unassigned tickets, raise customer replies to high priority and serve the next ticket with the Play button; and auto-replies with the top 3 answers on invoice and payment tickets."
+      ],
       credit: "Results credited to the KS Energi and Lyse Dialog customer service team, as described in Zendesk's customer story and the team's own reporting.",
       sourceUrl: "https://www.zendesk.co.uk/customer/lyse/", sourceLabel: "Read the Zendesk customer story" },
     { title: "Handling the TV 2 surge at Lyse Dialog",
-      challenge: "When negotiations between TV 2 and Altibox broke down, enquiries surged. It was all hands on deck: customer service, analytics, sales and back office.",
-      contribution: "I made the system changes: I set up dedicated queues in Puzzel and ticket groups in Zendesk, wrote macros for support and chat, ran a one-off automation that solved tickets with no reply, and set up automated FAQ answers for tickets submitted in this category.",
-      tools: "Puzzel, Zendesk",
+      problem: "When negotiations between TV 2 and Altibox broke down, enquiries surged. It was all hands on deck: customer service, analytics, sales and back office.",
+      role: "I made the changes in the support systems.",
+      actions: [
+        "Gave the surge its own queues, separate from everyday work",
+        "Wrote ready-made answers for support and chat",
+        "Answered common questions automatically and closed tickets that needed no reply"
+      ],
       outcome: "The surge did not clutter the established groups. New colleagues could be onboarded to this one queue faster, and staffing could be matched to it.",
+      howBuilt: [
+        "I set up dedicated queues in Puzzel and ticket groups in Zendesk, wrote macros for support and chat, ran a one-off automation that solved tickets with no reply, and set up automated FAQ answers for tickets submitted in this category."
+      ],
+      tools: "Puzzel, Zendesk",
       credit: "A team effort across customer service, analytics, sales and back office; I made the changes in the support systems." },
   ],
   tools: [

@@ -34,13 +34,19 @@ function keyNumbers(p) {
   return `<div class="kpis">${p.keyNumbers.map(k => `<div class="kpi"><b>${esc(k.value)}</b><span>${esc(k.label)}</span></div>`).join("")}</div>`;
 }
 
-function projectCard(p) {
-  const rows = [["Challenge", p.challenge], ["My contribution", p.contribution], ["Tools", p.tools], ["Outcome", p.outcome]]
-    .filter(([, v]) => v).map(([k, v]) => `<dt>${k}</dt><dd>${esc(v)}</dd>`).join("");
+function projectCard(p, plain) {
+  const role = p.role ? `<dt>My role</dt><dd>${esc(p.role)}${p.actions && p.actions.length ? `<ul class="actions">${p.actions.map(x => `<li>${esc(x)}</li>`).join("")}</ul>` : ""}</dd>` : "";
+  const rows = (p.problem ? `<dt>Problem</dt><dd>${esc(p.problem)}</dd>` : "") + role + (p.outcome ? `<dt>Outcome</dt><dd>${esc(p.outcome)}</dd>` : "");
+  const built = (p.howBuilt && p.howBuilt.length) || p.tools || (p.workflow && p.workflow.length)
+    ? `<details class="built"${plain ? " open" : ""}><summary>How I built it</summary><div class="built-body">
+        ${(p.howBuilt || []).map(t => `<p>${esc(t)}</p>`).join("")}
+        ${p.tools ? `<p><b>Tools:</b> ${esc(p.tools)}</p>` : ""}
+        ${workflow(p)}</div></details>`
+    : "";
   return `<article class="card${p.featured ? " feature" : ""}">${p.featured ? '<span class="chip">Featured project</span>' : ""}
     <span class="title">${esc(p.title)}</span>${keyNumbers(p)}<dl>${rows}</dl>
-    ${workflow(p)}
     ${p.credit ? `<span class="credit">${esc(p.credit)}</span>` : ""}
+    ${built}
     ${p.sourceUrl ? `<a href="${esc(p.sourceUrl)}" target="_blank" rel="noopener">${esc(p.sourceLabel || "Source")}</a>` : ""}</article>`;
 }
 
@@ -61,8 +67,8 @@ const RENDERERS = {
     + `<div class="card"><b>Languages</b><div class="chips">${SITE.languages.map(l => `<span class="chip">${esc(l)}</span>`).join("")}</div></div>`,
   experience: (lvl) => heading("experience", lvl)
     + timeline(SITE.experience.map(r => ({ period: r.period, title: `${r.title}, ${r.company}`, detail: r.summary }))),
-  projects: (lvl) => heading("projects", lvl)
-    + SITE.projects.map(p => p.placeholder ? placeholderBox(p) : projectCard(p)).join(""),
+  projects: (lvl, opts = {}) => heading("projects", lvl)
+    + SITE.projects.map(p => p.placeholder ? placeholderBox(p) : projectCard(p, opts.plain)).join(""),
   toolkit: (lvl) => heading("toolkit", lvl)
     + `<ul class="tools">${SITE.tools.map(t => `<li><b>${esc(t.name)}</b><span>${esc(t.sentence)}</span></li>`).join("")}</ul>`,
   education: (lvl, opts = {}) => heading("education", lvl) + (opts.plain
