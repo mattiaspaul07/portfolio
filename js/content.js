@@ -16,10 +16,9 @@ const SITE = {
     contact:    { menu: "Contact",    title: "Contact",                      object: "Pin board", heading: "Let's talk" }
   },
   about: { paragraphs: [
-    "I started on the front line, answering calls and chats. That’s where I learned how much difference a good system makes and how frustrating a bad one can be. Since then, I’ve led support systems at Lyse, worked in Customer Success at Aritma, and become a Senior Consultant at Kundelab.",
-    "These days, I help teams get more out of Zendesk: simpler workflows, useful automation, and tools people feel comfortable using. I like untangling messy problems with the people who deal with them every day.",
-    "Based in Stavanger. Curious by default.",
-    "Have a look around my workspace. My avatar will show you around."
+    "I started as an agent in first line support answering calls and chats. That’s where I learned how much difference a good system makes and how frustrating a bad one can be. Since then, I’ve led support systems at Lyse, worked in Customer Success at Aritma, and become a Senior Consultant at Kundelab.",
+    "These days, I help teams and companies get more out of Zendesk: simpler workflows, useful automation, and tools people feel comfortable using. I like untangling messy problems with the people who deal with them every day.",
+    "Based in Stavanger. Always curious. Have a look around my digital workspace. My avatar will show you around!"
   ] },
   // Hidden extras: found by exploring the room, no marker or menu item, not in the résumé.
   extras: {
@@ -48,7 +47,7 @@ const SITE = {
     { featured: true,
       title: "Unifying customer service on Zendesk at Lyse Dialog",
       keyNumbers: [
-        { value: "29 → 5", primary: true, label: "Average handling time per ticket, in minutes (Feb 2021 to Mar 2022)" },
+        { value: "29 min → 5 min", primary: true, label: "Average handling time per ticket (Feb 2021 to Mar 2022)" },
         { value: "2.8K → 511", label: "Open-ticket backlog at the late-January 2022 peak, and three weeks later, after longer opening hours and more agents" }
       ],
       workflow: [

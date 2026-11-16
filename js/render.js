@@ -35,7 +35,7 @@ function keyNumbers(p) {
 }
 
 function projectCard(p, plain) {
-  const role = p.role ? `<dt>My role</dt><dd>${esc(p.role)}${p.actions && p.actions.length ? `<ul class="actions">${p.actions.map(x => `<li>${esc(x)}</li>`).join("")}</ul>` : ""}</dd>` : "";
+  const role = p.role ? `<dt>My role</dt><dd>${esc(p.role)}${p.actions && p.actions.length ? `<ul class="key-actions">${p.actions.map(x => `<li>${esc(x)}</li>`).join("")}</ul>` : ""}</dd>` : "";
   const rows = (p.problem ? `<dt>Problem</dt><dd>${esc(p.problem)}</dd>` : "") + role + (p.outcome ? `<dt>Outcome</dt><dd>${esc(p.outcome)}</dd>` : "");
   const built = (p.howBuilt && p.howBuilt.length) || p.tools || (p.workflow && p.workflow.length)
     ? `<details class="built"${plain ? " open" : ""}><summary>How I built it</summary><div class="built-body">

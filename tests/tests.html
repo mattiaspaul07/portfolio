@@ -126,8 +126,8 @@ test("about shows the personal intro once, with its own heading", () => {
   assertEqual((html.match(/>About me</g) || []).length, 1, "About me appears once");
   assertEqual(html.includes("<h2>Personal intro</h2>"), true, "heading");
   assertEqual(html.includes("Placeholder"), false, "no placeholder");
-  assertEqual((html.match(/<p>/g) || []).length, 4, "four paragraphs");
-  assertEqual(html.includes("Based in Stavanger. Curious by default."), true, "closing line");
+  assertEqual((html.match(/<p>/g) || []).length, 3, "three paragraphs");
+  assertEqual(html.includes("Based in Stavanger. Always curious. Have a look around my digital workspace. My avatar will show you around!"), true, "closing line");
   assertEqual(SITE.person.headline, "Hi, I'm Mattias. I connect people, processes and technology.", "headline");
 });
 test("experience heading uses first-tier agent wording", () => {
@@ -154,7 +154,7 @@ test("about me opens with the portrait and the headline", () => {
   const html = renderSection("about");
   assertEqual(html.includes('class="portrait"') && html.includes('alt="Portrait of Mattias Paul"'), true, "portrait");
   assertEqual(html.includes(esc(SITE.person.headline)), true, "headline");
-  assertEqual(html.indexOf('class="portrait"') < html.indexOf("<p>I started on the front line"), true, "before the intro text");
+  assertEqual(html.indexOf('class="portrait"') < html.indexOf("<p>I started as an agent in first line support"), true, "before the intro text");
 });
 
 test("title uses the @ form", () => assertEqual(SITE.person.title, "Senior Consultant @ Kundelab", "title"));
@@ -258,7 +258,7 @@ test("résumé shows the technical detail expanded", () => {
 test("key numbers show outcomes only, with handling time as the main one", () => {
   const k = SITE.projects[0].keyNumbers;
   assertEqual(k.length, 2, "two tiles");
-  assertEqual(k[0].value === "29 → 5" && k[0].primary === true, true, "handling time first and primary");
+  assertEqual(k[0].value === "29 min → 5 min" && k[0].primary === true, true, "handling time first and primary");
   assertEqual(k.some(x => x.value === "3 days"), false, "no configuration tile");
   const html = renderSection("projects");
   assertEqual((html.match(/class="kpi primary"/g) || []).length, 1, "one primary tile");
@@ -267,6 +267,12 @@ test("backlog tile says what it measures and credits the staffing response", () 
   const backlog = SITE.projects[0].keyNumbers[1];
   assertEqual(/backlog/i.test(backlog.label) && /opening hours/.test(backlog.label) && /agents/.test(backlog.label), true, backlog.label);
   assertEqual(/opening hours/.test(SITE.projects[0].outcome) && /agents/.test(SITE.projects[0].outcome), true, "outcome credits the staffing response");
+});
+
+test("project action lists use their own class, not the header's", () => {
+  const html = renderSection("projects");
+  assertEqual(html.includes('<ul class="key-actions">'), true, "own class");
+  assertEqual(html.includes('class="actions"'), false, "no clash with the header button group");
 });
 </script>
 </body>
