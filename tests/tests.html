@@ -209,6 +209,17 @@ test("before/after rows label both sides for screen readers", () => {
   const row = html.slice(html.indexOf('class="ba-row"'), html.indexOf('class="ba-row"') + 600);
   assertEqual(row.includes("Before") && row.includes("After"), true, "labels");
 });
+
+test("coffee topics are the four chosen ones", () => {
+  assertEqual(SITE.coffeeTopics, ["Views and the Play button", "Automating follow-ups with Bump-Bump-Solve", "Handling a sudden surge of tickets", "AI in customer service"], "topics");
+});
+test("each coffee brings the next topic, then starts over", () => {
+  assertEqual(coffeeTopic(1), "Views and the Play button", "first coffee");
+  assertEqual(coffeeTopic(2), "Automating follow-ups with Bump-Bump-Solve", "second");
+  assertEqual(coffeeTopic(4), "AI in customer service", "fourth");
+  assertEqual(coffeeTopic(5), "Views and the Play button", "wraps");
+  assertEqual(coffeeTopic(0), "Views and the Play button", "zero is safe");
+});
 </script>
 </body>
 </html>

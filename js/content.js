@@ -33,6 +33,8 @@ const SITE = {
       "Training alongside him and his brothers taught me a lot about myself, and about what others did to succeed. The biggest lesson: surround yourself with people who are better than you. The good news is that in IT, you don’t need world-class genetics. Curiosity and steady practice take you a long way."
     ] }
   },
+  // Shown one at a time in a speech bubble during each coffee break.
+  coffeeTopics: ["Views and the Play button", "Automating follow-ups with Bump-Bump-Solve", "Handling a sudden surge of tickets", "AI in customer service"],
   languages: ["Norwegian, native", "English", "German"],
   experience: [
     { period: "Jun 2026 – now", title: "Senior Consultant", company: "Kundelab", summary: "Zendesk setup and optimisation, automation, project management, workshops and training." },

@@ -291,12 +291,37 @@ const wallX=(y1,y2,z1,z2)=>[[0.02,y1,z1],[0.02,y2,z1],[0.02,y2,z2],[0.02,y1,z2]]
         const n=addCoffee();
         svg.querySelectorAll(".coffee-count").forEach(t=>{ t.textContent=coffeeLabel(n); });
         if(cupG) cupG.setAttribute("aria-label",`Coffee cup on the desk. Take a coffee break. Coffees so far: ${n}.`);
+        showTopic(coffeeTopic(n));
         sipTimer=setTimeout(()=>{ endSip(); drawAvatar(); }, 2600);
       });
     }
+    // "Ask me about" speech bubble above the avatar; clicking it opens Contact
+    let bubbleTimer=null;
+    function hideTopic(){ clearTimeout(bubbleTimer); svg.querySelectorAll(".topic-bubble").forEach(b=>b.remove()); svg.classList.remove("has-bubble"); }
+    function showTopic(topic){
+      hideTopic();
+      const [hx,hy]=iso(st.ax,st.ay,2.55);
+      svg.classList.add("has-bubble");   // marker labels step aside while the bubble shows
+      const g=el("g",{class:"topic-bubble", role:"button", tabindex:"0", "aria-label":`Ask me about: ${topic}. Opens Contact.`},top);
+      const box=el("rect",{rx:9, fill:"#fffdf8", stroke:"#2f7d6d", "stroke-width":1.5},g);
+      const tail=el("polygon",{fill:"#fffdf8", stroke:"#2f7d6d", "stroke-width":1.5},g);
+      const t1=el("text",{"font-family":"IBM Plex Mono, Consolas, monospace", "font-size":7, "letter-spacing":"0.6", fill:"#2f7d6d"},g); t1.textContent="ASK ME ABOUT";
+      const t2=el("text",{"font-family":"Bricolage Grotesque, Segoe UI, sans-serif", "font-size":10.5, "font-weight":700, fill:"#1f2624"},g); t2.textContent=topic+" →";
+      const w=Math.max(t1.getComputedTextLength(), t2.getComputedTextLength())+20, h=34;
+      const x=Math.max(-200, Math.min(200-w, hx-w/2)), y=hy-14-h;
+      box.setAttribute("x",x); box.setAttribute("y",y); box.setAttribute("width",w); box.setAttribute("height",h);
+      tail.setAttribute("points",`${hx-6},${y+h-1} ${hx+6},${y+h-1} ${hx},${y+h+8}`);
+      el("rect",{x:hx-7, y:y+h-3, width:14, height:3, fill:"#fffdf8"},g);   // hides the seam between box and tail
+      t1.setAttribute("x",x+10); t1.setAttribute("y",y+13); t2.setAttribute("x",x+10); t2.setAttribute("y",y+27);
+      const open=e=>{ e.stopPropagation(); hideTopic(); pick("contact"); };
+      g.addEventListener("click",open);
+      g.addEventListener("keydown",e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); open(e); } });
+      const status=document.getElementById("room-status"); if(status) status.textContent=`Ask me about: ${topic}`;
+      bubbleTimer=setTimeout(hideTopic, 6500);
+    }
     function pick(key){ opts.onPick(key); }
     function setSelected(key){
-      endSip();
+      endSip(); hideTopic();
       const first = st.current===null;
       st.current=key; refresh();
       const s=SPOTS[key];

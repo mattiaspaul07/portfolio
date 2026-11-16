@@ -19,3 +19,9 @@ function addCoffee(store = defaultStore()) {
 function coffeeLabel(n) {
   return "COFFEE #" + n;
 }
+
+// The topic for the n-th coffee of the visit (1-based); cycles through SITE.coffeeTopics.
+function coffeeTopic(n) {
+  const topics = SITE.coffeeTopics;
+  return topics[(Math.max(1, n) - 1) % topics.length];
+}
