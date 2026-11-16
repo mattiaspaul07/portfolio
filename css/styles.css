@@ -52,6 +52,10 @@ button{font:inherit}
 .intro-card{display:grid; grid-template-columns:auto minmax(0,1fr); gap:16px; align-items:center; margin:4px 0 6px}
 .intro-card .headline{font-family:var(--display); font-weight:700; font-size:clamp(1.2rem, 2vw, 1.5rem); line-height:1.25; text-wrap:balance}
 
+.photo{margin:0; display:grid; gap:6px}
+.photo img{width:100%; height:auto; max-height:420px; object-fit:cover; border-radius:10px; display:block; background:var(--chip)}
+.photo figcaption{font-size:.82rem; color:var(--muted)}
+
 /* panel */
 .panel{background:var(--panel); border-left:1px solid var(--line); padding:26px 28px 40px; display:grid; gap:14px; align-content:start; min-width:0}
 .panel h2{font-size:1.45rem}

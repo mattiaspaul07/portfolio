@@ -181,6 +181,19 @@ test("running story renders with its own label", () => {
   assertEqual(html.includes("Ingebrigtsen"), true, "story text");
 });
 test("running story stays out of the résumé", () => assertEqual(renderResume().includes("On the track"), false, "resume"));
+
+test("running story shows its photos with descriptions", () => {
+  const html = renderSection("running");
+  const imgs = html.match(/<img [^>]+>/g) || [];
+  assertEqual(imgs.length, SITE.extras.running.photos.length, "one img per photo");
+  assertEqual(imgs.every(t => /alt="[^"]{10,}"/.test(t) && /width="\d+"/.test(t) && /height="\d+"/.test(t)), true, "alt text and size on every photo");
+  assertEqual((html.match(/<figcaption>/g) || []).length, SITE.extras.running.photos.length, "captions");
+});
+test("first photo comes before the story, the second after it", () => {
+  const html = renderSection("running");
+  assertEqual(html.indexOf("track-mountains.jpg") < html.indexOf("<p>I ran"), true, "hero first");
+  assertEqual(html.indexOf("track-bike.jpg") > html.indexOf("Curiosity and steady practice"), true, "second after text");
+});
 </script>
 </body>
 </html>

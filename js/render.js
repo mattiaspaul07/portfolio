@@ -70,7 +70,12 @@ const RENDERERS = {
 
 function renderExtra(key) {
   const x = SITE.extras[key];
-  return `<span class="kicker">${esc(x.label)}</span><h2>${esc(x.title)}</h2>${x.paragraphs.map(t => `<p>${esc(t)}</p>`).join("")}`;
+  const photo = ph => `<figure class="photo"><img src="${esc(ph.src)}" width="${ph.width}" height="${ph.height}" alt="${esc(ph.alt)}" loading="lazy" decoding="async"><figcaption>${esc(ph.caption)}</figcaption></figure>`;
+  const [first, ...rest] = x.photos || [];
+  return `<span class="kicker">${esc(x.label)}</span><h2>${esc(x.title)}</h2>`
+    + (first ? photo(first) : "")
+    + x.paragraphs.map(t => `<p>${esc(t)}</p>`).join("")
+    + rest.map(photo).join("");
 }
 
 function renderSection(key) {

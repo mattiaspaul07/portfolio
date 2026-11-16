@@ -22,7 +22,12 @@ const SITE = {
   ] },
   // Hidden extras: found by exploring the room, no marker or menu item, not in the résumé.
   extras: {
-    running: { label: "Behind the door", title: "On the track", object: "Medal and running shoes", paragraphs: [
+    running: { label: "Behind the door", title: "On the track", object: "Medal and running shoes",
+      photos: [
+        { src: "assets/track-mountains.jpg", width: 1000, height: 1000, alt: "Me and a training partner running on a blue track, with mountains and clouds behind us", caption: "Track session in the mountains." },
+        { src: "assets/track-bike.jpg", width: 1200, height: 800, alt: "Me on a bike beside a runner on a red track", caption: "On the bike at the track." }
+      ],
+      paragraphs: [
       "I ran middle distance at national level and won a few regional titles in my age group. Most of the time, though, I finished behind my friend Jakob Ingebrigtsen, who went on to become an Olympic champion.",
       "Training alongside him and his brothers taught me a lot about myself, and about what others did to succeed. The biggest lesson: surround yourself with people who are better than you. The good news is that in IT, you don’t need world-class genetics. Curiosity and steady practice take you a long way."
     ] }
