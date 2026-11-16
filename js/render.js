@@ -31,7 +31,7 @@ function workflow(p) {
 
 function keyNumbers(p) {
   if (!p.keyNumbers || !p.keyNumbers.length) return "";
-  return `<div class="kpis">${p.keyNumbers.map(k => `<div class="kpi"><b>${esc(k.value)}</b><span>${esc(k.label)}</span></div>`).join("")}</div>`;
+  return `<div class="kpis">${p.keyNumbers.map(k => `<div class="kpi${k.primary ? " primary" : ""}"><b>${esc(k.value)}</b><span>${esc(k.label)}</span></div>`).join("")}</div>`;
 }
 
 function projectCard(p, plain) {

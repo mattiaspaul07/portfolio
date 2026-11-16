@@ -136,7 +136,7 @@ test("experience heading uses first-tier agent wording", () => {
 
 test("featured project shows its key numbers", () => {
   const html = renderSection("projects");
-  assertEqual((html.match(/class="kpi"/g) || []).length, SITE.projects[0].keyNumbers.length, "tiles");
+  assertEqual((html.match(/class="kpi( primary)?"/g) || []).length, SITE.projects[0].keyNumbers.length, "tiles");
   assertEqual(html.indexOf('class="kpis"') < html.indexOf("<dl>"), true, "numbers come before the details");
 });
 test("projects without key numbers show no number tiles", () => {
@@ -253,6 +253,20 @@ test("technical detail sits behind How I built it", () => {
 });
 test("résumé shows the technical detail expanded", () => {
   assertEqual(/<details[^>]* open>/.test(renderResume()), true, "open in résumé");
+});
+
+test("key numbers show outcomes only, with handling time as the main one", () => {
+  const k = SITE.projects[0].keyNumbers;
+  assertEqual(k.length, 2, "two tiles");
+  assertEqual(k[0].value === "29 → 5" && k[0].primary === true, true, "handling time first and primary");
+  assertEqual(k.some(x => x.value === "3 days"), false, "no configuration tile");
+  const html = renderSection("projects");
+  assertEqual((html.match(/class="kpi primary"/g) || []).length, 1, "one primary tile");
+});
+test("backlog tile says what it measures and credits the staffing response", () => {
+  const backlog = SITE.projects[0].keyNumbers[1];
+  assertEqual(/backlog/i.test(backlog.label) && /opening hours/.test(backlog.label) && /agents/.test(backlog.label), true, backlog.label);
+  assertEqual(/opening hours/.test(SITE.projects[0].outcome) && /agents/.test(SITE.projects[0].outcome), true, "outcome credits the staffing response");
 });
 </script>
 </body>

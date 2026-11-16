@@ -48,9 +48,8 @@ const SITE = {
     { featured: true,
       title: "Unifying customer service on Zendesk at Lyse Dialog",
       keyNumbers: [
-        { value: "29 → 5", label: "Average handling time per ticket, in minutes (Feb 2021 to Mar 2022)" },
-        { value: "2.8K → 511", label: "Tickets per week at the January 2022 peak, and three weeks later" },
-        { value: "3 days", label: "Until a pending ticket gets its first automatic reminder" }
+        { value: "29 → 5", primary: true, label: "Average handling time per ticket, in minutes (Feb 2021 to Mar 2022)" },
+        { value: "2.8K → 511", label: "Open-ticket backlog at the late-January 2022 peak, and three weeks later, after longer opening hours and more agents" }
       ],
       workflow: [
         { step: "Where agents work", before: "Several systems to log into for one customer case.", after: "One Zendesk workspace for all channels." },
@@ -66,7 +65,7 @@ const SITE = {
         "Automated follow-ups so no customer or ticket is forgotten",
         "Set up instant answers to the most common invoice questions"
       ],
-      outcome: "Average handling time fell from 29 to 5 minutes per ticket, and after the January 2022 peak the team was back in control within about three weeks.",
+      outcome: "Average handling time fell from 29 to 5 minutes per ticket. After the January 2022 peak, longer opening hours and more agents on tickets got the team back in control within about three weeks.",
       howBuilt: [
         "KS Energi moved its customer service to Zendesk in February 2021. The surge ran from early December 2021 to late January 2022; during it, the team used Zendesk Explore to adjust opening hours and staffing.",
         "In Zendesk I set up Bump-Bump-Solve for automatic reminders on pending tickets, closing them after the second reminder; follow-up on on-hold tickets, with an update to the customer after 3 days and the ticket reopening for the agent after a week; views that combine personal and unassigned tickets, raise customer replies to high priority and serve the next ticket with the Play button; and auto-replies with the top 3 answers on invoice and payment tickets."

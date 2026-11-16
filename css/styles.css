@@ -103,10 +103,15 @@ button{font:inherit}
 .card dt{font-family:var(--mono); font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:var(--accent); margin-top:10px}
 .card dt:first-child{margin-top:0}
 .card dd{margin:0; line-height:1.6}
-.kpis{display:grid; grid-template-columns:repeat(auto-fit, minmax(130px,1fr)); gap:8px}
+.kpis{display:grid; grid-template-columns:minmax(0,1.4fr) minmax(0,1fr); gap:8px; align-items:stretch}
+@media (max-width:420px){ .kpis{grid-template-columns:1fr} }
 .kpi{display:grid; gap:4px; align-content:start; padding:12px 12px 10px; border-radius:8px; background:var(--chip)}
 .kpi b{font-family:var(--display); font-size:1.45rem; line-height:1.1; color:var(--accent); font-variant-numeric:tabular-nums; white-space:nowrap}
 .kpi span{font-size:.78rem; line-height:1.35; color:var(--muted)}
+.kpi.primary{background:var(--accent); }
+.kpi.primary b{color:var(--accent-ink); font-size:2rem}
+.kpi.primary span{color:var(--accent-ink); opacity:.9; font-size:.82rem}
+.kpi:not(.primary) b{font-size:1.2rem; color:var(--fg)}
 .credit{font-size:.84rem; color:var(--muted)}
 .chips{display:flex; flex-wrap:wrap; gap:6px}
 .chip{font-size:.8rem; padding:2px 9px; border-radius:999px; background:var(--chip); justify-self:start}
