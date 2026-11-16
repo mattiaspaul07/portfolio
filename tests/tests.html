@@ -211,14 +211,17 @@ test("before/after rows label both sides for screen readers", () => {
 });
 
 test("coffee topics are the four chosen ones", () => {
-  assertEqual(SITE.coffeeTopics, ["Views and the Play button", "Automating follow-ups with Bump-Bump-Solve", "Handling a sudden surge of tickets", "AI in customer service"], "topics");
+  assertEqual(SITE.coffeeTopics, ["Why I go on about omnichannel routing", "A knowledge base that helps both sides", "Views and groups that won’t become a jungle", "Training with the Ingebrigtsen brothers"], "topics");
 });
 test("each coffee brings the next topic, then starts over", () => {
-  assertEqual(coffeeTopic(1), "Views and the Play button", "first coffee");
-  assertEqual(coffeeTopic(2), "Automating follow-ups with Bump-Bump-Solve", "second");
-  assertEqual(coffeeTopic(4), "AI in customer service", "fourth");
-  assertEqual(coffeeTopic(5), "Views and the Play button", "wraps");
-  assertEqual(coffeeTopic(0), "Views and the Play button", "zero is safe");
+  assertEqual(coffeeTopic(1), "Why I go on about omnichannel routing", "first coffee");
+  assertEqual(coffeeTopic(2), "A knowledge base that helps both sides", "second");
+  assertEqual(coffeeTopic(4), "Training with the Ingebrigtsen brothers", "fourth");
+  assertEqual(coffeeTopic(5), "Why I go on about omnichannel routing", "wraps");
+  assertEqual(coffeeTopic(0), "Why I go on about omnichannel routing", "zero is safe");
+});
+test("coffee topics are short enough for the bubble", () => {
+  SITE.coffeeTopics.forEach(t => assertEqual(t.length <= 48, true, t));
 });
 
 test("featured project has no Tools line", () => {

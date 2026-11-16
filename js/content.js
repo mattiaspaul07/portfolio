@@ -34,7 +34,7 @@ const SITE = {
     ] }
   },
   // Shown one at a time in a speech bubble during each coffee break.
-  coffeeTopics: ["Views and the Play button", "Automating follow-ups with Bump-Bump-Solve", "Handling a sudden surge of tickets", "AI in customer service"],
+  coffeeTopics: ["Why I go on about omnichannel routing", "A knowledge base that helps both sides", "Views and groups that won’t become a jungle", "Training with the Ingebrigtsen brothers"],
   languages: ["Norwegian, native", "English", "German"],
   experience: [
     { period: "Jun 2026 – now", title: "Senior Consultant", company: "Kundelab", summary: "Zendesk setup and optimisation, automation, project management, workshops and training." },
