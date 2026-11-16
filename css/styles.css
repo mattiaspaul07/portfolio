@@ -29,6 +29,7 @@ button{font:inherit}
 .nav{display:flex; flex-wrap:wrap; gap:2px; align-items:center}
 .nav button{color:var(--fg); background:none; border:1px solid transparent; border-radius:999px; padding:5px 12px; cursor:pointer; display:inline-flex; align-items:center; gap:6px; font-size:.92rem}
 .nav button svg{width:16px; height:16px}
+.nav-view{display:none}
 .nav button:hover{background:var(--chip)}
 /* selected item: same font weight as the others, so nothing around it moves */
 .nav button[aria-current="true"]{background:var(--chip); border-color:var(--line); color:var(--accent)}
@@ -174,7 +175,8 @@ button{font:inherit}
   .topbar{gap:8px}
   .nav{order:3; width:100%; flex-wrap:nowrap; overflow-x:auto; gap:6px; padding-bottom:2px; scrollbar-width:none}
   .nav button{border-color:var(--line); flex:0 0 auto}
-  .actions .ghost{display:none}
+  body:not(.resume-page) .actions .ghost{display:none}
+  .nav-view{display:inline-flex; align-items:center; flex:0 0 auto; padding:5px 12px; border-radius:999px; border:1px dashed var(--accent); color:var(--accent); text-decoration:none; font-size:.92rem}
   .portrait{width:64px; height:64px; border-radius:14px}
   .scene{padding-top:16px}
   .panel{border-left:0; border-top:1px solid var(--line); border-radius:16px 16px 0 0; box-shadow:0 -6px 18px rgba(0,0,0,.08); padding:22px max(16px, env(safe-area-inset-left)) 40px}

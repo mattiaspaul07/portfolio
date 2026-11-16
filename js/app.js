@@ -30,6 +30,12 @@ function buildNav() {
     b.addEventListener("mouseleave", () => state.room && state.room.setHover(null));
     nav.appendChild(b);
   });
+  // phones: the header has no room for the Simple view button, so it ends the tab row instead
+  const simple = document.createElement("a");
+  simple.className = "nav-view";
+  simple.href = "resume.html";
+  simple.textContent = "Simple view";
+  nav.appendChild(simple);
 }
 
 document.addEventListener("click", e => {
