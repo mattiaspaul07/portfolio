@@ -79,11 +79,13 @@ const RENDERERS = {
        <div data-pane="certs">${timeline(certificateRows())}</div>
        <div data-pane="edu" hidden>${timeline(educationRows())}</div>`),
   contact: (lvl) => heading("contact", lvl)
-    + `<p>${esc(SITE.contact.intro)}</p>
+    + `<div class="contact-hero">
+       ${SITE.contact.photo ? `<img class="contact-photo" src="${esc(SITE.contact.photo.src)}" width="${SITE.contact.photo.width}" height="${SITE.contact.photo.height}" alt="${esc(SITE.contact.photo.alt)}" loading="lazy" decoding="async">` : ""}
+       <div class="contact-text"><p>${esc(SITE.contact.intro)}</p>
        <div class="contact-actions">
          <a class="cta" href="mailto:${esc(SITE.person.email)}">Email me</a>
          <a class="ghost" href="${esc(SITE.person.linkedin)}" target="_blank" rel="noopener">Connect on LinkedIn</a>
-       </div>
+       </div></div></div>
        <div class="copyrow"><code>${esc(SITE.person.email)}</code><button type="button" class="btn small" data-copy="${esc(SITE.person.email)}">Copy</button></div>
        <div class="icebreakers"><h3>Need an icebreaker? Ask me about:</h3>
          <ul>${SITE.contact.icebreakers.map(t => `<li>${esc(t)}</li>`).join("")}</ul></div>`

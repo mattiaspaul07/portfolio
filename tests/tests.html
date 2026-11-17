@@ -285,6 +285,20 @@ test("contact has the new heading, intro, two actions and icebreakers", () => {
   assertEqual((html.match(/<li>/g) || []).length, 3, "three icebreakers");
   assertEqual(html.includes(SITE.person.email + "</code>"), true, "address still visible for copying");
 });
+
+test("TV 2 project links to VG's article for context", () => {
+  const html = renderSection("projects");
+  const tv2 = html.slice(html.indexOf("Handling the TV 2 surge"));
+  assertEqual(tv2.includes('href="https://www.vg.no/nyheter/i/0Gxbv6/tv-2-har-avsluttet-forhandlingene-med-altibox"'), true, "link");
+  assertEqual(tv2.includes(">Read VG’s article (in Norwegian)<"), true, "label");
+  assertEqual(/rel="noopener"/.test(tv2), true, "opens safely in a new tab");
+});
+
+test("contact shows the photo beside the intro", () => {
+  const html = renderSection("contact");
+  assertEqual(/<img[^>]+src="assets\/contact-photo.jpg"[^>]+alt="[^"]{10,}"/.test(html), true, "photo with description");
+  assertEqual(html.indexOf("contact-photo.jpg") < html.indexOf(SITE.contact.intro.slice(0, 20)), true, "photo first");
+});
 </script>
 </body>
 </html>

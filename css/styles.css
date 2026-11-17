@@ -89,6 +89,10 @@ button{font:inherit}
 }
 
 /* contact */
+.contact-hero{display:grid; grid-template-columns:minmax(120px,170px) minmax(0,1fr); gap:16px; align-items:center}
+.contact-photo{width:100%; height:auto; aspect-ratio:2/3; object-fit:cover; object-position:70% 30%; border-radius:12px; display:block; background:var(--chip)}
+.contact-text{display:grid; gap:12px; min-width:0}
+@media (max-width:420px){ .contact-hero{grid-template-columns:110px minmax(0,1fr); gap:12px} }
 .contact-actions{display:flex; flex-wrap:wrap; gap:8px}
 .contact-actions a{display:inline-flex; align-items:center; min-height:40px; padding:8px 16px}
 .copyrow .btn.small{padding:3px 10px; font-size:.82rem}
@@ -176,6 +180,12 @@ button{font:inherit}
   .actions{gap:6px}
 }
 @media (min-width:861px) and (max-width:959px){ .cta .long{display:none} }
+
+/* desktop: the room stays in view while the panel scrolls */
+@media (min-width:861px){
+  .scene{position:sticky; top:var(--header-h, 58px); align-self:start; max-height:calc(100vh - var(--header-h, 58px))}
+  #room{max-height:calc(100vh - var(--header-h, 58px) - 70px)}
+}
 
 /* phone */
 @media (max-width:860px){

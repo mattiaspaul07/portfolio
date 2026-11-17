@@ -64,6 +64,11 @@ sound.addEventListener("click", () => {
 });
 
 buildNav();
+// keep the sticky room just below the header, whatever height the header has at this width
+const topbar = document.querySelector(".topbar");
+const setHeaderHeight = () => document.documentElement.style.setProperty("--header-h", topbar.offsetHeight + "px");
+setHeaderHeight();
+window.addEventListener("resize", setHeaderHeight);
 if (typeof drawRoom === "function") {
   state.room = drawRoom(document.getElementById("room"), { onPick: key => select(key, { focus: true }) });
 }

@@ -35,6 +35,7 @@ const SITE = {
   // Shown one at a time in a speech bubble during each coffee break.
   coffeeTopics: ["Why I go on about omnichannel routing", "A knowledge base that helps both sides", "Views and groups that won’t become a jungle", "Training with the Ingebrigtsen brothers"],
   contact: {
+    photo: { src: "assets/contact-photo.jpg", width: 300, height: 450, alt: "Me smiling at a laptop in a bright office" },
     intro: "Untangling a Zendesk setup, looking for someone to join your next project, or just fancy comparing notes? Say hello.",
     icebreakers: [
       "Why I keep going on about omnichannel routing",
@@ -92,7 +93,8 @@ const SITE = {
         "I set up dedicated queues in Puzzel and ticket groups in Zendesk, wrote macros for support and chat, ran a one-off automation that solved tickets with no reply, and set up automated FAQ answers for tickets submitted in this category."
       ],
       tools: "Puzzel, Zendesk",
-      credit: "A team effort across customer service, analytics, sales and back office; I made the changes in the support systems." },
+      credit: "A team effort across customer service, analytics, sales and back office; I made the changes in the support systems.",
+      sourceUrl: "https://www.vg.no/nyheter/i/0Gxbv6/tv-2-har-avsluttet-forhandlingene-med-altibox", sourceLabel: "Read VG’s article (in Norwegian)" },
   ],
   tools: [
     { name: "Zendesk", sentence: "Owned the Lyse group's Zendesk and now set it up and optimise it for Kundelab clients." },
