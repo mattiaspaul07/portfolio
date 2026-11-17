@@ -124,14 +124,9 @@ test("coffee label reads naturally", () => {
 test("about shows the personal intro once, with its own heading", () => {
   const html = renderSection("about");
   assertEqual((html.match(/>About me</g) || []).length, 1, "About me appears once");
-  assertEqual(html.includes("<h2>Personal intro</h2>"), true, "heading");
+  assertEqual(html.includes("<h2>Hi, I’m Mattias.</h2>"), true, "heading");
   assertEqual(html.includes("Placeholder"), false, "no placeholder");
-  assertEqual((html.match(/<p>/g) || []).length, 3, "three paragraphs");
-  assertEqual(html.includes("Based in Stavanger. Always curious. Have a look around my digital workspace. My avatar will show you around!"), true, "closing line");
-  assertEqual(SITE.person.headline, "Hi, I'm Mattias. I connect people, processes and technology.", "headline");
-});
-test("experience heading uses first-tier agent wording", () => {
-  assertEqual(renderSection("experience").includes("From first-tier agent to the Zendesk admin"), true, "heading");
+  assertEqual(html.includes("<p>Based in Stavanger. Always curious.</p>") && html.includes("My avatar will show you around!"), true, "closing lines on the interactive page");
 });
 
 test("featured project shows its key numbers", () => {
@@ -161,7 +156,7 @@ test("title uses the @ form", () => assertEqual(SITE.person.title, "Senior Consu
 
 test("About me is the default section", () => {
   assertEqual(DEFAULT_SECTION, "about", "default");
-  assertEqual(renderSection("unknown-key").includes("Personal intro"), true, "unknown keys fall back to About me");
+  assertEqual(renderSection("unknown-key").includes("<h2>Hi, I’m Mattias.</h2>"), true, "unknown keys fall back to About me");
 });
 
 test("Lean Green Belt is dated March 2023", () => {
@@ -298,6 +293,45 @@ test("contact shows the photo beside the intro", () => {
   const html = renderSection("contact");
   assertEqual(/<img[^>]+src="assets\/contact-photo.jpg"[^>]+alt="[^"]{10,}"/.test(html), true, "photo with description");
   assertEqual(html.indexOf("contact-photo.jpg") < html.indexOf(SITE.contact.intro.slice(0, 20)), true, "photo first");
+});
+
+// ---- review batch: ten improvements ----
+test("1. About opens with Hi, I'm Mattias and a specific headline", () => {
+  const html = renderSection("about");
+  assertEqual(html.includes("<h2>Hi, I’m Mattias.</h2>"), true, "heading");
+  assertEqual(html.includes("Personal intro"), false, "old heading gone");
+  assertEqual(SITE.person.headline, "I help teams make Zendesk simpler and customer service work better.", "headline");
+  assertEqual(html.indexOf(SITE.person.headline) < html.indexOf("<p>I started as an agent"), true, "headline before background");
+});
+test("2. About shows a Featured work card with a team-labelled result and a View project button", () => {
+  const html = renderSection("about");
+  assertEqual(html.includes('class="card featured-work"'), true, "card");
+  assertEqual(html.includes("Helping unify customer service at Lyse Dialog"), true, "title");
+  assertEqual(/Team outcome/.test(html) && html.includes("29 min → 5 min"), true, "result labelled as team outcome");
+  assertEqual(html.includes('data-go="projects"') && html.includes(">View project<"), true, "button");
+});
+test("6. About ends its opening with See my work and Get in touch", () => {
+  const html = renderSection("about");
+  assertEqual(/class="cta"[^>]*data-go="projects"[^>]*>See my work</.test(html), true, "filled button");
+  assertEqual(/class="ghost"[^>]*data-go="contact"[^>]*>Get in touch</.test(html), true, "quiet button");
+});
+test("7. Experience heading", () => assertEqual(renderSection("experience").includes("<h2>From frontline support to Senior Consultant</h2>"), true, "heading"));
+test("8. Projects heading and dates on every case", () => {
+  const html = renderSection("projects");
+  assertEqual(html.includes("<h2>Selected projects</h2>"), true, "heading");
+  SITE.projects.forEach(p => assertEqual(typeof p.period === "string" && html.includes(">" + p.period + "<"), true, p.title + " date"));
+});
+test("9. Each project card opens with a short summary before Problem", () => {
+  const html = renderSection("projects");
+  SITE.projects.forEach(p => {
+    const part = html.slice(html.indexOf(p.title));
+    assertEqual(typeof p.summary === "string" && part.indexOf(p.summary) >= 0 && part.indexOf(p.summary) < part.indexOf("<dt>Problem</dt>"), true, p.title);
+  });
+});
+test("10. The reading view has no room-specific wording or room-only buttons", () => {
+  const html = renderResume();
+  ["avatar", "digital workspace", "data-go", "View project"].forEach(w => assertEqual(html.includes(w), false, w));
+  assertEqual(html.includes("Based in Stavanger. Always curious."), true, "keeps the professional text");
 });
 </script>
 </body>

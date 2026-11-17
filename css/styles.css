@@ -88,6 +88,19 @@ button{font:inherit}
   .ba-after .ba-tag{color:var(--accent)}
 }
 
+/* about: next steps and featured work */
+.next-steps{display:flex; flex-wrap:wrap; gap:8px}
+.next-steps a{display:inline-flex; align-items:center; min-height:40px; padding:8px 16px}
+.featured-work{gap:8px}
+.featured-work .title{font-size:1.08rem}
+.fw-result{display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; padding:10px 12px; border-radius:8px; background:var(--chip)}
+.fw-result b{font-family:var(--display); font-size:1.35rem; color:var(--accent); white-space:nowrap}
+.fw-result span{font-size:.84rem; color:var(--muted)}
+.fw-link{justify-self:start; display:inline-flex; padding:6px 14px}
+/* projects: dates and summaries */
+.period{font-family:var(--mono); font-size:.76rem; color:var(--muted); letter-spacing:.04em}
+.card .summary{font-size:1rem; margin:2px 0 4px}
+
 /* contact */
 /* same size and shape as the portrait in About me */
 .contact-hero{display:grid; grid-template-columns:auto minmax(0,1fr); gap:16px; align-items:start}
@@ -182,6 +195,13 @@ button{font:inherit}
 }
 @media (min-width:861px) and (max-width:959px){ .cta .long{display:none} }
 
+/* desktop: wider reading panel for Projects and Experience, readable line length everywhere */
+@media (min-width:861px){
+  body.panel-wide .body{grid-template-columns:minmax(0,0.67fr) minmax(0,1fr)}
+  .panel > *{max-width:46rem}
+}
+.mobile-intro,.room-toggle{display:none}
+
 /* desktop: the room stays in view while the panel scrolls */
 @media (min-width:861px){
   .scene{position:sticky; top:var(--header-h, 58px); align-self:start; max-height:calc(100vh - var(--header-h, 58px))}
@@ -189,6 +209,21 @@ button{font:inherit}
 }
 
 /* phone */
+@media (max-width:860px){
+  .mobile-intro{display:grid; grid-template-columns:auto minmax(0,1fr); gap:12px; align-items:center}
+  .mobile-intro .portrait{width:64px; height:64px; border-radius:14px}
+  .mobile-intro p{font-size:.98rem}
+  .panel .intro-card{display:none}   /* the intro above the room already shows portrait and headline */
+  .room-frame{max-height:200px; overflow:hidden; position:relative; border-radius:12px; transition:max-height .35s ease}
+  .room-frame::after{content:""; position:absolute; inset:auto 0 0 0; height:56px; background:linear-gradient(transparent, var(--bg)); pointer-events:none}
+  body.room-open .room-frame{max-height:900px}
+  body.room-open .room-frame::after{display:none}
+  .room-toggle{display:block; justify-self:center; margin-top:-4px; font:inherit; font-size:.92rem; padding:8px 16px; border-radius:999px; border:1px solid var(--accent); background:var(--panel); color:var(--accent); cursor:pointer}
+  .nav{flex-wrap:wrap !important; overflow:visible !important}
+  .nav button svg{display:none}
+  .nav button,.nav-view{padding:5px 11px !important}
+}
+@media (max-width:860px) and (prefers-reduced-motion: reduce){ .room-frame{transition:none} }
 @media (max-width:860px){
   .body{grid-template-columns:1fr; min-height:0}
   .topbar{gap:8px}

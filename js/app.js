@@ -9,6 +9,8 @@ function select(key, { focus } = {}) {
   if (!SITE.sections[key] && !(SITE.extras && SITE.extras[key])) key = DEFAULT_SECTION;
   state.current = key;
   panel.innerHTML = renderSection(key);
+  // long-form sections get the wider panel on desktop
+  document.body.classList.toggle("panel-wide", key === "projects" || key === "experience");
   nav.querySelectorAll("button").forEach(b => b.setAttribute("aria-current", b.dataset.key === key ? "true" : "false"));
   if (state.room) state.room.setSelected(key);
   if (focus) {
@@ -34,11 +36,13 @@ function buildNav() {
   const simple = document.createElement("a");
   simple.className = "nav-view";
   simple.href = "resume.html";
-  simple.textContent = "Simple view";
+  simple.textContent = "Reading view";
   nav.appendChild(simple);
 }
 
 document.addEventListener("click", e => {
+  const go = e.target.closest("[data-go]");
+  if (go) { e.preventDefault(); select(go.dataset.go, { focus: true }); return; }
   const tab = e.target.closest("[data-tab]");
   if (tab) {
     const box = tab.closest(".panel, section") || document;
@@ -64,6 +68,14 @@ sound.addEventListener("click", () => {
 });
 
 buildNav();
+// phones: the room starts as a compact preview that can be expanded
+const roomToggle = document.querySelector(".room-toggle");
+if (roomToggle) roomToggle.addEventListener("click", () => {
+  const open = roomToggle.getAttribute("aria-expanded") !== "true";
+  roomToggle.setAttribute("aria-expanded", String(open));
+  document.body.classList.toggle("room-open", open);
+  roomToggle.textContent = open ? "Show less of my workspace" : "Explore my workspace";
+});
 // keep the sticky room just below the header, whatever height the header has at this width
 const topbar = document.querySelector(".topbar");
 const setHeaderHeight = () => document.documentElement.style.setProperty("--header-h", topbar.offsetHeight + "px");

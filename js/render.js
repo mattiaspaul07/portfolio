@@ -6,6 +6,21 @@ function esc(text) {
   return String(text).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 }
 
+function aboutNextSteps() {
+  const f = SITE.about.featured;
+  return `<div class="next-steps">
+      <a class="cta" href="#projects" data-go="projects">See my work</a>
+      <a class="ghost" href="#contact" data-go="contact">Get in touch</a>
+    </div>
+    <article class="card featured-work">
+      <span class="kicker">Featured work</span>
+      <span class="title">${esc(f.title)}</span>
+      <p>${esc(f.summary)}</p>
+      <div class="fw-result"><b>${esc(f.result)}</b><span>${esc(f.resultLabel)}</span></div>
+      <a class="ghost fw-link" href="#projects" data-go="projects">View project</a>
+    </article>`;
+}
+
 function heading(key, level) {
   const s = SITE.sections[key];
   return `<span class="kicker">${esc(s.title)}</span><h${level}>${esc(s.heading || s.title)}</h${level}>`;
@@ -44,7 +59,8 @@ function projectCard(p, plain) {
         ${workflow(p)}</div></details>`
     : "";
   return `<article class="card${p.featured ? " feature" : ""}">${p.featured ? '<span class="chip">Featured project</span>' : ""}
-    <span class="title">${esc(p.title)}</span>${keyNumbers(p)}<dl>${rows}</dl>
+    <span class="title">${esc(p.title)}</span>${p.period ? `<span class="period">${esc(p.period)}</span>` : ""}
+    ${p.summary ? `<p class="summary">${esc(p.summary)}</p>` : ""}${keyNumbers(p)}<dl>${rows}</dl>
     ${p.credit ? `<span class="credit">${esc(p.credit)}</span>` : ""}
     ${built}
     ${p.sourceUrl ? `<a href="${esc(p.sourceUrl)}" target="_blank" rel="noopener">${esc(p.sourceLabel || "Source")}</a>` : ""}</article>`;
@@ -61,9 +77,10 @@ function educationRows() {
 }
 
 const RENDERERS = {
-  about: (lvl) => heading("about", lvl)
+  about: (lvl, { plain } = {}) => heading("about", lvl)
     + `<div class="intro-card"><img class="portrait" src="assets/portrait.jpg" width="96" height="96" alt="Portrait of Mattias Paul"><p class="headline">${esc(SITE.person.headline)}</p></div>`
-    + (SITE.about.placeholder ? placeholderBox(SITE.about) : SITE.about.paragraphs.map(t => `<p>${esc(t)}</p>`).join(""))
+    + SITE.about.paragraphs.filter(t => !(plain && t.roomOnly)).map(t => `<p>${esc(typeof t === "string" ? t : t.text)}</p>`).join("")
+    + (plain ? "" : aboutNextSteps())
     + `<div class="card"><b>Languages</b><div class="chips">${SITE.languages.map(l => `<span class="chip">${esc(l)}</span>`).join("")}</div></div>`,
   experience: (lvl) => heading("experience", lvl)
     + timeline(SITE.experience.map(r => ({ period: r.period, title: `${r.title}, ${r.company}`, detail: r.summary }))),

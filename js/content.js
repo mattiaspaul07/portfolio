@@ -3,14 +3,14 @@
 const SITE = {
   person: {
     name: "Mattias Paul", title: "Senior Consultant @ Kundelab",
-    headline: "Hi, I'm Mattias. I connect people, processes and technology.",
+    headline: "I help teams make Zendesk simpler and customer service work better.",
     email: "mattias.paul07@gmail.com",
     linkedin: "https://www.linkedin.com/in/mattias-paul-a3ab39181/"
   },
   sections: {
-    about:      { menu: "About",      title: "About me",                     object: "Sofa", heading: "Personal intro" },
-    experience: { menu: "Experience", title: "Experience",                   object: "Whiteboard", heading: "From first-tier agent to the Zendesk admin" },
-    projects:   { menu: "Projects",   title: "Projects",                     object: "Desk", heading: "On my desk" },
+    about:      { menu: "About",      title: "About me",                     object: "Sofa", heading: "Hi, I’m Mattias." },
+    experience: { menu: "Experience", title: "Experience",                   object: "Whiteboard", heading: "From frontline support to Senior Consultant" },
+    projects:   { menu: "Projects",   title: "Projects",                     object: "Desk", heading: "Selected projects" },
     toolkit:    { menu: "Toolkit",    title: "My toolkit",                   object: "Toolbox", heading: "The tools I work with" },
     education:  { menu: "Education",  title: "Education and certifications", object: "Bookshelf", heading: "On the shelf" },
     contact:    { menu: "Contact",    title: "Contact",                      object: "Pin board", heading: "Let’s talk. Coffee optional." }
@@ -18,8 +18,10 @@ const SITE = {
   about: { paragraphs: [
     "I started as an agent in first line support answering calls and chats. That’s where I learned how much difference a good system makes and how frustrating a bad one can be. Since then, I’ve led support systems at Lyse, worked in Customer Success at Aritma, and become a Senior Consultant at Kundelab.",
     "These days, I help teams and companies get more out of Zendesk: simpler workflows, useful automation, and tools people feel comfortable using. I like untangling messy problems with the people who deal with them every day.",
-    "Based in Stavanger. Always curious. Have a look around my digital workspace. My avatar will show you around!"
-  ] },
+    "Based in Stavanger. Always curious.",
+    { roomOnly: true, text: "Have a look around my digital workspace. My avatar will show you around!" }
+  ],
+    featured: { title: "Helping unify customer service at Lyse Dialog", summary: "I handled much of the Zendesk configuration that brought agents into one workspace and automated their follow-ups.", result: "29 min → 5 min", resultLabel: "Team outcome: average handling time per ticket" } },
   // Hidden extras: found by exploring the room, no marker or menu item, not in the résumé.
   extras: {
     running: { label: "Behind the door", title: "On the track", object: "Medal and running shoes",
@@ -55,6 +57,8 @@ const SITE = {
   projects: [
     { featured: true,
       title: "Unifying customer service on Zendesk at Lyse Dialog",
+      period: "Feb 2021 – Mar 2022",
+      summary: "Brought a busy customer service team onto one well-organised Zendesk setup and automated the routine follow-up work.",
       keyNumbers: [
         { value: "29 min → 5 min", primary: true, label: "Average handling time per ticket (Feb 2021 to Mar 2022)" },
         { value: "2.8K → 511", label: "Open-ticket backlog at the late-January 2022 peak, and three weeks later, after longer opening hours and more agents" }
@@ -81,6 +85,8 @@ const SITE = {
       credit: "Results credited to the KS Energi and Lyse Dialog customer service team, as described in Zendesk's customer story and the team's own reporting.",
       sourceUrl: "https://www.zendesk.co.uk/customer/lyse/", sourceLabel: "Read the Zendesk customer story" },
     { title: "Handling the TV 2 surge at Lyse Dialog",
+      period: "Apr 2022",
+      summary: "Kept a sudden wave of TV 2 enquiries from swamping everyday customer service.",
       problem: "When negotiations between TV 2 and Altibox broke down, enquiries surged. It was all hands on deck: customer service, analytics, sales and back office.",
       role: "I made the changes in the support systems.",
       actions: [
