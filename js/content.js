@@ -35,7 +35,7 @@ const SITE = {
   // Shown one at a time in a speech bubble during each coffee break.
   coffeeTopics: ["Why I go on about omnichannel routing", "A knowledge base that helps both sides", "Views and groups that won’t become a jungle", "Training with the Ingebrigtsen brothers"],
   contact: {
-    photo: { src: "assets/contact-photo.jpg", width: 300, height: 450, alt: "Me smiling at a laptop in a bright office" },
+    photo: { src: "assets/contact-photo.jpg", width: 900, height: 693, alt: "Portrait of me smiling in a bright office" },
     intro: "Untangling a Zendesk setup, looking for someone to join your next project, or just fancy comparing notes? Say hello.",
     icebreakers: [
       "Why I keep going on about omnichannel routing",
