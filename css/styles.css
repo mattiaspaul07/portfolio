@@ -197,7 +197,6 @@ button{font:inherit}
 
 /* desktop: wider reading panel for Projects and Experience, readable line length everywhere */
 @media (min-width:861px){
-  body.panel-wide .body{grid-template-columns:minmax(0,0.67fr) minmax(0,1fr)}
   .panel > *{max-width:46rem}
 }
 .mobile-intro,.room-toggle{display:none}

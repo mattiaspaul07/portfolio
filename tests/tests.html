@@ -289,11 +289,7 @@ test("TV 2 project links to VG's article for context", () => {
   assertEqual(/rel="noopener"/.test(tv2), true, "opens safely in a new tab");
 });
 
-test("contact shows the photo beside the intro", () => {
-  const html = renderSection("contact");
-  assertEqual(/<img[^>]+src="assets\/contact-photo.jpg"[^>]+alt="[^"]{10,}"/.test(html), true, "photo with description");
-  assertEqual(html.indexOf("contact-photo.jpg") < html.indexOf(SITE.contact.intro.slice(0, 20)), true, "photo first");
-});
+test("contact has no photo", () => assertEqual(renderSection("contact").includes("<img"), false, "no image"));
 
 // ---- review batch: ten improvements ----
 test("1. About opens with Hi, I'm Mattias and a specific headline", () => {
