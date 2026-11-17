@@ -89,8 +89,10 @@ button{font:inherit}
 }
 
 /* contact */
-.contact-hero{display:grid; gap:14px}
-.contact-photo{width:100%; max-width:440px; height:auto; aspect-ratio:900/693; border-radius:12px; display:block; background:var(--chip)}
+/* same size and shape as the portrait in About me */
+.contact-hero{display:grid; grid-template-columns:auto minmax(0,1fr); gap:16px; align-items:start}
+.contact-photo{width:96px; height:96px; object-fit:cover; object-position:50% 30%; border-radius:18px; display:block; box-shadow:0 2px 0 var(--line); background:var(--chip)}
+@media (max-width:860px){ .contact-photo{width:64px; height:64px; border-radius:14px} }
 .contact-text{display:grid; gap:12px; min-width:0}
 .contact-actions{display:flex; flex-wrap:wrap; gap:8px}
 .contact-actions a{display:inline-flex; align-items:center; min-height:40px; padding:8px 16px}
