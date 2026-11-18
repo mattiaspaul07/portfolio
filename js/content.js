@@ -45,7 +45,7 @@ var SITE = {   // var, so js/i18n.js can swap in the Norwegian version
         { src: "assets/track-bike.jpg", width: 1200, height: 800, alt: "Me on a bike beside a runner on a red track", caption: "On the bike at the track." }
       ],
       paragraphs: [
-      "I ran middle distance at national level and won a few regional titles in my age group. Most of the time, though, I finished behind my friend Jakob Ingebrigtsen, who went on to become an Olympic champion.",
+      "I ran middle distance at national level and won a few regional titles in my age group. Most of the time, though, I finished behind my training partner Jakob Ingebrigtsen, who went on to become an Olympic champion.",
       "Training alongside him and his brothers taught me a lot about myself, and about what others did to succeed. The biggest lesson: surround yourself with people who are better than you. The good news is that in IT, you don’t need world-class genetics. Curiosity and steady practice take you a long way."
     ] }
   },

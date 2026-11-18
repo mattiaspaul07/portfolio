@@ -32,13 +32,13 @@ const SITE_NO = {
     featured: { title: "Da strømkrisen traff Lyse Dialog", summary: "Ett Zendesk-arbeidsområde for alle rådgiverne, med automatisert oppfølging.", result: "29 min → 5 min", resultLabel: "gjennomsnittlig behandlingstid per sak", attribution: "Teamets resultat, kundeservice i KS Energi og Lyse Dialog" } },
   experienceIntro: "Jeg startet som rådgiver i førstelinjen og svarte på telefon og chat. Der lærte jeg hvor stor forskjell et godt system gjør, og hvor frustrerende et dårlig et kan være. Siden har jeg ledet støttesystemene i Lyse, jobbet med Customer Success i Aritma og blitt seniorkonsulent i Kundelab.",
   extras: {
-    running: { label: "Bak døren", title: "På banen", object: "Medalje og joggesko",
+    running: { label: "Bak døren", title: "På friidrettsbanen", object: "Medalje og joggesko",
       photos: [
         { ...SITE.extras.running.photos[0], alt: "Meg og en treningspartner som løper på en blå bane, med fjell og skyer bak oss", caption: "Banetrening i fjellet." },
         { ...SITE.extras.running.photos[1], alt: "Meg på sykkel ved siden av en løper på en rød bane", caption: "På sykkelen ved banen." }
       ],
       paragraphs: [
-      "Jeg løp mellomdistanse på nasjonalt nivå og vant noen kretsmesterskap i min aldersklasse. Som oftest kom jeg likevel i mål bak kompisen min Jakob Ingebrigtsen, som senere ble olympisk mester.",
+      "Jeg løp mellomdistanse på nasjonalt nivå og vant noen kretsmesterskap i min aldersklasse. Som oftest kom jeg likevel i mål bak treningskompisen min Jakob Ingebrigtsen, som senere ble olympisk mester.",
       "Å trene sammen med ham og brødrene hans lærte meg mye om meg selv, og om hva andre gjorde for å lykkes. Den viktigste lærdommen: omgi deg med folk som er bedre enn deg. Det gode er at i IT trenger du ikke gener i verdensklasse. Nysgjerrighet og jevn øving tar deg langt."
     ] }
   },
