@@ -33,18 +33,19 @@
   <main class="body">
     <div class="scene">
       <h1 class="visually-hidden" data-i18n="h1">Mattias Paul, Senior Consultant at Kundelab</h1>
-      <div class="mobile-intro">
-        <img class="portrait" src="assets/portrait.jpg" width="64" height="64" alt="Portrait of Mattias Paul" data-i18n-alt>
-        <p><b data-i18n="hi">Hi, I’m Mattias.</b> <span data-i18n="intro">I help teams make Zendesk simpler and customer service work better.</span></p>
-      </div>
       <p class="hint"><i aria-hidden="true"></i><span data-i18n="hint">Explore my workspace, or use the menu.</span></p>
       <div class="room-frame" id="room-frame">
         <svg id="room" viewBox="-205 -150 410 360" role="group" aria-label="My workspace. Each marked object opens a section." data-i18n-aria="room"></svg>
       </div>
-      <button type="button" class="room-toggle" aria-expanded="false" aria-controls="room-frame" data-i18n-ui="exploreMore">Explore my workspace</button>
     </div>
     <p id="room-status" class="visually-hidden" aria-live="polite"></p>
-    <section id="panel" class="panel" aria-label="Section" data-i18n-aria="section"></section>
+    <div class="sheet" id="sheet">
+      <div class="sheet-head">
+        <button type="button" class="sheet-grip" aria-expanded="false" aria-controls="panel" data-i18n-aria="sheetToggle" aria-label="Show or hide the section"><span></span></button>
+        <div class="sheet-nav"></div>
+      </div>
+      <section id="panel" class="panel" aria-label="Section" data-i18n-aria="section"></section>
+    </div>
   </main>
 
   <script src="js/content.js"></script>

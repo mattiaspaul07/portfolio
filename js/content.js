@@ -12,7 +12,6 @@ var SITE = {   // var, so js/i18n.js can swap in the Norwegian version
     emailMe: "Email me", linkedin: "Connect on LinkedIn", copy: "Copy", copied: "Copied", selectAddress: "Select the address",
     icebreaker: "Need an icebreaker? Ask me about:",
     soundOn: "Sound on", soundOff: "Sound off", readingView: "Reading view",
-    exploreMore: "Explore my workspace", exploreLess: "Show less of my workspace",
     coffee: "COFFEE #", sayHi: "Say hi!", askMeAbout: "ASK ME ABOUT", askMeAboutLabel: "Ask me about: ", opensContact: "Opens Contact.",
     doorLabel: "Medal and running shoes. Opens a story from the track.",
     switchLabel: "Light switch. Off is daylight, on is evening.",

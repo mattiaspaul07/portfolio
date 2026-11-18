@@ -15,7 +15,7 @@ function select(key, { focus } = {}) {
     const h = panel.querySelector("h2");
     h.tabIndex = -1;
     h.focus({ preventScroll: true });
-    if (window.matchMedia("(max-width: 860px)").matches) panel.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (PHONE.matches) { setSheet(true); panel.scrollTop = 0; }
   }
 }
 
@@ -66,18 +66,48 @@ sound.addEventListener("click", () => {
 });
 
 buildNav();
-// phones: the room starts as a compact preview that can be expanded
-const roomToggle = document.querySelector(".room-toggle");
-if (roomToggle) roomToggle.addEventListener("click", () => {
-  const open = roomToggle.getAttribute("aria-expanded") !== "true";
-  roomToggle.setAttribute("aria-expanded", String(open));
-  document.body.classList.toggle("room-open", open);
-  roomToggle.textContent = open ? SITE.ui.exploreLess : SITE.ui.exploreMore;
+
+// Phones: the room fills the screen and the section panel is a bottom sheet.
+// The sheet peeks up from the bottom; picking an object or a section slides it up.
+const PHONE = window.matchMedia("(max-width: 860px)");
+const sheet = document.getElementById("sheet");
+const grip = sheet.querySelector(".sheet-grip");
+const sheetNav = sheet.querySelector(".sheet-nav");
+const headerSpot = document.createComment("nav");
+nav.before(headerSpot);
+function placeNav() {   // the section buttons live in the sheet on phones and in the header on desktop
+  if (PHONE.matches) sheetNav.appendChild(nav); else headerSpot.after(nav);
+  if (!PHONE.matches) setSheet(false);
+  setHeaderHeight();
+}
+function setSheet(open) {
+  document.body.classList.toggle("sheet-open", open);
+  grip.setAttribute("aria-expanded", String(open));
+  if (!open) panel.scrollTop = 0;
+}
+grip.addEventListener("click", () => setSheet(!document.body.classList.contains("sheet-open")));
+panel.addEventListener("click", () => { if (PHONE.matches && !document.body.classList.contains("sheet-open")) setSheet(true); });
+document.addEventListener("keydown", e => { if (e.key === "Escape" && document.body.classList.contains("sheet-open")) setSheet(false); });
+// swipe on the sheet's top bar: up opens, down closes
+let touchY = null;
+sheet.querySelector(".sheet-head").addEventListener("touchstart", e => { touchY = e.touches[0].clientY; }, { passive: true });
+sheet.querySelector(".sheet-head").addEventListener("touchend", e => {
+  if (touchY === null) return;
+  const dy = e.changedTouches[0].clientY - touchY; touchY = null;
+  if (dy < -40) setSheet(true); else if (dy > 40) setSheet(false);
+});
+// swiping down on the content when it is scrolled to the top also closes the sheet
+let panelY = null;
+panel.addEventListener("touchstart", e => { panelY = panel.scrollTop <= 0 ? e.touches[0].clientY : null; }, { passive: true });
+panel.addEventListener("touchend", e => {
+  if (panelY !== null && e.changedTouches[0].clientY - panelY > 80 && document.body.classList.contains("sheet-open")) setSheet(false);
+  panelY = null;
 });
 // keep the sticky room just below the header, whatever height the header has at this width
 const topbar = document.querySelector(".topbar");
 const setHeaderHeight = () => document.documentElement.style.setProperty("--header-h", topbar.offsetHeight + "px");
-setHeaderHeight();
+placeNav();
+PHONE.addEventListener("change", placeNav);
 window.addEventListener("resize", setHeaderHeight);
 if (typeof drawRoom === "function") {
   state.room = drawRoom(document.getElementById("room"), { onPick: key => select(key, { focus: true }) });

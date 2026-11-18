@@ -19,13 +19,13 @@ const PAGE_TEXT = {
   en: { skip: "Skip to content", sections: "Sections", downloadCv: "Download CV", download: "Download ", hint: "Explore my workspace, or use the menu.",
         intro: "I help teams make Zendesk simpler and customer service work better.", hi: "Hi, I’m Mattias.",
         room: "My workspace. Each marked object opens a section.", h1: "Mattias Paul, Senior Consultant at Kundelab", section: "Section",
-        langSwitch: "Bytt til norsk", langShort: "NO",
+        langSwitch: "Bytt til norsk", langShort: "NO", sheetToggle: "Show or hide the section",
         interactiveView: "Interactive view", cvButton: "Download CV", readingTitle: "Mattias Paul, reading view", interactiveVersion: "Interactive version:",
         cvFile: "assets/Mattias-Paul-CV.pdf", siteUrl: "https://mattiaspaul.app/?utm_source=cv" },
   no: { skip: "Hopp til innholdet", sections: "Seksjoner", downloadCv: "Last ned CV", download: "Last ned ", hint: "Utforsk arbeidsplassen min, eller bruk menyen.",
         intro: "Jeg hjelper team med å gjøre Zendesk enklere og kundeservice bedre.", hi: "Hei, jeg er Mattias.",
         room: "Arbeidsplassen min. Hvert merket objekt åpner en seksjon.", h1: "Mattias Paul, seniorkonsulent i Kundelab", section: "Seksjon",
-        langSwitch: "Switch to English", langShort: "EN",
+        langSwitch: "Switch to English", langShort: "EN", sheetToggle: "Vis eller skjul seksjonen",
         interactiveView: "Interaktiv visning", cvButton: "Last ned CV", readingTitle: "Mattias Paul, lesevisning", interactiveVersion: "Interaktiv versjon:",
         cvFile: "assets/Mattias-Paul-CV-no.pdf", siteUrl: "https://mattiaspaul.app/?utm_source=cv&lang=no" }
 };

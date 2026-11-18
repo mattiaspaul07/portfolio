@@ -11,7 +11,6 @@ const SITE_NO = {
     emailMe: "Send meg en e-post", linkedin: "Knytt kontakt på LinkedIn", copy: "Kopier", copied: "Kopiert", selectAddress: "Marker adressen",
     icebreaker: "Trenger du en icebreaker? Spør meg om:",
     soundOn: "Lyd på", soundOff: "Lyd av", readingView: "Lesevisning",
-    exploreMore: "Utforsk arbeidsplassen min", exploreLess: "Vis mindre av arbeidsplassen",
     coffee: "KAFFE #", sayHi: "Si hei!", askMeAbout: "SPØR MEG OM", askMeAboutLabel: "Spør meg om: ", opensContact: "Åpner Kontakt.",
     doorLabel: "Medalje og joggesko. Åpner en historie fra banen.",
     switchLabel: "Lysbryter. Av er dagslys, på er kveld.",

@@ -251,7 +251,7 @@ const wallX=(y1,y2,z1,z2)=>[[0.02,y1,z1],[0.02,y2,z1],[0.02,y2,z2],[0.02,y1,z2]]
         el("line",{x1:x, y1:ay-2, x2:x, y2:y+12, stroke:"#e07a5f", "stroke-width":2, "stroke-linecap":"round"},m);
         el("circle",{cx:x, cy:ay-2, r:2.5, fill:"#e07a5f"},m);
         if(!reduce) el("circle",{cx:x, cy:y, r:12, fill:"none", stroke:"#e07a5f", "stroke-width":2, class:"pulse"},m);
-        el("circle",{cx:x, cy:y, r:16, fill:"transparent"},m);
+        el("circle",{cx:x, cy:y, r:20, fill:"transparent"},m);   // touch target
         el("circle",{cx:x, cy:y, r:12, class:"disc"},m);
         const ic=el("g",{class:"ico", transform:`translate(${x} ${y})`},m); ic.innerHTML=ICONS[key];
         const tw=el("g",{class:"tagwrap", "pointer-events":"none"},m);

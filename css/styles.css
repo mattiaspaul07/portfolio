@@ -209,7 +209,6 @@ button{font:inherit}
 @media (min-width:861px){
   .panel > *{max-width:46rem}
 }
-.mobile-intro,.room-toggle{display:none}
 
 /* desktop: the room stays in view while the panel scrolls */
 @media (min-width:861px){
@@ -217,34 +216,42 @@ button{font:inherit}
   #room{max-height:calc(100vh - var(--header-h, 58px) - 70px)}
 }
 
-/* phone */
+/* phone: the room fills the screen, the sections live in a bottom sheet */
+.sheet{display:contents}
+.sheet-head{display:none}
 @media (max-width:860px){
-  .mobile-intro{display:grid; grid-template-columns:auto minmax(0,1fr); gap:12px; align-items:center}
-  .mobile-intro .portrait{width:64px; height:64px; border-radius:14px}
-  .mobile-intro p{font-size:.98rem}
-  .panel .greeting .portrait{display:none}   /* the intro above the room already shows the portrait */
-  .room-frame{max-height:200px; overflow:hidden; position:relative; border-radius:12px; transition:max-height .35s ease}
-  .room-frame::after{content:""; position:absolute; inset:auto 0 0 0; height:56px; background:linear-gradient(transparent, var(--bg)); pointer-events:none}
-  body.room-open .room-frame{max-height:900px}
-  body.room-open .room-frame::after{display:none}
-  .room-toggle{display:block; justify-self:center; margin-top:-4px; font:inherit; font-size:.92rem; padding:8px 16px; border-radius:999px; border:1px solid var(--accent); background:var(--panel); color:var(--accent); cursor:pointer}
-  .nav{flex-wrap:wrap !important; overflow:visible !important}
-  .nav button svg{display:none}
-  .nav button,.nav-view{padding:5px 11px !important}
-}
-@media (max-width:860px) and (prefers-reduced-motion: reduce){ .room-frame{transition:none} }
-@media (max-width:860px){
-  .body{grid-template-columns:1fr; min-height:0}
-  .topbar{gap:8px}
-  .nav{order:3; width:100%; flex-wrap:nowrap; overflow-x:auto; gap:6px; padding-bottom:2px; scrollbar-width:none}
-  .nav button{border-color:var(--line); flex:0 0 auto}
+  body:not(.resume-page){--peek:178px; height:100dvh; overflow:hidden; overscroll-behavior:none}
+  body:not(.resume-page) #sound{display:none}
   body:not(.resume-page) .actions .ghost{display:none}
-  .nav-view{display:inline-flex; align-items:center; flex:0 0 auto; padding:5px 12px; border-radius:999px; border:1px dashed var(--accent); color:var(--accent); text-decoration:none; font-size:.92rem}
+  .topbar{flex-wrap:nowrap; gap:8px}
+  .actions{margin-left:auto}
+  .body{display:block; min-height:0}
+  .scene{position:fixed; left:0; right:0; top:var(--header-h, 56px); bottom:calc(var(--peek) - 18px); padding:10px 8px 0; display:flex; flex-direction:column; align-items:center; gap:4px}
+  .hint{font-size:.85rem}
+  .room-frame{flex:1; min-height:0; width:100%; display:flex; align-items:center; justify-content:center}
+  #room{width:100%; height:100%; max-height:100%}
+
+  .sheet{display:flex; flex-direction:column; position:fixed; left:0; right:0; bottom:0; z-index:6;
+    height:calc(100dvh - var(--header-h, 56px) - 28px); background:var(--panel); border-top:1px solid var(--line);
+    border-radius:18px 18px 0 0; box-shadow:0 -8px 24px rgba(0,0,0,.12);
+    transform:translateY(calc(100% - var(--peek))); transition:transform .32s cubic-bezier(.2,.8,.2,1)}
+  body.sheet-open .sheet{transform:none}
+  .sheet-head{display:block; padding:0 max(16px, env(safe-area-inset-left)) 8px; border-bottom:1px solid var(--line)}
+  .sheet-grip{display:flex; justify-content:center; align-items:center; width:100%; height:26px; border:0; background:none; cursor:pointer; padding:0}
+  .sheet-grip span{width:40px; height:5px; border-radius:3px; background:var(--line)}
+  .sheet-grip:focus-visible span{background:var(--accent)}
+  .nav{flex-wrap:nowrap; overflow-x:auto; gap:6px; scrollbar-width:none; margin:0 -16px; padding:0 16px}
+  .nav::-webkit-scrollbar{display:none}
+  .nav button{border-color:var(--line); flex:0 0 auto; min-height:38px; padding:6px 12px}
+  .nav button svg{display:none}
+  .nav-view{display:inline-flex; align-items:center; flex:0 0 auto; min-height:38px; padding:6px 12px; border-radius:999px; border:1px dashed var(--accent); color:var(--accent); text-decoration:none; font-size:.92rem}
+  .panel{flex:1; min-height:0; overflow:hidden; border:0; padding:16px max(16px, env(safe-area-inset-left)) calc(32px + env(safe-area-inset-bottom)); overscroll-behavior:contain}
+  body.sheet-open .panel{overflow-y:auto}
   .portrait{width:64px; height:64px; border-radius:14px}
-  .scene{padding-top:16px}
-  .panel{border-left:0; border-top:1px solid var(--line); border-radius:16px 16px 0 0; box-shadow:0 -6px 18px rgba(0,0,0,.08); padding:22px max(16px, env(safe-area-inset-left)) 40px}
   .tl li{grid-template-columns:84px minmax(0,1fr)}
 }
+@media (max-width:860px) and (max-height:520px){ body:not(.resume-page){--peek:120px} }
+@media (max-width:860px) and (prefers-reduced-motion: reduce){ .sheet{transition:none} }
 
 /* résumé view */
 .print-only{display:none}
