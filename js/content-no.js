@@ -22,7 +22,7 @@ const SITE_NO = {
     about:      { menu: "Om meg",     title: "Om meg",                       object: "Sofa", heading: "Hei, jeg er Mattias." },
     experience: { menu: "Erfaring",   title: "Erfaring",                     object: "Tavle", heading: "Fra førstelinje til seniorkonsulent" },
     projects:   { menu: "Prosjekter", title: "Prosjekter",                   object: "Pult", heading: "Utvalgte prosjekter" },
-    toolkit:    { menu: "Verktøy",    title: "Verktøykassen min",            object: "Verktøykasse", heading: "Verktøyene jeg jobber med" },
+    toolkit:    { menu: "Verktøy",    title: "Verktøykassen min",            object: "Verktøykasse", heading: "Programmene jeg bruker mest" },
     education:  { menu: "Utdanning",  title: "Utdanning og sertifiseringer", object: "Bokhylle", heading: "I bokhylla" },
     contact:    { menu: "Kontakt",    title: "Kontakt",                      object: "Oppslagstavle", heading: "Vil du ta en prat? Jeg spanderer kaffen" }
   },
@@ -46,9 +46,9 @@ const SITE_NO = {
   contact: {
     intro: "Skal du rydde i et Zendesk-oppsett, ser du etter noen til neste prosjekt, eller vil du bare utveksle erfaringer? Si hei.",
     icebreakers: [
-      "Hvorfor jeg stadig maser om omnikanal-ruting",
-      "Kunnskapsbaser som hjelper begge sider av samtalen",
-      "Hvordan visninger, grupper og arbeidsflyt ikke blir en jungel"
+      "Hvordan vi slipper å svare på det samme hele tiden",
+      "Sett opp ruting basert på de ansattes kompetanse",
+      "Hvordan vi holder orden i Zendesk når det baller på seg"
     ]
   },
   languages: ["Norsk, morsmål", "Engelsk", "Tysk"],

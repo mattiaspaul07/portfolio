@@ -27,7 +27,7 @@ var SITE = {   // var, so js/i18n.js can swap in the Norwegian version
     about:      { menu: "About",      title: "About me",                     object: "Sofa", heading: "Hi, I’m Mattias." },
     experience: { menu: "Experience", title: "Experience",                   object: "Whiteboard", heading: "From frontline support to Senior Consultant" },
     projects:   { menu: "Projects",   title: "Projects",                     object: "Desk", heading: "Selected projects" },
-    toolkit:    { menu: "Toolkit",    title: "My toolkit",                   object: "Toolbox", heading: "The tools I work with" },
+    toolkit:    { menu: "Toolkit",    title: "My toolkit",                   object: "Toolbox", heading: "Apps and programs I use frequently" },
     education:  { menu: "Education",  title: "Education and certifications", object: "Bookshelf", heading: "On the shelf" },
     contact:    { menu: "Contact",    title: "Contact",                      object: "Pin board", heading: "Let’s talk. Coffee optional." }
   },
