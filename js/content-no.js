@@ -25,7 +25,7 @@ const SITE_NO = {
     projects:   { menu: "Prosjekter", title: "Prosjekter",                   object: "Pult", heading: "Utvalgte prosjekter" },
     toolkit:    { menu: "Verktøy",    title: "Verktøykassen min",            object: "Verktøykasse", heading: "Verktøyene jeg jobber med" },
     education:  { menu: "Utdanning",  title: "Utdanning og sertifiseringer", object: "Bokhylle", heading: "I bokhylla" },
-    contact:    { menu: "Kontakt",    title: "Kontakt",                      object: "Oppslagstavle", heading: "La oss ta en prat. Kaffe valgfritt." }
+    contact:    { menu: "Kontakt",    title: "Kontakt",                      object: "Oppslagstavle", heading: "Vil du ta en prat? Jeg spanderer kaffen" }
   },
   about: {
     intro: "Enklere arbeidsflyt, nyttig automatisering og verktøy folk er komfortable med å bruke. Jeg liker å nøste opp i rotete problemer sammen med dem som møter dem hver dag.",
