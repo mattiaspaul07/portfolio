@@ -4,7 +4,7 @@ var SITE = {   // var, so js/i18n.js can swap in the Norwegian version
   lang: "en",
   // Interface text: buttons, labels and screen reader descriptions
   ui: {
-    seeWork: "See my work", getInTouch: "Get in touch", featuredWork: "Featured work", viewProject: "View project",
+    seeWork: "See my projects", getInTouch: "Get in touch", featuredWork: "Featured work", viewProject: "View project",
     workflowChanged: "How the workflow changed", before: "Before", after: "After",
     myRole: "My role", problem: "Problem", outcome: "Outcome", howBuilt: "How I built it", tools: "Tools:",
     featuredProject: "Featured project", source: "Source", validUntil: "valid until ",
@@ -32,13 +32,12 @@ var SITE = {   // var, so js/i18n.js can swap in the Norwegian version
     education:  { menu: "Education",  title: "Education and certifications", object: "Bookshelf", heading: "On the shelf" },
     contact:    { menu: "Contact",    title: "Contact",                      object: "Pin board", heading: "Let’s talk. Coffee optional." }
   },
-  about: { paragraphs: [
-    "I started as an agent in first line support answering calls and chats. That’s where I learned how much difference a good system makes and how frustrating a bad one can be. Since then, I’ve led support systems at Lyse, worked in Customer Success at Aritma, and become a Senior Consultant at Kundelab.",
-    "These days, I help teams and companies get more out of Zendesk: simpler workflows, useful automation, and tools people feel comfortable using. I like untangling messy problems with the people who deal with them every day.",
-    "Based in Stavanger. Always curious.",
-    { roomOnly: true, text: "Have a look around my digital workspace. My avatar will show you around!" }
-  ],
-    featured: { title: "Helping unify customer service at Lyse Dialog", summary: "I handled much of the Zendesk configuration that brought agents into one workspace and automated their follow-ups.", result: "29 min → 5 min", resultLabel: "Team outcome: average handling time per ticket" } },
+  about: {
+    intro: "Simpler workflows, useful automation, and tools people feel comfortable using. I like untangling messy problems with the people who deal with them every day.",
+    location: "Based in Stavanger. Always curious.",
+    featured: { title: "When the energy crisis hit Lyse Dialog", summary: "One Zendesk workspace for all agents, with automated follow-ups.", result: "29 min → 5 min", resultLabel: "average handling time per ticket", attribution: "Team outcome, KS Energi and Lyse Dialog customer service" } },
+  // Opens the Experience section: the career story in short
+  experienceIntro: "I started as an agent in first line support answering calls and chats. That’s where I learned how much difference a good system makes and how frustrating a bad one can be. Since then, I’ve led support systems at Lyse, worked in Customer Success at Aritma, and become a Senior Consultant at Kundelab.",
   // Hidden extras: found by exploring the room, no marker or menu item, not in the résumé.
   extras: {
     running: { label: "Behind the door", title: "On the track", object: "Medal and running shoes",
@@ -72,7 +71,7 @@ var SITE = {   // var, so js/i18n.js can swap in the Norwegian version
   ],
   projects: [
     { featured: true,
-      title: "Unifying customer service on Zendesk at Lyse Dialog",
+      title: "When the energy crisis hit Lyse Dialog",
       period: "Feb 2021 – Mar 2022",
       summary: "Brought a busy customer service team onto one well-organised Zendesk setup and automated the routine follow-up work.",
       keyNumbers: [
@@ -100,10 +99,10 @@ var SITE = {   // var, so js/i18n.js can swap in the Norwegian version
       ],
       credit: "Results credited to the KS Energi and Lyse Dialog customer service team, as described in Zendesk's customer story and the team's own reporting.",
       sourceUrl: "https://www.zendesk.co.uk/customer/lyse/", sourceLabel: "Read the Zendesk customer story" },
-    { title: "Handling the TV 2 surge at Lyse Dialog",
+    { title: "When TV2 disappeared from Altibox",
       period: "Apr 2022",
-      summary: "Kept a sudden wave of TV 2 enquiries from swamping everyday customer service.",
-      problem: "When negotiations between TV 2 and Altibox broke down, enquiries surged. It was all hands on deck: customer service, analytics, sales and back office.",
+      summary: "Kept a sudden wave of TV2 enquiries from swamping everyday customer service.",
+      problem: "When negotiations between TV2 and Altibox broke down, enquiries surged. It was all hands on deck: customer service, analytics, sales and back office.",
       role: "I made the changes in the support systems.",
       actions: [
         "Gave the surge its own queues, separate from everyday work",

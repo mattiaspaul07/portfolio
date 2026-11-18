@@ -3,7 +3,7 @@
 const SITE_NO = {
   lang: "no",
   ui: {
-    seeWork: "Se arbeidet mitt", getInTouch: "Ta kontakt", featuredWork: "Utvalgt arbeid", viewProject: "Se prosjektet",
+    seeWork: "Se prosjektene mine", getInTouch: "Ta kontakt", featuredWork: "Utvalgt arbeid", viewProject: "Se prosjektet",
     workflowChanged: "Slik endret arbeidsflyten seg", before: "Før", after: "Etter",
     myRole: "Min rolle", problem: "Problem", outcome: "Resultat", howBuilt: "Slik bygde jeg det", tools: "Verktøy:",
     featuredProject: "Utvalgt prosjekt", source: "Kilde", validUntil: "gyldig til ",
@@ -27,13 +27,11 @@ const SITE_NO = {
     education:  { menu: "Utdanning",  title: "Utdanning og sertifiseringer", object: "Bokhylle", heading: "I bokhylla" },
     contact:    { menu: "Kontakt",    title: "Kontakt",                      object: "Oppslagstavle", heading: "La oss ta en prat. Kaffe valgfritt." }
   },
-  about: { paragraphs: [
-    "Jeg startet som rådgiver i førstelinjen og svarte på telefon og chat. Der lærte jeg hvor stor forskjell et godt system gjør, og hvor frustrerende et dårlig et kan være. Siden har jeg ledet støttesystemene i Lyse, jobbet med Customer Success i Aritma og blitt seniorkonsulent i Kundelab.",
-    "I dag hjelper jeg team og bedrifter med å få mer ut av Zendesk: enklere arbeidsflyt, nyttig automatisering og verktøy folk er komfortable med å bruke. Jeg liker å nøste opp i rotete problemer sammen med dem som møter dem hver dag.",
-    "Bosatt i Stavanger. Alltid nysgjerrig.",
-    { roomOnly: true, text: "Ta en titt rundt på den digitale arbeidsplassen min. Avataren min viser deg rundt!" }
-  ],
-    featured: { title: "Med på å samle kundeservicen i Lyse Dialog", summary: "Jeg tok mye av Zendesk-konfigurasjonen som samlet rådgiverne i ett arbeidsområde og automatiserte oppfølgingen deres.", result: "29 min → 5 min", resultLabel: "Teamets resultat: gjennomsnittlig behandlingstid per sak" } },
+  about: {
+    intro: "Enklere arbeidsflyt, nyttig automatisering og verktøy folk er komfortable med å bruke. Jeg liker å nøste opp i rotete problemer sammen med dem som møter dem hver dag.",
+    location: "Bosatt i Stavanger. Alltid nysgjerrig.",
+    featured: { title: "Da strømkrisen traff Lyse Dialog", summary: "Ett Zendesk-arbeidsområde for alle rådgiverne, med automatisert oppfølging.", result: "29 min → 5 min", resultLabel: "gjennomsnittlig behandlingstid per sak", attribution: "Teamets resultat, kundeservice i KS Energi og Lyse Dialog" } },
+  experienceIntro: "Jeg startet som rådgiver i førstelinjen og svarte på telefon og chat. Der lærte jeg hvor stor forskjell et godt system gjør, og hvor frustrerende et dårlig et kan være. Siden har jeg ledet støttesystemene i Lyse, jobbet med Customer Success i Aritma og blitt seniorkonsulent i Kundelab.",
   extras: {
     running: { label: "Bak døren", title: "På banen", object: "Medalje og joggesko",
       photos: [
@@ -65,7 +63,7 @@ const SITE_NO = {
   ],
   projects: [
     { ...SITE.projects[0],
-      title: "Samlet kundeservicen på Zendesk i Lyse Dialog",
+      title: "Da strømkrisen traff Lyse Dialog",
       period: "Feb. 2021 – mars 2022",
       summary: "Flyttet et travelt kundeserviceteam over på ett ryddig Zendesk-oppsett og automatiserte den rutinemessige oppfølgingen.",
       keyNumbers: [
@@ -94,10 +92,10 @@ const SITE_NO = {
       credit: "Resultatene tilskrives kundeserviceteamet i KS Energi og Lyse Dialog, slik det er beskrevet i Zendesks kundehistorie og teamets egen rapportering.",
       sourceLabel: "Les kundehistorien hos Zendesk (på engelsk)" },
     { ...SITE.projects[1],
-      title: "Håndterte TV 2-pågangen i Lyse Dialog",
+      title: "Da TV2 forsvant fra Altibox",
       period: "April 2022",
-      summary: "Hindret at en plutselig bølge av TV 2-henvendelser oversvømte den vanlige kundeservicen.",
-      problem: "Da forhandlingene mellom TV 2 og Altibox brøt sammen, økte henvendelsene kraftig. Alle måtte bidra: kundeservice, analyse, salg og backoffice.",
+      summary: "Hindret at en plutselig bølge av TV2-henvendelser oversvømte den vanlige kundeservicen.",
+      problem: "Da forhandlingene mellom TV2 og Altibox brøt sammen, økte henvendelsene kraftig. Alle måtte bidra: kundeservice, analyse, salg og backoffice.",
       role: "Jeg gjorde endringene i støttesystemene.",
       actions: [
         "Ga pågangen egne køer, adskilt fra det daglige arbeidet",

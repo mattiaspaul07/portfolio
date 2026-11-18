@@ -62,7 +62,7 @@ test("no private details in Norwegian content", () => {
 test("esc escapes HTML", () => assertEqual(esc(`<a & "b">`), "&lt;a &amp; &quot;b&quot;&gt;", "esc"));
 test("projects panel shows the featured card first", () => {
   const html = renderSection("projects");
-  assertEqual(html.indexOf("Unifying customer service") >= 0 && html.indexOf("Unifying customer service") < html.indexOf("Handling the TV 2 surge"), true, "order");
+  assertEqual(html.indexOf("When the energy crisis hit") >= 0 && html.indexOf("When the energy crisis hit") < html.indexOf("When TV2 disappeared"), true, "order");
   assertEqual(html.includes("<dt>My role</dt>"), true, "label");
 });
 test("missing optional fields never print undefined", () => {
@@ -119,8 +119,8 @@ test("only the featured project carries the Featured label", () => {
   const html = renderSection("projects");
   assertEqual((html.match(/Featured project/g) || []).length, SITE.projects.filter(p => p.featured).length, "chips");
 });
-test("TV 2 project is shown with its own heading", () => {
-  assertEqual(renderSection("projects").includes("Handling the TV 2 surge at Lyse Dialog"), true, "title");
+test("TV2 project is shown with its own heading", () => {
+  assertEqual(renderSection("projects").includes("When TV2 disappeared from Altibox"), true, "title");
 });
 
 function memoryStore(){ const m = {}; return { getItem: k => (k in m ? m[k] : null), setItem: (k, v) => { m[k] = String(v); } }; }
@@ -153,7 +153,8 @@ test("about shows the personal intro once, with its own heading", () => {
   assertEqual((html.match(/>About me</g) || []).length, 1, "About me appears once");
   assertEqual(html.includes("<h2>Hi, I’m Mattias.</h2>"), true, "heading");
   assertEqual(html.includes("Placeholder"), false, "no placeholder");
-  assertEqual(html.includes("<p>Based in Stavanger. Always curious.</p>") && html.includes("My avatar will show you around!"), true, "closing lines on the interactive page");
+  assertEqual(html.includes('<p class="location">Based in Stavanger. Always curious.</p>'), true, "quiet location line");
+  assertEqual(html.includes("avatar will show you around"), false, "room invitation only above the room");
 });
 
 test("featured project shows its key numbers", () => {
@@ -162,11 +163,11 @@ test("featured project shows its key numbers", () => {
   assertEqual(html.indexOf('class="kpis"') < html.indexOf("<dl>"), true, "numbers come before the details");
 });
 test("projects without key numbers show no number tiles", () => {
-  const tv2 = SITE.projects.find(p => p.title.startsWith("Handling the TV 2"));
+  const tv2 = SITE.projects.find(p => p.title.startsWith("When TV2"));
   assertEqual(tv2.keyNumbers === undefined, true, "fixture");
   const html = renderSection("projects");
-  const tv2Part = html.slice(html.indexOf("Handling the TV 2"));
-  assertEqual(tv2Part.includes('class="kpi"'), false, "no tiles on TV 2");
+  const tv2Part = html.slice(html.indexOf("When TV2"));
+  assertEqual(tv2Part.includes('class="kpi"'), false, "no tiles on TV2");
 });
 test("featured project credits the deck's results to the team", () => {
   assertEqual(SITE.projects[0].credit.includes("team"), true, "credit");
@@ -176,7 +177,7 @@ test("about me opens with the portrait and the headline", () => {
   const html = renderSection("about");
   assertEqual(html.includes('class="portrait"') && html.includes('alt="Portrait of Mattias Paul"'), true, "portrait");
   assertEqual(html.includes(esc(SITE.person.headline)), true, "headline");
-  assertEqual(html.indexOf('class="portrait"') < html.indexOf("<p>I started as an agent in first line support"), true, "before the intro text");
+  assertEqual(html.indexOf('class="portrait"') < html.indexOf(esc(SITE.person.headline)), true, "portrait before the statement");
 });
 
 test("title uses the @ form", () => assertEqual(SITE.person.title, "Senior Consultant @ Kundelab", "title"));
@@ -248,14 +249,14 @@ test("coffee topics are short enough for the bubble", () => {
 
 test("featured project has no Tools line", () => {
   const html = renderSection("projects");
-  const featured = html.slice(0, html.indexOf("Handling the TV 2 surge"));
+  const featured = html.slice(0, html.indexOf("When TV2 disappeared"));
   assertEqual(featured.includes("<dt>Tools</dt>"), false, "featured");
-  assertEqual(html.slice(html.indexOf("Handling the TV 2 surge")).includes("<b>Tools:</b> Puzzel, Zendesk"), true, "TV 2 keeps its tools, inside How I built it");
+  assertEqual(html.slice(html.indexOf("When TV2 disappeared")).includes("<b>Tools:</b> Puzzel, Zendesk"), true, "TV2 keeps its tools, inside How I built it");
 });
 
 function projectParts() {
   const html = renderSection("projects");
-  const i = html.indexOf("Handling the TV 2 surge");
+  const i = html.indexOf("When TV2 disappeared");
   return [html.slice(0, i), html.slice(i)];
 }
 test("project cards lead with problem, role with three actions, and outcome", () => {
@@ -308,9 +309,9 @@ test("contact has the new heading, intro, two actions and icebreakers", () => {
   assertEqual(html.includes(SITE.person.email + "</code>"), true, "address still visible for copying");
 });
 
-test("TV 2 project links to VG's article for context", () => {
+test("TV2 project links to VG's article for context", () => {
   const html = renderSection("projects");
-  const tv2 = html.slice(html.indexOf("Handling the TV 2 surge"));
+  const tv2 = html.slice(html.indexOf("When TV2 disappeared"));
   assertEqual(tv2.includes('href="https://www.vg.no/nyheter/i/0Gxbv6/tv-2-har-avsluttet-forhandlingene-med-altibox"'), true, "link");
   assertEqual(tv2.includes(">Read VG’s article (in Norwegian)<"), true, "label");
   assertEqual(/rel="noopener"/.test(tv2), true, "opens safely in a new tab");
@@ -324,19 +325,28 @@ test("1. About opens with Hi, I'm Mattias and a specific headline", () => {
   assertEqual(html.includes("<h2>Hi, I’m Mattias.</h2>"), true, "heading");
   assertEqual(html.includes("Personal intro"), false, "old heading gone");
   assertEqual(SITE.person.headline, "I help teams make Zendesk simpler and customer service work better.", "headline");
-  assertEqual(html.indexOf(SITE.person.headline) < html.indexOf("<p>I started as an agent"), true, "headline before background");
+  assertEqual(html.includes("I started as an agent"), false, "career story lives in Experience");
+  assertEqual(renderSection("experience").includes("I started as an agent"), true, "career story in Experience");
 });
 test("2. About shows a Featured work card with a team-labelled result and a View project button", () => {
   const html = renderSection("about");
   assertEqual(html.includes('class="card featured-work"'), true, "card");
-  assertEqual(html.includes("Helping unify customer service at Lyse Dialog"), true, "title");
+  assertEqual(html.includes("When the energy crisis hit Lyse Dialog"), true, "title");
   assertEqual(/Team outcome/.test(html) && html.includes("29 min → 5 min"), true, "result labelled as team outcome");
   assertEqual(html.includes('data-go="projects"') && html.includes(">View project<"), true, "button");
 });
 test("6. About ends its opening with See my work and Get in touch", () => {
   const html = renderSection("about");
-  assertEqual(/class="cta"[^>]*data-go="projects"[^>]*>See my work</.test(html), true, "filled button");
+  assertEqual(/class="cta"[^>]*data-go="projects"[^>]*>See my projects</.test(html), true, "filled button");
   assertEqual(/class="ghost"[^>]*data-go="contact"[^>]*>Get in touch</.test(html), true, "quiet button");
+});
+test("About opening order: greeting, statement, paragraph, buttons, featured, location; no languages card", () => {
+  const h = renderSection("about");
+  const order = ['class="greeting"', 'class="headline"', esc(SITE.about.intro), 'class="next-steps"', 'featured-work', 'class="location"'].map(x => h.indexOf(x));
+  assertEqual(order.every((v, i) => v >= 0 && (i === 0 || v > order[i - 1])), true, "order " + order);
+  assertEqual(h.includes(SITE.ui.languages + "<"), false, "languages not on the opening screen");
+  assertEqual(renderResume().includes("Norwegian, native"), true, "languages in the reading view");
+  assertEqual(h.includes(esc(SITE.about.featured.attribution)), true, "team attribution");
 });
 test("7. Experience heading", () => assertEqual(renderSection("experience").includes("<h2>From frontline support to Senior Consultant</h2>"), true, "heading"));
 test("8. Projects heading and dates on every case", () => {

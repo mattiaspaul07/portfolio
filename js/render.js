@@ -16,7 +16,8 @@ function aboutNextSteps() {
       <span class="kicker">${SITE.ui.featuredWork}</span>
       <span class="title">${esc(f.title)}</span>
       <p>${esc(f.summary)}</p>
-      <div class="fw-result"><b>${esc(f.result)}</b><span>${esc(f.resultLabel)}</span></div>
+      <div class="fw-result"><b>${esc(f.result)}</b> <span>${esc(f.resultLabel)}</span></div>
+      <span class="fw-credit">${esc(f.attribution)}</span>
       <a class="ghost fw-link" href="#projects" data-go="projects">${SITE.ui.viewProject}</a>
     </article>`;
 }
@@ -77,12 +78,14 @@ function educationRows() {
 }
 
 const RENDERERS = {
-  about: (lvl, { plain } = {}) => heading("about", lvl)
-    + `<div class="intro-card"><img class="portrait" src="assets/portrait.jpg" width="96" height="96" alt="${SITE.ui.portraitAlt}"><p class="headline">${esc(SITE.person.headline)}</p></div>`
-    + SITE.about.paragraphs.filter(t => !(plain && t.roomOnly)).map(t => `<p>${esc(typeof t === "string" ? t : t.text)}</p>`).join("")
+  about: (lvl, { plain } = {}) => `<span class="kicker">${esc(SITE.sections.about.title)}</span>`
+    + `<div class="greeting"><img class="portrait" src="assets/portrait.jpg" width="56" height="56" alt="${SITE.ui.portraitAlt}"><h${lvl}>${esc(SITE.sections.about.heading)}</h${lvl}></div>`
+    + `<p class="headline">${esc(SITE.person.headline)}</p>`
+    + `<p>${esc(SITE.about.intro)}</p>`
     + (plain ? "" : aboutNextSteps())
-    + `<div class="card"><b>${SITE.ui.languages}</b><div class="chips">${SITE.languages.map(l => `<span class="chip">${esc(l)}</span>`).join("")}</div></div>`,
-  experience: (lvl) => heading("experience", lvl)
+    + `<p class="location">${esc(SITE.about.location)}</p>`
+    + (!plain ? "" : `<div class="card"><b>${SITE.ui.languages}</b><div class="chips">${SITE.languages.map(l => `<span class="chip">${esc(l)}</span>`).join("")}</div></div>`),
+  experience: (lvl) => heading("experience", lvl) + `<p class="lede">${esc(SITE.experienceIntro)}</p>`
     + timeline(SITE.experience.map(r => ({ period: r.period, title: `${r.title}, ${r.company}`, detail: r.summary }))),
   projects: (lvl, opts = {}) => heading("projects", lvl)
     + SITE.projects.map(p => p.placeholder ? placeholderBox(p) : projectCard(p, opts.plain)).join(""),
