@@ -16,13 +16,14 @@
   <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
-  <a class="skip" href="#panel">Skip to content</a>
+  <a class="skip" href="#panel" data-i18n="skip">Skip to content</a>
   <header class="topbar">
     <div class="brand">Mattias Paul<small>Senior Consultant @ Kundelab</small></div>
-    <nav id="nav" class="nav" aria-label="Sections"></nav>
+    <nav id="nav" class="nav" aria-label="Sections" data-i18n-aria="sections"></nav>
     <div class="actions">
       <a class="ghost" href="resume.html">Reading view</a>
-      <a id="cv" class="cta" href="assets/Mattias-Paul-CV.pdf" download aria-label="Download CV"><span class="long">Download </span>CV</a>
+      <a id="cv" class="cta" href="assets/Mattias-Paul-CV.pdf" download aria-label="Download CV" data-i18n-aria="downloadCv"><span class="long" data-i18n="download">Download </span>CV</a>
+      <button id="lang" type="button" class="iconbtn lang" data-i18n="langShort" data-i18n-aria="langSwitch" aria-label="Bytt til norsk">NO</button>
       <button id="sound" type="button" class="iconbtn" aria-pressed="false" aria-label="Sound off" title="Sound off">
         <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 6h3l4-3v10l-4-3H2z"/><path class="x" d="M11 6l4 4M15 6l-4 4"/></svg>
       </button>
@@ -31,27 +32,30 @@
 
   <main class="body">
     <div class="scene">
-      <h1 class="visually-hidden">Mattias Paul, Senior Consultant at Kundelab</h1>
+      <h1 class="visually-hidden" data-i18n="h1">Mattias Paul, Senior Consultant at Kundelab</h1>
       <div class="mobile-intro">
-        <img class="portrait" src="assets/portrait.jpg" width="64" height="64" alt="Portrait of Mattias Paul">
-        <p><b>Hi, I’m Mattias.</b> I help teams make Zendesk simpler and customer service work better.</p>
+        <img class="portrait" src="assets/portrait.jpg" width="64" height="64" alt="Portrait of Mattias Paul" data-i18n-alt>
+        <p><b data-i18n="hi">Hi, I’m Mattias.</b> <span data-i18n="intro">I help teams make Zendesk simpler and customer service work better.</span></p>
       </div>
-      <p class="hint"><i aria-hidden="true"></i>Explore my workspace, or use the menu.</p>
+      <p class="hint"><i aria-hidden="true"></i><span data-i18n="hint">Explore my workspace, or use the menu.</span></p>
       <div class="room-frame" id="room-frame">
-        <svg id="room" viewBox="-205 -150 410 360" role="group" aria-label="My workspace. Each marked object opens a section."></svg>
+        <svg id="room" viewBox="-205 -150 410 360" role="group" aria-label="My workspace. Each marked object opens a section." data-i18n-aria="room"></svg>
       </div>
-      <button type="button" class="room-toggle" aria-expanded="false" aria-controls="room-frame">Explore my workspace</button>
+      <button type="button" class="room-toggle" aria-expanded="false" aria-controls="room-frame" data-i18n-ui="exploreMore">Explore my workspace</button>
     </div>
     <p id="room-status" class="visually-hidden" aria-live="polite"></p>
-    <section id="panel" class="panel" aria-label="Section"></section>
+    <section id="panel" class="panel" aria-label="Section" data-i18n-aria="section"></section>
   </main>
 
   <script src="js/content.js"></script>
+  <script src="js/content-no.js"></script>
+  <script src="js/i18n.js"></script>
   <script src="js/render.js"></script>
   <script src="js/iso.js"></script>
   <script src="js/walk.js"></script>
   <script src="js/coffee.js"></script>
   <script src="js/room.js"></script>
   <script src="js/app.js"></script>
+  <script>applyPageText();</script>
 </body>
 </html>

@@ -9,15 +9,15 @@ function esc(text) {
 function aboutNextSteps() {
   const f = SITE.about.featured;
   return `<div class="next-steps">
-      <a class="cta" href="#projects" data-go="projects">See my work</a>
-      <a class="ghost" href="#contact" data-go="contact">Get in touch</a>
+      <a class="cta" href="#projects" data-go="projects">${SITE.ui.seeWork}</a>
+      <a class="ghost" href="#contact" data-go="contact">${SITE.ui.getInTouch}</a>
     </div>
     <article class="card featured-work">
-      <span class="kicker">Featured work</span>
+      <span class="kicker">${SITE.ui.featuredWork}</span>
       <span class="title">${esc(f.title)}</span>
       <p>${esc(f.summary)}</p>
       <div class="fw-result"><b>${esc(f.result)}</b><span>${esc(f.resultLabel)}</span></div>
-      <a class="ghost fw-link" href="#projects" data-go="projects">View project</a>
+      <a class="ghost fw-link" href="#projects" data-go="projects">${SITE.ui.viewProject}</a>
     </article>`;
 }
 
@@ -37,11 +37,11 @@ function timeline(rows) {
 
 function workflow(p) {
   if (!p.workflow || !p.workflow.length) return "";
-  return `<div class="beforeafter"><h3>How the workflow changed</h3>
-    <div class="ba-head" aria-hidden="true"><span>Before</span><span>After</span></div>
+  return `<div class="beforeafter"><h3>${SITE.ui.workflowChanged}</h3>
+    <div class="ba-head" aria-hidden="true"><span>${SITE.ui.before}</span><span>${SITE.ui.after}</span></div>
     ${p.workflow.map(w => `<div class="ba-row"><b class="ba-step">${esc(w.step)}</b>
-      <p class="ba-before"><span class="ba-tag">Before</span>${esc(w.before)}</p>
-      <p class="ba-after"><span class="ba-tag">After</span>${esc(w.after)}</p></div>`).join("")}</div>`;
+      <p class="ba-before"><span class="ba-tag">${SITE.ui.before}</span>${esc(w.before)}</p>
+      <p class="ba-after"><span class="ba-tag">${SITE.ui.after}</span>${esc(w.after)}</p></div>`).join("")}</div>`;
 }
 
 function keyNumbers(p) {
@@ -50,26 +50,26 @@ function keyNumbers(p) {
 }
 
 function projectCard(p, plain) {
-  const role = p.role ? `<dt>My role</dt><dd>${esc(p.role)}${p.actions && p.actions.length ? `<ul class="key-actions">${p.actions.map(x => `<li>${esc(x)}</li>`).join("")}</ul>` : ""}</dd>` : "";
-  const rows = (p.problem ? `<dt>Problem</dt><dd>${esc(p.problem)}</dd>` : "") + role + (p.outcome ? `<dt>Outcome</dt><dd>${esc(p.outcome)}</dd>` : "");
+  const role = p.role ? `<dt>${SITE.ui.myRole}</dt><dd>${esc(p.role)}${p.actions && p.actions.length ? `<ul class="key-actions">${p.actions.map(x => `<li>${esc(x)}</li>`).join("")}</ul>` : ""}</dd>` : "";
+  const rows = (p.problem ? `<dt>${SITE.ui.problem}</dt><dd>${esc(p.problem)}</dd>` : "") + role + (p.outcome ? `<dt>${SITE.ui.outcome}</dt><dd>${esc(p.outcome)}</dd>` : "");
   const built = (p.howBuilt && p.howBuilt.length) || p.tools || (p.workflow && p.workflow.length)
-    ? `<details class="built"${plain ? " open" : ""}><summary>How I built it</summary><div class="built-body">
+    ? `<details class="built"${plain ? " open" : ""}><summary>${SITE.ui.howBuilt}</summary><div class="built-body">
         ${(p.howBuilt || []).map(t => `<p>${esc(t)}</p>`).join("")}
-        ${p.tools ? `<p><b>Tools:</b> ${esc(p.tools)}</p>` : ""}
+        ${p.tools ? `<p><b>${SITE.ui.tools}</b> ${esc(p.tools)}</p>` : ""}
         ${workflow(p)}</div></details>`
     : "";
-  return `<article class="card${p.featured ? " feature" : ""}">${p.featured ? '<span class="chip">Featured project</span>' : ""}
+  return `<article class="card${p.featured ? " feature" : ""}">${p.featured ? `<span class="chip">${SITE.ui.featuredProject}</span>` : ""}
     <span class="title">${esc(p.title)}</span>${p.period ? `<span class="period">${esc(p.period)}</span>` : ""}
     ${p.summary ? `<p class="summary">${esc(p.summary)}</p>` : ""}${keyNumbers(p)}<dl>${rows}</dl>
     ${p.credit ? `<span class="credit">${esc(p.credit)}</span>` : ""}
     ${built}
-    ${p.sourceUrl ? `<a href="${esc(p.sourceUrl)}" target="_blank" rel="noopener">${esc(p.sourceLabel || "Source")}</a>` : ""}</article>`;
+    ${p.sourceUrl ? `<a href="${esc(p.sourceUrl)}" target="_blank" rel="noopener">${esc(p.sourceLabel || SITE.ui.source)}</a>` : ""}</article>`;
 }
 
 function certificateRows() {
   return SITE.certificates.map(c => ({
     period: c.issued, title: c.name,
-    detail: [c.issuer, c.validUntil ? "valid until " + c.validUntil : ""].filter(Boolean).join(", ")
+    detail: [c.issuer, c.validUntil ? SITE.ui.validUntil + c.validUntil : ""].filter(Boolean).join(", ")
   }));
 }
 function educationRows() {
@@ -78,10 +78,10 @@ function educationRows() {
 
 const RENDERERS = {
   about: (lvl, { plain } = {}) => heading("about", lvl)
-    + `<div class="intro-card"><img class="portrait" src="assets/portrait.jpg" width="96" height="96" alt="Portrait of Mattias Paul"><p class="headline">${esc(SITE.person.headline)}</p></div>`
+    + `<div class="intro-card"><img class="portrait" src="assets/portrait.jpg" width="96" height="96" alt="${SITE.ui.portraitAlt}"><p class="headline">${esc(SITE.person.headline)}</p></div>`
     + SITE.about.paragraphs.filter(t => !(plain && t.roomOnly)).map(t => `<p>${esc(typeof t === "string" ? t : t.text)}</p>`).join("")
     + (plain ? "" : aboutNextSteps())
-    + `<div class="card"><b>Languages</b><div class="chips">${SITE.languages.map(l => `<span class="chip">${esc(l)}</span>`).join("")}</div></div>`,
+    + `<div class="card"><b>${SITE.ui.languages}</b><div class="chips">${SITE.languages.map(l => `<span class="chip">${esc(l)}</span>`).join("")}</div></div>`,
   experience: (lvl) => heading("experience", lvl)
     + timeline(SITE.experience.map(r => ({ period: r.period, title: `${r.title}, ${r.company}`, detail: r.summary }))),
   projects: (lvl, opts = {}) => heading("projects", lvl)
@@ -89,10 +89,10 @@ const RENDERERS = {
   toolkit: (lvl) => heading("toolkit", lvl)
     + `<ul class="tools">${SITE.tools.map(t => `<li><b>${esc(t.name)}</b><span>${esc(t.sentence)}</span></li>`).join("")}</ul>`,
   education: (lvl, opts = {}) => heading("education", lvl) + (opts.plain
-    ? `<h${lvl + 1}>Certificates</h${lvl + 1}>${timeline(certificateRows())}<h${lvl + 1}>Education</h${lvl + 1}>${timeline(educationRows())}`
-    : `<div class="tabs" role="tablist" aria-label="Show">
-        <button type="button" role="tab" aria-selected="true" data-tab="certs">Certificates</button>
-        <button type="button" role="tab" aria-selected="false" data-tab="edu">Education</button></div>
+    ? `<h${lvl + 1}>${SITE.ui.certificates}</h${lvl + 1}>${timeline(certificateRows())}<h${lvl + 1}>${SITE.ui.education}</h${lvl + 1}>${timeline(educationRows())}`
+    : `<div class="tabs" role="tablist" aria-label="${SITE.ui.show}">
+        <button type="button" role="tab" aria-selected="true" data-tab="certs">${SITE.ui.certificates}</button>
+        <button type="button" role="tab" aria-selected="false" data-tab="edu">${SITE.ui.education}</button></div>
        <div data-pane="certs">${timeline(certificateRows())}</div>
        <div data-pane="edu" hidden>${timeline(educationRows())}</div>`),
   contact: (lvl) => heading("contact", lvl)
@@ -100,11 +100,11 @@ const RENDERERS = {
        ${SITE.contact.photo ? `<img class="contact-photo" src="${esc(SITE.contact.photo.src)}" width="${SITE.contact.photo.width}" height="${SITE.contact.photo.height}" alt="${esc(SITE.contact.photo.alt)}" loading="lazy" decoding="async">` : ""}
        <div class="contact-text"><p>${esc(SITE.contact.intro)}</p>
        <div class="contact-actions">
-         <a class="cta" href="mailto:${esc(SITE.person.email)}">Email me</a>
-         <a class="ghost" href="${esc(SITE.person.linkedin)}" target="_blank" rel="noopener">Connect on LinkedIn</a>
+         <a class="cta" href="mailto:${esc(SITE.person.email)}">${SITE.ui.emailMe}</a>
+         <a class="ghost" href="${esc(SITE.person.linkedin)}" target="_blank" rel="noopener">${SITE.ui.linkedin}</a>
        </div></div></div>
-       <div class="copyrow"><code>${esc(SITE.person.email)}</code><button type="button" class="btn small" data-copy="${esc(SITE.person.email)}">Copy</button></div>
-       <div class="icebreakers"><h3>Need an icebreaker? Ask me about:</h3>
+       <div class="copyrow"><code>${esc(SITE.person.email)}</code><button type="button" class="btn small" data-copy="${esc(SITE.person.email)}">${SITE.ui.copy}</button></div>
+       <div class="icebreakers"><h3>${SITE.ui.icebreaker}</h3>
          <ul>${SITE.contact.icebreakers.map(t => `<li>${esc(t)}</li>`).join("")}</ul></div>`
 };
 

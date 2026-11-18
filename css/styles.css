@@ -38,6 +38,7 @@ button{font:inherit}
 .ghost{font-size:.88rem; padding:5px 12px; border-radius:999px; border:1px solid var(--line); color:var(--fg); text-decoration:none}
 .iconbtn{display:inline-grid; place-items:center; width:34px; height:34px; border-radius:999px; border:1px solid var(--line); background:none; color:var(--fg); cursor:pointer}
 .iconbtn svg{width:16px; height:16px}
+.iconbtn.lang{width:auto; min-width:34px; padding:0 8px; font:700 12px/1 inherit; letter-spacing:.04em}
 
 /* main layout */
 .body{display:grid; grid-template-columns:minmax(0,1.3fr) minmax(0,1fr); min-height:calc(100vh - 60px)}

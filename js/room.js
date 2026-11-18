@@ -74,7 +74,7 @@ const wallX=(y1,y2,z1,z2)=>[[0.02,y1,z1],[0.02,y2,z1],[0.02,y2,z2],[0.02,y1,z2]]
 
       // door with medal (decoration, not a destination)
       // door with medal: a hidden extra (no marker) that opens the running story
-      const door=el("g",{class:"hot", tabindex:"0", role:"button", "aria-label":"Medal and running shoes. Opens a story from the track."},back);
+      const door=el("g",{class:"hot", tabindex:"0", role:"button", "aria-label":SITE.ui.doorLabel},back);
       poly(door,wallY(0.8,2.4,0,4.4),P.teal);
       poly(door,wallY(0.95,2.25,0.2,4.25),shade(P.teal,1.12));
       poly(door,wallY(1.15,2.05,3.2,3.7),"#f7f3ea");
@@ -110,14 +110,14 @@ const wallX=(y1,y2,z1,z2)=>[[0.02,y1,z1],[0.02,y2,z1],[0.02,y2,z2],[0.02,y1,z2]]
           else if(kind==="hi"){   // text drawn on the wall plane: skewed so it lies flat on the left wall
             const [tx,ty]=iso(0.06,y+w/2,z+h/2-0.12);
             const t=el("text",{transform:`matrix(0.866,-0.5,0,1,${tx},${ty})`, "text-anchor":"middle", "font-family":"Caveat, 'Segoe Print', cursive", "font-size":6.6, "font-weight":700, fill:"#7a2f2a"},g);
-            t.textContent="Say hi!"; }
+            t.textContent=SITE.ui.sayHi; }
           else { line(g,[[0.06,y+0.1,z+0.36],[0.06,y+0.5,z+0.36]],"#56625d",1.2); line(g,[[0.06,y+0.1,z+0.22],[0.06,y+0.4,z+0.22]],"#56625d",1.2); }
         });
       }}], back);
 
       // light switch, left of the door
       const on=st.mood==="evening";
-      const sw=el("g",{class:"switch", tabindex:"0", role:"switch", "aria-checked":String(on), "aria-label":"Light switch. Off is daylight, on is evening."},back);
+      const sw=el("g",{class:"switch", tabindex:"0", role:"switch", "aria-checked":String(on), "aria-label":SITE.ui.switchLabel},back);
       poly(sw,wallY(0.22,0.62,2.0,2.6),P.plate,{stroke:"#8d9a94","stroke-width":1.5, class:"plate"});
       poly(sw,wallY(0.32,0.52,on?2.32:2.1,on?2.5:2.28),on?"#e8c35a":"#b9c3be");
       const [swx,swy]=iso(0.42,0,2.3);
@@ -190,7 +190,7 @@ const wallX=(y1,y2,z1,z2)=>[[0.02,y1,z1],[0.02,y2,z1],[0.02,y2,z2],[0.02,y1,z2]]
       ], mid);
 
       // coffee cup: a small playful interaction, not a section
-      cupG=el("g",{class:"hot", tabindex:"0", role:"button", "aria-label":"Coffee cup on the desk. Take a coffee break."},mid);
+      cupG=el("g",{class:"hot", tabindex:"0", role:"button", "aria-label":SITE.ui.cupLabel},mid);
       box(cupG,6.3,6.5,1.4,0.22,0.22,0.24,"#f7f3ea");
       poly(cupG,[[6.33,6.53,1.641],[6.49,6.53,1.641],[6.49,6.69,1.641],[6.33,6.69,1.641]],"#5a3a26");
       line(cupG,[[6.41,6.72,1.48],[6.41,6.84,1.52],[6.41,6.72,1.58]],"#f7f3ea",2.5);
@@ -301,7 +301,7 @@ const wallX=(y1,y2,z1,z2)=>[[0.02,y1,z1],[0.02,y2,z1],[0.02,y2,z2],[0.02,y1,z2]]
         st.sipping=true; if(cupG) cupG.style.visibility="hidden"; drawAvatar();
         const n=addCoffee();
         svg.querySelectorAll(".coffee-count").forEach(t=>{ t.textContent=coffeeLabel(n); });
-        if(cupG) cupG.setAttribute("aria-label",`Coffee cup on the desk. Take a coffee break. Coffees so far: ${n}.`);
+        if(cupG) cupG.setAttribute("aria-label",`${SITE.ui.cupLabel} ${SITE.ui.coffeesSoFar}${n}.`);
         showTopic(coffeeTopic(n));
         sipTimer=setTimeout(()=>{ endSip(); drawAvatar(); }, 2600);
       });
@@ -313,10 +313,10 @@ const wallX=(y1,y2,z1,z2)=>[[0.02,y1,z1],[0.02,y2,z1],[0.02,y2,z2],[0.02,y1,z2]]
       hideTopic();
       const [hx,hy]=iso(st.ax,st.ay,2.55);
       svg.classList.add("has-bubble");   // marker labels step aside while the bubble shows
-      const g=el("g",{class:"topic-bubble", role:"button", tabindex:"0", "aria-label":`Ask me about: ${topic}. Opens Contact.`},top);
+      const g=el("g",{class:"topic-bubble", role:"button", tabindex:"0", "aria-label":`${SITE.ui.askMeAboutLabel}${topic}. ${SITE.ui.opensContact}`},top);
       const box=el("rect",{rx:9, fill:"#fffdf8", stroke:"#2f7d6d", "stroke-width":1.5},g);
       const tail=el("polygon",{fill:"#fffdf8", stroke:"#2f7d6d", "stroke-width":1.5},g);
-      const t1=el("text",{"font-family":"IBM Plex Mono, Consolas, monospace", "font-size":7, "letter-spacing":"0.6", fill:"#2f7d6d"},g); t1.textContent="ASK ME ABOUT";
+      const t1=el("text",{"font-family":"IBM Plex Mono, Consolas, monospace", "font-size":7, "letter-spacing":"0.6", fill:"#2f7d6d"},g); t1.textContent=SITE.ui.askMeAbout;
       const t2=el("text",{"font-family":"Bricolage Grotesque, Segoe UI, sans-serif", "font-size":10.5, "font-weight":700, fill:"#1f2624"},g); t2.textContent=topic+" →";
       const w=Math.max(t1.getComputedTextLength(), t2.getComputedTextLength())+20, h=34;
       const x=Math.max(-200, Math.min(200-w, hx-w/2)), y=hy-14-h;
@@ -327,7 +327,7 @@ const wallX=(y1,y2,z1,z2)=>[[0.02,y1,z1],[0.02,y2,z1],[0.02,y2,z2],[0.02,y1,z2]]
       const open=e=>{ e.stopPropagation(); hideTopic(); pick("contact"); };
       g.addEventListener("click",open);
       g.addEventListener("keydown",e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); open(e); } });
-      const status=document.getElementById("room-status"); if(status) status.textContent=`Ask me about: ${topic}`;
+      const status=document.getElementById("room-status"); if(status) status.textContent=`${SITE.ui.askMeAboutLabel}${topic}`;
       bubbleTimer=setTimeout(hideTopic, 6500);
     }
     function pick(key){ opts.onPick(key); }

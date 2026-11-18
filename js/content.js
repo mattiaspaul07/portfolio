@@ -1,6 +1,23 @@
 // All text on the site lives here. Add a project to `projects`, a role to `experience`.
 // Never add: home address, date of birth, relationship status, phone number, referees, credential IDs.
-const SITE = {
+var SITE = {   // var, so js/i18n.js can swap in the Norwegian version
+  lang: "en",
+  // Interface text: buttons, labels and screen reader descriptions
+  ui: {
+    seeWork: "See my work", getInTouch: "Get in touch", featuredWork: "Featured work", viewProject: "View project",
+    workflowChanged: "How the workflow changed", before: "Before", after: "After",
+    myRole: "My role", problem: "Problem", outcome: "Outcome", howBuilt: "How I built it", tools: "Tools:",
+    featuredProject: "Featured project", source: "Source", validUntil: "valid until ",
+    portraitAlt: "Portrait of Mattias Paul", languages: "Languages", certificates: "Certificates", education: "Education", show: "Show",
+    emailMe: "Email me", linkedin: "Connect on LinkedIn", copy: "Copy", copied: "Copied", selectAddress: "Select the address",
+    icebreaker: "Need an icebreaker? Ask me about:",
+    soundOn: "Sound on", soundOff: "Sound off", readingView: "Reading view",
+    exploreMore: "Explore my workspace", exploreLess: "Show less of my workspace",
+    coffee: "COFFEE #", sayHi: "Say hi!", askMeAbout: "ASK ME ABOUT", askMeAboutLabel: "Ask me about: ", opensContact: "Opens Contact.",
+    doorLabel: "Medal and running shoes. Opens a story from the track.",
+    switchLabel: "Light switch. Off is daylight, on is evening.",
+    cupLabel: "Coffee cup on the desk. Take a coffee break.", coffeesSoFar: "Coffees so far: "
+  },
   person: {
     name: "Mattias Paul", title: "Senior Consultant @ Kundelab",
     headline: "I help teams make Zendesk simpler and customer service work better.",

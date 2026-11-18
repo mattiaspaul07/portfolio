@@ -5,6 +5,10 @@
 <h1>Portfolio tests</h1>
 <main id="results"></main>
 <script src="../js/content.js"></script>
+<script src="../js/content-no.js"></script>
+<script>const LANG_SAVE = SITE;</script>
+<script src="../js/i18n.js"></script>
+<script>SITE = LANG_SAVE;</script>
 <script src="../js/render.js"></script>
 <script src="../js/iso.js"></script>
 <script src="../js/walk.js"></script>
@@ -32,6 +36,29 @@ test("certificates are newest first", () => {
   assertEqual(order, [...order].sort().reverse(), "order");
 });
 
+test("language: URL beats saved choice beats browser", () => {
+  assertEqual(pickLang("no", "en", ["en-US"]), "no", "url");
+  assertEqual(pickLang(null, "no", ["en-US"]), "no", "saved");
+  assertEqual(pickLang(null, null, ["nb-NO"]), "no", "browser nb");
+  assertEqual(pickLang(null, null, ["nn"]), "no", "browser nn");
+  assertEqual(pickLang("xx", null, ["de-DE"]), "en", "fallback");
+});
+test("Norwegian content has the same shape as English", () => {
+  const shape = o => Array.isArray(o) ? o.map(shape) : (o && typeof o === "object") ? Object.keys(o).sort().map(k => [k, shape(o[k])]) : typeof o;
+  ["ui", "sections", "about", "extras", "coffeeTopics", "contact", "languages", "experience", "projects", "tools", "certificates", "education"]
+    .forEach(k => assertEqual(JSON.stringify(shape(SITE_NO[k])), JSON.stringify(shape(SITE[k])), k));
+});
+test("Norwegian panels render without English labels or undefined", () => {
+  const keep = SITE; SITE = SITE_NO;
+  try { KEYS.forEach(k => { const h = renderSection(k);
+    assertEqual(h.includes("undefined"), false, k);
+    assertEqual(/>(My role|Outcome|Before|After|Copy)</.test(h), false, k + " english label"); }); }
+  finally { SITE = keep; }
+});
+test("no private details in Norwegian content", () => {
+  const all = JSON.stringify(SITE_NO);
+  [/\+47/, /Storhaugen/, /1999/, /Samboer/i, /Gjøse/, /Bratten/].forEach(rx => assertEqual(rx.test(all), false, "forbidden " + rx));
+});
 test("esc escapes HTML", () => assertEqual(esc(`<a & "b">`), "&lt;a &amp; &quot;b&quot;&gt;", "esc"));
 test("projects panel shows the featured card first", () => {
   const html = renderSection("projects");

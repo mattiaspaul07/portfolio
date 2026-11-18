@@ -34,7 +34,7 @@ function buildNav() {
   const simple = document.createElement("a");
   simple.className = "nav-view";
   simple.href = "resume.html";
-  simple.textContent = "Reading view";
+  simple.textContent = SITE.ui.readingView;
   nav.appendChild(simple);
 }
 
@@ -49,16 +49,16 @@ document.addEventListener("click", e => {
   }
   const copy = e.target.closest("[data-copy]");
   if (copy) {
-    const done = () => { copy.textContent = "Copied"; setTimeout(() => { copy.textContent = "Copy"; }, 1500); };
-    try { navigator.clipboard.writeText(copy.dataset.copy).then(done, () => { copy.textContent = "Select the address"; }); }
-    catch (_) { copy.textContent = "Select the address"; }
+    const done = () => { copy.textContent = SITE.ui.copied; setTimeout(() => { copy.textContent = SITE.ui.copy; }, 1500); };
+    try { navigator.clipboard.writeText(copy.dataset.copy).then(done, () => { copy.textContent = SITE.ui.selectAddress; }); }
+    catch (_) { copy.textContent = SITE.ui.selectAddress; }
   }
 });
 
 const sound = document.getElementById("sound");
 sound.addEventListener("click", () => {
   const on = sound.getAttribute("aria-pressed") !== "true";
-  const label = on ? "Sound on" : "Sound off";
+  const label = on ? SITE.ui.soundOn : SITE.ui.soundOff;
   sound.setAttribute("aria-pressed", String(on));
   sound.setAttribute("aria-label", label);
   sound.title = label;
@@ -72,7 +72,7 @@ if (roomToggle) roomToggle.addEventListener("click", () => {
   const open = roomToggle.getAttribute("aria-expanded") !== "true";
   roomToggle.setAttribute("aria-expanded", String(open));
   document.body.classList.toggle("room-open", open);
-  roomToggle.textContent = open ? "Show less of my workspace" : "Explore my workspace";
+  roomToggle.textContent = open ? SITE.ui.exploreLess : SITE.ui.exploreMore;
 });
 // keep the sticky room just below the header, whatever height the header has at this width
 const topbar = document.querySelector(".topbar");

@@ -17,7 +17,7 @@ function addCoffee(store = defaultStore()) {
   return next;
 }
 function coffeeLabel(n) {
-  return "COFFEE #" + n;
+  return SITE.ui.coffee + n;
 }
 
 // The topic for the n-th coffee of the visit (1-based); cycles through SITE.coffeeTopics.

@@ -1,0 +1,132 @@
+// Norwegian (Bokmål) version of SITE. Same structure as js/content.js; links, email and photos are reused from there.
+// js/i18n.js swaps it in when the visitor chooses Norwegian.
+const SITE_NO = {
+  lang: "no",
+  ui: {
+    seeWork: "Se arbeidet mitt", getInTouch: "Ta kontakt", featuredWork: "Utvalgt arbeid", viewProject: "Se prosjektet",
+    workflowChanged: "Slik endret arbeidsflyten seg", before: "Før", after: "Etter",
+    myRole: "Min rolle", problem: "Problem", outcome: "Resultat", howBuilt: "Slik bygde jeg det", tools: "Verktøy:",
+    featuredProject: "Utvalgt prosjekt", source: "Kilde", validUntil: "gyldig til ",
+    portraitAlt: "Portrett av Mattias Paul", languages: "Språk", certificates: "Sertifiseringer", education: "Utdanning", show: "Vis",
+    emailMe: "Send meg en e-post", linkedin: "Koble til på LinkedIn", copy: "Kopier", copied: "Kopiert", selectAddress: "Marker adressen",
+    icebreaker: "Trenger du en isbryter? Spør meg om:",
+    soundOn: "Lyd på", soundOff: "Lyd av", readingView: "Lesevisning",
+    exploreMore: "Utforsk arbeidsplassen min", exploreLess: "Vis mindre av arbeidsplassen",
+    coffee: "KAFFE #", sayHi: "Si hei!", askMeAbout: "SPØR MEG OM", askMeAboutLabel: "Spør meg om: ", opensContact: "Åpner Kontakt.",
+    doorLabel: "Medalje og joggesko. Åpner en historie fra banen.",
+    switchLabel: "Lysbryter. Av er dagslys, på er kveld.",
+    cupLabel: "Kaffekopp på pulten. Ta en kaffepause.", coffeesSoFar: "Kopper så langt: "
+  },
+  person: { ...SITE.person, title: "Seniorkonsulent @ Kundelab",
+    headline: "Jeg hjelper team med å gjøre Zendesk enklere og kundeservice bedre." },
+  sections: {
+    about:      { menu: "Om meg",     title: "Om meg",                       object: "Sofa", heading: "Hei, jeg er Mattias." },
+    experience: { menu: "Erfaring",   title: "Erfaring",                     object: "Tavle", heading: "Fra førstelinje til seniorkonsulent" },
+    projects:   { menu: "Prosjekter", title: "Prosjekter",                   object: "Pult", heading: "Utvalgte prosjekter" },
+    toolkit:    { menu: "Verktøy",    title: "Verktøykassen min",            object: "Verktøykasse", heading: "Verktøyene jeg jobber med" },
+    education:  { menu: "Utdanning",  title: "Utdanning og sertifiseringer", object: "Bokhylle", heading: "I bokhylla" },
+    contact:    { menu: "Kontakt",    title: "Kontakt",                      object: "Oppslagstavle", heading: "La oss ta en prat. Kaffe valgfritt." }
+  },
+  about: { paragraphs: [
+    "Jeg startet som rådgiver i førstelinjen og svarte på telefon og chat. Der lærte jeg hvor stor forskjell et godt system gjør, og hvor frustrerende et dårlig et kan være. Siden har jeg ledet støttesystemene i Lyse, jobbet med Customer Success i Aritma og blitt seniorkonsulent i Kundelab.",
+    "I dag hjelper jeg team og bedrifter med å få mer ut av Zendesk: enklere arbeidsflyt, nyttig automatisering og verktøy folk er komfortable med å bruke. Jeg liker å nøste opp i rotete problemer sammen med dem som møter dem hver dag.",
+    "Bosatt i Stavanger. Alltid nysgjerrig.",
+    { roomOnly: true, text: "Ta en titt rundt på den digitale arbeidsplassen min. Avataren min viser deg rundt!" }
+  ],
+    featured: { title: "Med på å samle kundeservicen i Lyse Dialog", summary: "Jeg tok mye av Zendesk-konfigurasjonen som samlet rådgiverne i ett arbeidsområde og automatiserte oppfølgingen deres.", result: "29 min → 5 min", resultLabel: "Teamets resultat: gjennomsnittlig behandlingstid per sak" } },
+  extras: {
+    running: { label: "Bak døren", title: "På banen", object: "Medalje og joggesko",
+      photos: [
+        { ...SITE.extras.running.photos[0], alt: "Meg og en treningspartner som løper på en blå bane, med fjell og skyer bak oss", caption: "Banetrening i fjellet." },
+        { ...SITE.extras.running.photos[1], alt: "Meg på sykkel ved siden av en løper på en rød bane", caption: "På sykkelen ved banen." }
+      ],
+      paragraphs: [
+      "Jeg løp mellomdistanse på nasjonalt nivå og vant noen kretsmesterskap i min aldersklasse. Som oftest kom jeg likevel i mål bak kompisen min Jakob Ingebrigtsen, som senere ble olympisk mester.",
+      "Å trene sammen med ham og brødrene hans lærte meg mye om meg selv, og om hva andre gjorde for å lykkes. Den viktigste lærdommen: omgi deg med folk som er bedre enn deg. Det gode er at i IT trenger du ikke gener i verdensklasse. Nysgjerrighet og jevn øving tar deg langt."
+    ] }
+  },
+  coffeeTopics: ["Hvorfor jeg maser om omnikanal-ruting", "En kunnskapsbase som hjelper begge sider", "Visninger og grupper som ikke blir en jungel", "Trening med Ingebrigtsen-brødrene"],
+  contact: {
+    intro: "Skal du rydde i et Zendesk-oppsett, ser du etter noen til neste prosjekt, eller vil du bare utveksle erfaringer? Si hei.",
+    icebreakers: [
+      "Hvorfor jeg stadig maser om omnikanal-ruting",
+      "Kunnskapsbaser som hjelper begge sider av samtalen",
+      "Hvordan visninger, grupper og arbeidsflyt ikke blir en jungel"
+    ]
+  },
+  languages: ["Norsk, morsmål", "Engelsk", "Tysk"],
+  experience: [
+    { period: "Juni 2026 – nå", title: "Seniorkonsulent", company: "Kundelab", summary: "Oppsett og optimalisering av Zendesk, automatisering, prosjektledelse, workshops og opplæring." },
+    { period: "2025 – 2026", title: "Customer Success Manager", company: "Aritma", summary: "Var med på å bygge opp Customer Success og en felles kundereise; betalingsløsninger og bankintegrasjoner." },
+    { period: "2024 – 2025", title: "Customer Success Specialist", company: "Aritma", summary: "Bankmigreringer og fusjoner, feilsøking med SQL, testing i Azure DevOps, superadmin i HubSpot." },
+    { period: "2022 – 2024", title: "Fagansvarlig støttesystemer", company: "Lyse Dialog", summary: "Eide Zendesk for Lyse-konsernet og Altibox; automatisering i Zendesk og Power Platform." },
+    { period: "2021 – 2022", title: "Skiftleder", company: "Lyse Dialog", summary: "Daglig drift av kundesenteret, bemanning og oppfølging av hendelser." },
+    { period: "2019 – 2021", title: "Kunderådgiver", company: "Lyse Dialog", summary: "Privat- og bedriftskunder på telefon, chat og sosiale medier." }
+  ],
+  projects: [
+    { ...SITE.projects[0],
+      title: "Samlet kundeservicen på Zendesk i Lyse Dialog",
+      period: "Feb. 2021 – mars 2022",
+      summary: "Flyttet et travelt kundeserviceteam over på ett ryddig Zendesk-oppsett og automatiserte den rutinemessige oppfølgingen.",
+      keyNumbers: [
+        { value: "29 min → 5 min", primary: true, label: "Gjennomsnittlig behandlingstid per sak (feb. 2021 til mars 2022)" },
+        { value: "2.8K → 511", label: "Åpne saker på toppen i slutten av januar 2022, og tre uker senere, etter utvidede åpningstider og flere rådgivere" }
+      ],
+      workflow: [
+        { step: "Hvor rådgiverne jobber", before: "Flere systemer å logge inn i for én kundesak.", after: "Ett Zendesk-arbeidsområde for alle kanaler." },
+        { step: "Valg av neste sak", before: "Rådgiverne leter i en lang liste og bestemmer selv hva som er neste.", after: "Én visning med egne og ufordelte saker; Play-knappen gir deg neste sak." },
+        { step: "Svar fra kunden", before: "Et svar venter på tur i køen.", after: "Et svar fra kunden gir saken høy prioritet." },
+        { step: "Venter på kunden", before: "Rådgiverne purrer på kunder manuelt.", after: "Automatiske påminnelser etter 3 dager; løst etter andre påminnelse." },
+        { step: "Venter på andre", before: "Saker på vent kan bli glemt.", after: "Kunden får en oppdatering etter 3 dager; etter en uke åpnes saken igjen for rådgiveren." }
+      ],
+      problem: "Rådgiverne måtte jobbe i flere systemer, og stigende strømpriser ga rundt ti ganger så mange henvendelser som normalt.",
+      role: "Jeg tok mye av Zendesk-konfigurasjonen, som en del av en teaminnsats.",
+      actions: [
+        "Samlet alle saker i én kø som gir rådgiveren neste sak",
+        "Automatiserte oppfølging slik at ingen kunde eller sak blir glemt",
+        "Satte opp automatiske svar på de vanligste fakturaspørsmålene"
+      ],
+      outcome: "Gjennomsnittlig behandlingstid falt fra 29 til 5 minutter per sak. Etter toppen i januar 2022 fikk utvidede åpningstider og flere rådgivere på saker teamet tilbake i kontroll i løpet av omtrent tre uker.",
+      howBuilt: [
+        "KS Energi flyttet kundeservicen sin til Zendesk i februar 2021. Pågangen varte fra tidlig i desember 2021 til slutten av januar 2022; i den perioden brukte teamet Zendesk Explore til å justere åpningstider og bemanning.",
+        "I Zendesk satte jeg opp Bump-Bump-Solve med automatiske påminnelser på saker som venter på kunden, som lukkes etter andre påminnelse; oppfølging av saker på vent, med en oppdatering til kunden etter 3 dager og gjenåpning for rådgiveren etter en uke; visninger som samler egne og ufordelte saker, gir kundesvar høy prioritet og serverer neste sak med Play-knappen; og autosvar med de 3 vanligste svarene på faktura- og betalingssaker."
+      ],
+      credit: "Resultatene tilskrives kundeserviceteamet i KS Energi og Lyse Dialog, slik det er beskrevet i Zendesks kundehistorie og teamets egen rapportering.",
+      sourceLabel: "Les kundehistorien hos Zendesk (på engelsk)" },
+    { ...SITE.projects[1],
+      title: "Håndterte TV 2-pågangen i Lyse Dialog",
+      period: "April 2022",
+      summary: "Hindret at en plutselig bølge av TV 2-henvendelser oversvømte den vanlige kundeservicen.",
+      problem: "Da forhandlingene mellom TV 2 og Altibox brøt sammen, økte henvendelsene kraftig. Alle måtte bidra: kundeservice, analyse, salg og backoffice.",
+      role: "Jeg gjorde endringene i støttesystemene.",
+      actions: [
+        "Ga pågangen egne køer, adskilt fra det daglige arbeidet",
+        "Skrev ferdige svar for kundeservice og chat",
+        "Besvarte vanlige spørsmål automatisk og lukket saker som ikke trengte svar"
+      ],
+      outcome: "Pågangen fylte ikke opp de etablerte gruppene. Nye kolleger kunne læres opp raskere på denne ene køen, og bemanningen kunne tilpasses den.",
+      howBuilt: [
+        "Jeg satte opp egne køer i Puzzel og saksgrupper i Zendesk, skrev makroer for kundeservice og chat, kjørte en engangsautomatisering som løste saker uten svar, og satte opp automatiske FAQ-svar på saker sendt inn i denne kategorien."
+      ],
+      credit: "En teaminnsats på tvers av kundeservice, analyse, salg og backoffice; jeg gjorde endringene i støttesystemene.",
+      sourceLabel: "Les VGs artikkel" }
+  ],
+  tools: [
+    { name: "Zendesk", sentence: "Eide Zendesk for Lyse-konsernet, og setter det nå opp og optimaliserer det for Kundelabs kunder." },
+    { name: "HubSpot", sentence: "Superadmin for Customer Operations i Aritma." },
+    { name: "Notion", sentence: "Intern dokumentasjon." },
+    { name: "Microsoft SQL Server", sentence: "Brukte SQL til feilsøking i Aritma." },
+    { name: "Microsoft Power Automate", sentence: "Bygde flyter for ulike prosesser i Lyse Dialog." },
+    { name: "Azure DevOps", sentence: "Skrev brukerhistorier og testet nye versjoner i Aritma." },
+    { name: "Postman", sentence: "Testing av API-er, samtykkeflyter og enkle forespørsler." },
+    { name: "ChatGPT og Claude", sentence: "Idémyldring og kritikk." }
+  ],
+  certificates: SITE.certificates.map(c => ({ ...c,
+    issued: c.issued.replace("Nov", "nov.").replace("Aug", "aug.").replace("Apr", "apr.").replace("Feb", "feb.").replace("Jan", "jan.").replace("Mar", "mars"),
+    ...(c.validUntil ? { validUntil: c.validUntil.replace("May", "mai") } : {}),
+    name: c.name === "CFT Training" ? "CFT-opplæring" : c.name })),
+  education: [
+    { period: "2018 – 2022", title: "Bachelor i markedsføringsledelse", school: "Handelshøyskolen BI" },
+    { period: "2015 – 2018", title: "Videregående, studiespesialisering", school: "Sandnes videregående skole" }
+  ]
+};
