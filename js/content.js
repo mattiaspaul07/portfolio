@@ -20,7 +20,7 @@ var SITE = {   // var, so js/i18n.js can swap in the Norwegian version
   person: {
     name: "Mattias Paul", title: "Senior Consultant @ Kundelab",
     headline: "I help teams make Zendesk simpler and customer service work better.",
-    email: "mattias.paul07@gmail.com",
+    email: "mattias@kundelab.no",
     linkedin: "https://www.linkedin.com/in/mattias-paul-a3ab39181/"
   },
   sections: {

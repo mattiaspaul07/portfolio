@@ -48,7 +48,7 @@ const SITE_NO = {
     icebreakers: [
       "Hvordan vi slipper å svare på det samme hele tiden",
       "Sett opp ruting basert på de ansattes kompetanse",
-      "Hvordan vi holder orden i Zendesk når det baller på seg"
+      "Hvordan holder du orden i Zendesk når det baller på seg"
     ]
   },
   languages: ["Norsk, morsmål", "Engelsk", "Tysk"],
