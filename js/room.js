@@ -230,7 +230,7 @@ const wallX=(y1,y2,z1,z2)=>[[0.02,y1,z1],[0.02,y2,z1],[0.02,y2,z2],[0.02,y1,z2]]
 
       sortables.sort((a,b)=>(a.foot.x+a.foot.w/2+a.foot.y+a.foot.d/2)-(b.foot.x+b.foot.w/2+b.foot.y+b.foot.d/2));
       sortables.forEach(s=>mid.appendChild(s.g));
-      avatarG=el("g",{"pointer-events":"none"},mid);
+      avatarG=el("g",{class:"avatar", "pointer-events":"none"},mid);
 
       // generous touch targets: a padded transparent box behind each object's drawing
       Object.values(hots).forEach(h=>h.groups.forEach(g=>{
@@ -302,34 +302,70 @@ const wallX=(y1,y2,z1,z2)=>[[0.02,y1,z1],[0.02,y2,z1],[0.02,y2,z2],[0.02,y1,z2]]
         const n=addCoffee();
         svg.querySelectorAll(".coffee-count").forEach(t=>{ t.textContent=coffeeLabel(n); });
         if(cupG) cupG.setAttribute("aria-label",`${SITE.ui.cupLabel} ${SITE.ui.coffeesSoFar}${n}.`);
-        showTopic(coffeeTopic(n));
         sipTimer=setTimeout(()=>{ endSip(); drawAvatar(); }, 2600);
       });
     }
     // "Ask me about" speech bubble above the avatar; clicking it opens Contact
     let bubbleTimer=null;
     function hideTopic(){ clearTimeout(bubbleTimer); svg.querySelectorAll(".topic-bubble").forEach(b=>b.remove()); svg.classList.remove("has-bubble"); }
+    // topic: { text, label }. label false means the line is a thought or question shown on its own, without "Ask me about".
+    // Long lines wrap onto a second line.
     function showTopic(topic){
       hideTopic();
       const [hx,hy]=iso(st.ax,st.ay,2.55);
       svg.classList.add("has-bubble");   // marker labels step aside while the bubble shows
-      const g=el("g",{class:"topic-bubble", role:"button", tabindex:"0", "aria-label":`${SITE.ui.askMeAboutLabel}${topic}. ${SITE.ui.opensContact}`},top);
+      const spoken = topic.label ? `${SITE.ui.askMeAboutLabel}${topic.text}` : topic.text;
+      const g=el("g",{class:"topic-bubble", role:"button", tabindex:"0", "aria-label":`${spoken}${/[.?!]$/.test(spoken)?"":"."} ${SITE.ui.opensContact}`},top);
       const box=el("rect",{rx:9, fill:"#fffdf8", stroke:"#2f7d6d", "stroke-width":1.5},g);
       const tail=el("polygon",{fill:"#fffdf8", stroke:"#2f7d6d", "stroke-width":1.5},g);
-      const t1=el("text",{"font-family":"IBM Plex Mono, Consolas, monospace", "font-size":7, "letter-spacing":"0.6", fill:"#2f7d6d"},g); t1.textContent=SITE.ui.askMeAbout;
-      const t2=el("text",{"font-family":"Bricolage Grotesque, Segoe UI, sans-serif", "font-size":10.5, "font-weight":700, fill:"#1f2624"},g); t2.textContent=topic+" →";
-      const w=Math.max(t1.getComputedTextLength(), t2.getComputedTextLength())+20, h=34;
-      const x=Math.max(-200, Math.min(200-w, hx-w/2)), y=hy-14-h;
+      const t1=topic.label ? el("text",{"font-family":"IBM Plex Mono, Consolas, monospace", "font-size":7, "letter-spacing":"0.6", fill:"#2f7d6d"},g) : null;
+      if(t1) t1.textContent=SITE.ui.askMeAbout;
+      const t2=el("text",{"font-family":"Bricolage Grotesque, Segoe UI, sans-serif", "font-size":10.5, "font-weight":700, fill:"#1f2624"},g);
+      // wrap: fill the first line up to MAXW, the rest goes on a second line
+      const MAXW=230, words=(topic.text+"\u00a0→").split(" "), lines=[""];
+      const probe=el("tspan",{},t2);
+      words.forEach(wd=>{ const cur=lines[lines.length-1], next=cur?cur+" "+wd:wd; probe.textContent=next;
+        if(probe.getComputedTextLength()>MAXW && cur) lines.push(wd); else lines[lines.length-1]=next; });
+      probe.remove();
+      const spans=lines.map(line=>{ const ts=el("tspan",{},t2); ts.textContent=line; return ts; });
+      const textW=Math.max(t1?t1.getComputedTextLength():0, ...spans.map(ts=>ts.getComputedTextLength()));
+      const top0=t1?13:6, lineH=13.5;
+      const w=textW+20, h=top0+lines.length*lineH+7;
+      const x=Math.max(-200, Math.min(200-w, hx-w/2)), y=Math.max(-148, hy-14-h);
       box.setAttribute("x",x); box.setAttribute("y",y); box.setAttribute("width",w); box.setAttribute("height",h);
       tail.setAttribute("points",`${hx-6},${y+h-1} ${hx+6},${y+h-1} ${hx},${y+h+8}`);
       el("rect",{x:hx-7, y:y+h-3, width:14, height:3, fill:"#fffdf8"},g);   // hides the seam between box and tail
-      t1.setAttribute("x",x+10); t1.setAttribute("y",y+13); t2.setAttribute("x",x+10); t2.setAttribute("y",y+27);
+      if(t1){ t1.setAttribute("x",x+10); t1.setAttribute("y",y+13); }
+      spans.forEach((ts,i)=>{ ts.setAttribute("x",x+10); ts.setAttribute("y",y+top0+lineH*(i+1)); });
       const open=e=>{ e.stopPropagation(); hideTopic(); pick("contact"); };
       g.addEventListener("click",open);
       g.addEventListener("keydown",e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); open(e); } });
-      const status=document.getElementById("room-status"); if(status) status.textContent=`${SITE.ui.askMeAboutLabel}${topic}`;
-      bubbleTimer=setTimeout(hideTopic, 6500);
+      bubbleTimer=setTimeout(hideTopic, BUBBLE_MS);
     }
+    // Idle life in the room, checked twice a second:
+    // - the avatar strolls to a random spot, pauses 4 to 7 seconds, then strolls on;
+    // - any click, tap or key press by the visitor stops the strolling, and he goes where he is sent;
+    // - after 30 seconds without input he starts strolling again;
+    // - every 15 seconds, while he stands still, he suggests a topic to ask about (SITE.coffeeTopics, in turn).
+    // Nothing runs while the tab is hidden or the phone sheet covers the room. No strolling with reduced motion.
+    // Topics are not announced to screen readers: that would interrupt them every 15 seconds.
+    const IDLE_MS=30000, TOPIC_EVERY_MS=15000, BUBBLE_MS=6500;
+    let lastInput=-Infinity, nextStroll=performance.now()+3000, nextTopic=performance.now()+TOPIC_EVERY_MS, topicN=0;
+    const noteInput=()=>{ lastInput=performance.now(); };
+    ["pointerdown","keydown"].forEach(t=>document.addEventListener(t,noteInput,{capture:true, passive:true}));
+    setInterval(()=>{
+      const now=performance.now();
+      if(document.hidden || document.body.classList.contains("sheet-open")) return;
+      const bubbleUp=!!svg.querySelector(".topic-bubble");
+      if(now>=nextTopic && !st.moving && !st.sipping && !bubbleUp){ showTopic(coffeeTopic(++topicN)); nextTopic=now+TOPIC_EVERY_MS; return; }
+      if(nextStroll===Infinity && !st.moving) nextStroll=now+4000;   // a stroll was cut short by the visitor
+      const idle=now-lastInput>=IDLE_MS;
+      if(reduce || !idle || st.moving || st.sipping || bubbleUp || now<nextStroll) return;
+      const spot=randomFreeSpot(blockers, st.ax, st.ay);
+      if(!spot) return;
+      nextStroll=Infinity;   // set again when he arrives
+      walkTo(spot.x, spot.y, null, ()=>{ nextStroll=performance.now()+4000+Math.random()*3000; }, {stroll:true});
+    }, 500);
     function pick(key){ opts.onPick(key); }
     function setSelected(key){
       endSip(); hideTopic();
@@ -346,7 +382,7 @@ const wallX=(y1,y2,z1,z2)=>[[0.02,y1,z1],[0.02,y2,z1],[0.02,y2,z2],[0.02,y1,z2]]
     }
 
     /* ---- walking: quick, and redirectable mid-walk ---- */
-    function walkTo(x,y,f,onArrive){
+    function walkTo(x,y,f,onArrive,{stroll}={}){
       st.onArrive=onArrive||null;
       let path=findPath(blockers,st.ax,st.ay,x,y);
       if(path.length>1) path.shift();
@@ -354,7 +390,7 @@ const wallX=(y1,y2,z1,z2)=>[[0.02,y1,z1],[0.02,y2,z1],[0.02,y2,z2],[0.02,y1,z2]]
       st.endFacing=f||null;
       if(reduce || !path.length){ const end=path[path.length-1]||{x:st.ax,y:st.ay}; st.ax=end.x; st.ay=end.y; if(f) st.facing=f; st.moving=false; drawAvatar(); if(st.onArrive){ const cb=st.onArrive; st.onArrive=null; cb(); } return; }
       let len=0, px=st.ax, py=st.ay; path.forEach(p=>{ len+=Math.hypot(p.x-px,p.y-py); px=p.x; py=p.y; });
-      st.speed=Math.max(4, len/1.2);           // never longer than about 1.2 seconds
+      st.speed=stroll ? 1.8 : Math.max(4, len/1.2);   // strolling is calm; a visitor's command takes about 1.2 seconds at most
       st.path=path; st.moving=true;
       if(!raf){ last=performance.now(); raf=requestAnimationFrame(step); }
     }

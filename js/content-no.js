@@ -42,7 +42,15 @@ const SITE_NO = {
       "Å trene sammen med ham og brødrene hans lærte meg mye om meg selv, og om hva andre gjorde for å lykkes. Den viktigste lærdommen: omgi deg med folk som er bedre enn deg. Det gode er at i IT trenger du ikke gener i verdensklasse. Nysgjerrighet og jevn øving tar deg langt."
     ] }
   },
-  coffeeTopics: ["Hvorfor jeg maser om omnikanal-ruting", "En kunnskapsbase som hjelper begge sider", "Visninger og grupper som ikke blir en jungel", "Trening med Ingebrigtsen-brødrene"],
+  coffeeTopics: [
+    { text: "Hvorfor jeg maser om omnikanal-ruting", label: true },
+    { text: "En kunnskapsbase som er til hjelp for kunder og agenter", label: true },
+    { text: "Visninger og grupper som ikke blir en jungel", label: true },
+    { text: "Hvordan var det å trene med Team-Ingebrigtsen?", label: false },
+    { text: "Lurer på hvor mange som sitter på hjemmekontor og spiller GTA VI nå...", label: false },
+    { text: "Anti-AI eller pro-AI? Hvorfor ikke noe midt imellom?", label: false },
+    { text: "Hvorfor enhver help desk bør vurdere Zendesk", label: true }
+  ],
   contact: {
     intro: "Skal du rydde i et Zendesk-oppsett, ser du etter noen til neste prosjekt, eller vil du bare utveksle erfaringer? Si hei.",
     icebreakers: [

@@ -84,6 +84,17 @@ test("special characters in content render as text", () => {
   assertEqual(renderSection("projects").includes("Zendesk&#39;s customer story"), true, "apostrophe escaped");
 });
 
+test("stroll spots are free floor, away from the avatar", () => {
+  const blockers = [{ x: 4, y: 4, w: 2, d: 2 }];
+  let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+  for (let n = 0; n < 50; n++) {
+    const s = randomFreeSpot(blockers, 1, 1, rnd);
+    assertEqual(s !== null, true, "found");
+    assertEqual(cellFree(blockers, cellOf(s.x), cellOf(s.y)), true, "free " + JSON.stringify(s));
+    assertEqual(Math.hypot(s.x - 1, s.y - 1) >= 2, true, "far enough");
+  }
+  assertEqual(randomFreeSpot([{ x: -1, y: -1, w: 12, d: 12 }], 1, 1), null, "no space gives null");
+});
 test("iso maps one unit along x", () => assertEqual(iso(1,0,0).map(v => +v.toFixed(2)), [17.32, 10], "x"));
 test("iso lifts by z", () => assertEqual(iso(0,0,1), [0, -20], "z"));
 test("shade returns hex", () => assertEqual(shade("#808080", 0.5), "#404040", "shade"));
@@ -233,18 +244,25 @@ test("before/after rows label both sides for screen readers", () => {
   assertEqual(row.includes("Before") && row.includes("After"), true, "labels");
 });
 
-test("coffee topics are the four chosen ones", () => {
-  assertEqual(SITE.coffeeTopics, ["Why I go on about omnichannel routing", "A knowledge base that helps both sides", "Views and groups that won’t become a jungle", "Training with the Ingebrigtsen brothers"], "topics");
+test("bubble topics: seven, each with text and a label flag", () => {
+  assertEqual(SITE.coffeeTopics.length, 7, "count");
+  assertEqual(SITE_NO.coffeeTopics.length, 7, "count no");
+  [...SITE.coffeeTopics, ...SITE_NO.coffeeTopics].forEach(t => {
+    assertEqual(typeof t.text === "string" && typeof t.label === "boolean", true, JSON.stringify(t));
+  });
+  assertEqual(SITE.coffeeTopics.map(t => t.label), SITE_NO.coffeeTopics.map(t => t.label), "same labels in both languages");
 });
-test("each coffee brings the next topic, then starts over", () => {
-  assertEqual(coffeeTopic(1), "Why I go on about omnichannel routing", "first coffee");
-  assertEqual(coffeeTopic(2), "A knowledge base that helps both sides", "second");
-  assertEqual(coffeeTopic(4), "Training with the Ingebrigtsen brothers", "fourth");
-  assertEqual(coffeeTopic(5), "Why I go on about omnichannel routing", "wraps");
-  assertEqual(coffeeTopic(0), "Why I go on about omnichannel routing", "zero is safe");
+test("the topic bubble cycles through the topics, then starts over", () => {
+  assertEqual(coffeeTopic(1).text, SITE.coffeeTopics[0].text, "first");
+  assertEqual(coffeeTopic(7).text, SITE.coffeeTopics[6].text, "seventh");
+  assertEqual(coffeeTopic(8).text, SITE.coffeeTopics[0].text, "wraps");
+  assertEqual(coffeeTopic(0).text, SITE.coffeeTopics[0].text, "zero is safe");
 });
-test("coffee topics are short enough for the bubble", () => {
-  SITE.coffeeTopics.forEach(t => assertEqual(t.length <= 48, true, t));
+test("bubble topics fit on two lines", () => {
+  [...SITE.coffeeTopics, ...SITE_NO.coffeeTopics].forEach(t => assertEqual(t.text.length <= 90, true, t.text));
+});
+test("AI is written AI in both languages", () => {
+  assertEqual(JSON.stringify(SITE_NO.coffeeTopics).includes("KI"), false, "no KI");
 });
 
 test("featured project has no Tools line", () => {

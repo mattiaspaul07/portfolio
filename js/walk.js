@@ -39,3 +39,14 @@ function findPath(blockers, x0, y0, x1, y1) {
   for (let c = goal; c; c = prev.get(key(...c))) path.unshift({ x: (c[0] + 0.5) * CELL, y: (c[1] + 0.5) * CELL });
   return path;
 }
+
+// A random free spot on the floor at least minDist from (x0, y0), for the avatar's idle stroll.
+// rnd is injectable so tests can make it predictable. Returns null if no spot is found.
+function randomFreeSpot(blockers, x0, y0, rnd = Math.random, minDist = 2) {
+  for (let tries = 0; tries < 40; tries++) {
+    const i = Math.floor(rnd() * CELLS), j = Math.floor(rnd() * CELLS);
+    const x = (i + 0.5) * CELL, y = (j + 0.5) * CELL;
+    if (cellFree(blockers, i, j) && Math.hypot(x - x0, y - y0) >= minDist) return { x, y };
+  }
+  return null;
+}

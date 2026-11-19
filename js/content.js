@@ -49,8 +49,16 @@ var SITE = {   // var, so js/i18n.js can swap in the Norwegian version
       "Training alongside him and his brothers taught me a lot about myself, and about what others did to succeed. The biggest lesson: surround yourself with people who are better than you. The good news is that in IT, you don’t need world-class genetics. Curiosity and steady practice take you a long way."
     ] }
   },
-  // Shown one at a time in a speech bubble during each coffee break.
-  coffeeTopics: ["Why I go on about omnichannel routing", "A knowledge base that helps both sides", "Views and groups that won’t become a jungle", "Training with the Ingebrigtsen brothers"],
+  // Shown one at a time in the avatar's speech bubble, every 15 seconds. label: true adds "Ask me about" above the text.
+  coffeeTopics: [
+    { text: "Why I go on about omnichannel routing", label: true },
+    { text: "A knowledge base that helps customers and agents", label: true },
+    { text: "Views and groups that won’t become a jungle", label: true },
+    { text: "What was it like training with Team Ingebrigtsen?", label: false },
+    { text: "Wondering how many people are working from home and playing GTA VI right now...", label: false },
+    { text: "Anti-AI or pro-AI? Why not something in the middle?", label: false },
+    { text: "Why every help desk should consider Zendesk", label: true }
+  ],
   contact: {
     intro: "Untangling a Zendesk setup, looking for someone to join your next project, or just fancy comparing notes? Say hello.",
     icebreakers: [
