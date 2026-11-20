@@ -5,9 +5,11 @@ const state = { current: null, room: null };
 const nav = document.getElementById("nav");
 const panel = document.getElementById("panel");
 
-function select(key, { focus } = {}) {
+// history: "push" adds the section to the address and the Back button; "none" leaves the address alone
+function select(key, { focus, history: hist = "push" } = {}) {
   if (!SITE.sections[key] && !(SITE.extras && SITE.extras[key])) key = DEFAULT_SECTION;
   state.current = key;
+  if (hist === "push" && sectionFromHash(location.hash) !== key) history.pushState({ section: key }, "", "#" + key);
   panel.innerHTML = renderSection(key);
   nav.querySelectorAll("button").forEach(b => b.setAttribute("aria-current", b.dataset.key === key ? "true" : "false"));
   if (state.room) state.room.setSelected(key);
@@ -112,4 +114,12 @@ window.addEventListener("resize", setHeaderHeight);
 if (typeof drawRoom === "function") {
   state.room = drawRoom(document.getElementById("room"), { onPick: key => select(key, { focus: true }) });
 }
-select(DEFAULT_SECTION);
+// Open the section in the address (#projects, #kontakt …) on load, and follow Back and Forward.
+const initial = sectionFromHash(location.hash);
+select(initial || DEFAULT_SECTION, { history: "none" });
+if (initial && PHONE.matches) setSheet(true);   // a shared link to a section on a phone opens it straight away
+window.addEventListener("popstate", () => {
+  const key = sectionFromHash(location.hash);
+  select(key || DEFAULT_SECTION, { history: "none" });
+  if (PHONE.matches) setSheet(!!key);
+});

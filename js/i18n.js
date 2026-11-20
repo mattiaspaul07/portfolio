@@ -38,6 +38,7 @@ function applyPageText() {
   document.querySelectorAll("[data-i18n-alt]").forEach(el => { el.alt = SITE.ui.portraitAlt; });
   document.querySelectorAll("[data-cv]").forEach(a => { a.href = t.cvFile; });
   document.querySelectorAll("[data-site]").forEach(a => { a.href = t.siteUrl; });
+  document.querySelectorAll(".contact-btn").forEach(a => { a.textContent = SITE.sections.contact.menu; });
   const brand = document.querySelector(".brand small");
   if (brand) brand.textContent = SITE.person.title;
   const sound = document.getElementById("sound");

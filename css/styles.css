@@ -217,14 +217,19 @@ button{font:inherit}
   #room{max-height:calc(100vh - var(--header-h, 58px) - 70px)}
 }
 
+.contact-btn{display:none}   /* desktop has Contact in the menu */
 /* phone: the room fills the screen, the sections live in a bottom sheet */
 .sheet{display:contents}
 .sheet-head{display:none}
 @media (max-width:860px){
   body:not(.resume-page){--peek:178px; height:100dvh; overflow:hidden; overscroll-behavior:none}
   body:not(.resume-page) #sound{display:none}
-  body:not(.resume-page) .actions .ghost{display:none}
+  body:not(.resume-page) .actions .ghost:not(.contact-btn){display:none}
+  .actions .contact-btn{display:inline-flex; font-size:.9rem; font-weight:700; padding:6px 14px; border-color:var(--accent); color:var(--accent)}
+  .actions .cta .long{display:none}   /* "CV" is enough next to Contact */
   .topbar{flex-wrap:nowrap; gap:8px}
+  .brand{min-width:0}
+  .brand small{display:block; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; font-size:.72rem}
   .actions{margin-left:auto}
   .body{display:block; min-height:0}
   .scene{position:fixed; left:0; right:0; top:var(--header-h, 56px); bottom:calc(var(--peek) - 18px); padding:10px 8px 0; display:flex; flex-direction:column; align-items:center; gap:4px}

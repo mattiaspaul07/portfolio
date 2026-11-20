@@ -104,6 +104,20 @@ test("toolkit: every tool belongs to a group, and every group has tools", () => 
   const html = renderSection("toolkit");
   assertEqual(html.indexOf("Customer contact") < html.indexOf("Puzzel") && html.indexOf("Puzzel") < html.indexOf("Data and automation"), true, "Puzzel under Customer contact");
 });
+test("section addresses: English keys, Norwegian names, and junk", () => {
+  assertEqual(sectionFromHash("#projects"), "projects", "projects");
+  assertEqual(sectionFromHash("#prosjekter"), "projects", "prosjekter");
+  assertEqual(sectionFromHash("#Kontakt"), "contact", "case");
+  assertEqual(sectionFromHash("#verkt%C3%B8y"), "toolkit", "encoded ø");
+  assertEqual(sectionFromHash("#running"), "running", "hidden extra");
+  assertEqual(sectionFromHash(""), null, "empty");
+  assertEqual(sectionFromHash("#nope"), null, "unknown");
+  assertEqual(sectionFromHash("#%E0%A4%A"), null, "broken encoding");
+});
+test("Contact icebreakers: three in each language", () => {
+  assertEqual(SITE.contact.icebreakers.length, 3, "en");
+  assertEqual(SITE_NO.contact.icebreakers.length, 3, "no");
+});
 test("iso maps one unit along x", () => assertEqual(iso(1,0,0).map(v => +v.toFixed(2)), [17.32, 10], "x"));
 test("iso lifts by z", () => assertEqual(iso(0,0,1), [0, -20], "z"));
 test("shade returns hex", () => assertEqual(shade("#808080", 0.5), "#404040", "shade"));

@@ -54,7 +54,7 @@ const SITE_NO = {
   contact: {
     intro: "Skal du rydde i et Zendesk-oppsett, ser du etter noen til neste prosjekt, eller vil du bare utveksle erfaringer? Si hei.",
     icebreakers: [
-      "Hvordan vi slipper å svare på det samme hele tiden",
+      "Hvordan slipper du å svare på det samme hele tiden",
       "Sett opp ruting basert på de ansattes kompetanse",
       "Hvordan holder du orden i Zendesk når det baller på seg"
     ]

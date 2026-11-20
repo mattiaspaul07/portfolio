@@ -62,9 +62,9 @@ var SITE = {   // var, so js/i18n.js can swap in the Norwegian version
   contact: {
     intro: "Untangling a Zendesk setup, looking for someone to join your next project, or just fancy comparing notes? Say hello.",
     icebreakers: [
-      "Why I keep going on about omnichannel routing",
-      "Knowledge bases that help both sides of the conversation",
-      "Keeping views, groups, and workflows from becoming a jungle"
+      "How do you stop answering the same questions over and over",
+      "Setting up routing based on agents’ skills",
+      "How do you keep Zendesk organised when things start piling up"
     ]
   },
   languages: ["Norwegian, native", "English", "German"],

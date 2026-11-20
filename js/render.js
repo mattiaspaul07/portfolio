@@ -2,6 +2,15 @@
 const SECTION_ORDER = ["about", "experience", "projects", "toolkit", "education", "contact"];
 const DEFAULT_SECTION = "about";   // the section shown when the page loads
 
+// Section addresses: #projects etc. The Norwegian names work too, so #prosjekter opens Projects.
+const SECTION_ALIASES = { "om-meg": "about", erfaring: "experience", prosjekter: "projects", verktoy: "toolkit", "verktøy": "toolkit", utdanning: "education", kontakt: "contact" };
+function sectionFromHash(hash) {
+  let k = "";
+  try { k = decodeURIComponent(String(hash || "").replace(/^#/, "")).toLowerCase(); } catch (_) { return null; }
+  k = SECTION_ALIASES[k] || k;
+  return (SITE.sections[k] || (SITE.extras && SITE.extras[k])) ? k : null;
+}
+
 function esc(text) {
   return String(text).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 }
