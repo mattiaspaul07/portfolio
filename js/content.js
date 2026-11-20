@@ -54,7 +54,7 @@ var SITE = {   // var, so js/i18n.js can swap in the Norwegian version
     { text: "Why I go on about omnichannel routing", label: true },
     { text: "A knowledge base that helps customers and agents", label: true },
     { text: "Views and groups that won’t become a jungle", label: true },
-    { text: "What was it like training with Team Ingebrigtsen?", label: false },
+    { text: "What was it like training with Team Ingebrigtsen?", label: true },
     { text: "Wondering how many people are working from home and playing GTA VI right now...", label: false },
     { text: "Anti-AI or pro-AI? Why not something in the middle?", label: false },
     { text: "Why every help desk should consider Zendesk", label: true }
@@ -71,7 +71,7 @@ var SITE = {   // var, so js/i18n.js can swap in the Norwegian version
   experience: [
     { period: "Jun 2026 – now", title: "Senior Consultant", company: "Kundelab", summary: "Zendesk setup and optimisation, automation, project management, workshops and training." },
     { period: "2025 – 2026", title: "Customer Success Manager", company: "Aritma", summary: "Helped build Customer Success and a shared customer journey; payment solutions and bank integrations." },
-    { period: "2024 – 2025", title: "Customer Success Specialist", company: "Aritma", summary: "Bank migrations and mergers, SQL troubleshooting, Azure DevOps testing, HubSpot super admin." },
+    { period: "2024 – 2025", title: "Customer Success Specialist", company: "Aritma", summary: "Bank migrations and mergers, SQL troubleshooting, Azure DevOps testing, HubSpot admin." },
     { period: "2022 – 2024", title: "Support Systems Lead", company: "Lyse Dialog", summary: "Owned Zendesk for the Lyse group and Altibox; automation in Zendesk and Power Platform." },
     { period: "2021 – 2022", title: "Shift Lead", company: "Lyse Dialog", summary: "Daily customer centre operations, staffing and incident follow-up." },
     { period: "2019 – 2021", title: "Customer Advisor", company: "Lyse Dialog", summary: "Private and business customers by phone, chat and social media." }
@@ -124,15 +124,21 @@ var SITE = {   // var, so js/i18n.js can swap in the Norwegian version
       credit: "A team effort across customer service, analytics, sales and back office; I made the changes in the support systems.",
       sourceUrl: "https://www.vg.no/nyheter/i/0Gxbv6/tv-2-har-avsluttet-forhandlingene-med-altibox", sourceLabel: "Read VG’s article (in Norwegian)" },
   ],
+  toolGroups: [
+    { key: "contact", title: "Customer contact" },
+    { key: "data", title: "Data and automation" },
+    { key: "build", title: "Building and documenting" }
+  ],
   tools: [
-    { name: "Zendesk", sentence: "Owned the Lyse group's Zendesk and now set it up and optimise it for Kundelab clients." },
-    { name: "HubSpot", sentence: "Super admin for Customer Operations at Aritma." },
-    { name: "Notion", sentence: "Internal documentation." },
-    { name: "Microsoft SQL Server", sentence: "Used SQL for troubleshooting at Aritma." },
-    { name: "Microsoft Power Automate", sentence: "Built flows for different processes at Lyse Dialog." },
-    { name: "Azure DevOps", sentence: "Wrote user stories and tested new releases at Aritma." },
-    { name: "Postman", sentence: "Testing APIs, consent flows and basic requests." },
-    { name: "ChatGPT and Claude", sentence: "Brainstorming and critique." }
+    { group: "contact", name: "Zendesk", sentence: "Owned the Lyse group's Zendesk and now set it up and optimise it for Kundelab clients." },
+    { group: "contact", name: "Puzzel", sentence: "Changed call flows, routing and voice messages." },
+    { group: "contact", name: "HubSpot", sentence: "Admin for Customer Operations at Aritma." },
+    { group: "data", name: "Microsoft Power Automate", sentence: "Built flows at Lyse Dialog, including one for reporting widespread faults and one that texts yesterday's operational figures from Power BI scorecards to the management team." },
+    { group: "data", name: "Microsoft SQL Server", sentence: "Troubleshooting payment files at Aritma, and update queries to fix issues during bank migrations, always wrapped in BEGIN TRANSACTION." },
+    { group: "data", name: "Postman", sentence: "Testing APIs, consent flows and basic requests." },
+    { group: "build", name: "Azure DevOps", sentence: "Wrote user stories and tested new releases at Aritma." },
+    { group: "build", name: "Notion", sentence: "Internal documentation and SOPs (standard operating procedures) for my department." },
+    { group: "build", name: "ChatGPT and Claude", sentence: "Building custom apps, design brainstorming and critique, and process map reviews." }
   ],
   certificates: [
     { sortKey: "2026-11b", issued: "Nov 2026", name: "Applied AI Foundations", issuer: "OpenAI", validUntil: "May 2027" },

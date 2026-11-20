@@ -45,7 +45,7 @@ test("language: URL beats saved choice beats browser", () => {
 });
 test("Norwegian content has the same shape as English", () => {
   const shape = o => Array.isArray(o) ? o.map(shape) : (o && typeof o === "object") ? Object.keys(o).sort().map(k => [k, shape(o[k])]) : typeof o;
-  ["ui", "sections", "about", "extras", "coffeeTopics", "contact", "languages", "experience", "projects", "tools", "certificates", "education"]
+  ["ui", "sections", "about", "extras", "coffeeTopics", "contact", "languages", "experience", "projects", "toolGroups", "tools", "certificates", "education"]
     .forEach(k => assertEqual(JSON.stringify(shape(SITE_NO[k])), JSON.stringify(shape(SITE[k])), k));
 });
 test("Norwegian panels render without English labels or undefined", () => {
@@ -94,6 +94,15 @@ test("stroll spots are free floor, away from the avatar", () => {
     assertEqual(Math.hypot(s.x - 1, s.y - 1) >= 2, true, "far enough");
   }
   assertEqual(randomFreeSpot([{ x: -1, y: -1, w: 12, d: 12 }], 1, 1), null, "no space gives null");
+});
+test("toolkit: every tool belongs to a group, and every group has tools", () => {
+  [SITE, SITE_NO].forEach(S => {
+    const keys = S.toolGroups.map(g => g.key);
+    S.tools.forEach(t => assertEqual(keys.includes(t.group), true, t.name));
+    keys.forEach(k => assertEqual(S.tools.some(t => t.group === k), true, k));
+  });
+  const html = renderSection("toolkit");
+  assertEqual(html.indexOf("Customer contact") < html.indexOf("Puzzel") && html.indexOf("Puzzel") < html.indexOf("Data and automation"), true, "Puzzel under Customer contact");
 });
 test("iso maps one unit along x", () => assertEqual(iso(1,0,0).map(v => +v.toFixed(2)), [17.32, 10], "x"));
 test("iso lifts by z", () => assertEqual(iso(0,0,1), [0, -20], "z"));

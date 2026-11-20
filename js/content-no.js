@@ -46,7 +46,7 @@ const SITE_NO = {
     { text: "Hvorfor jeg maser om omnikanal-ruting", label: true },
     { text: "En kunnskapsbase som er til hjelp for kunder og agenter", label: true },
     { text: "Visninger og grupper som ikke blir en jungel", label: true },
-    { text: "Hvordan var det å trene med Team-Ingebrigtsen?", label: false },
+    { text: "Hvordan var det å trene med Team-Ingebrigtsen?", label: true },
     { text: "Lurer på hvor mange som sitter på hjemmekontor og spiller GTA VI nå...", label: false },
     { text: "Anti-AI eller pro-AI? Hvorfor ikke noe midt imellom?", label: false },
     { text: "Hvorfor enhver help desk bør vurdere Zendesk", label: true }
@@ -63,7 +63,7 @@ const SITE_NO = {
   experience: [
     { period: "Juni 2026 – nå", title: "Seniorkonsulent", company: "Kundelab", summary: "Oppsett og optimalisering av Zendesk, automatisering, prosjektledelse, workshops og opplæring." },
     { period: "2025 – 2026", title: "Customer Success Manager", company: "Aritma", summary: "Var med på å bygge opp Customer Success og en felles kundereise; betalingsløsninger og bankintegrasjoner." },
-    { period: "2024 – 2025", title: "Customer Success Specialist", company: "Aritma", summary: "Bankmigreringer og fusjoner, feilsøking med SQL, testing i Azure DevOps, superadmin i HubSpot." },
+    { period: "2024 – 2025", title: "Customer Success Specialist", company: "Aritma", summary: "Bankmigreringer og fusjoner, feilsøking med SQL, testing i Azure DevOps, admin i HubSpot." },
     { period: "2022 – 2024", title: "Fagansvarlig støttesystemer", company: "Lyse Dialog", summary: "Eide Zendesk for Lyse-konsernet og Altibox; automatisering i Zendesk og Power Platform." },
     { period: "2021 – 2022", title: "Skiftleder", company: "Lyse Dialog", summary: "Daglig drift av kundesenteret, bemanning og oppfølging av hendelser." },
     { period: "2019 – 2021", title: "Kunderådgiver", company: "Lyse Dialog", summary: "Privat- og bedriftskunder på telefon, chat og sosiale medier." }
@@ -116,15 +116,21 @@ const SITE_NO = {
       credit: "En teaminnsats på tvers av kundeservice, analyse, salg og backoffice; jeg gjorde endringene i støttesystemene.",
       sourceLabel: "Les VGs artikkel" }
   ],
+  toolGroups: [
+    { key: "contact", title: "Kundedialog" },
+    { key: "data", title: "Data og automatisering" },
+    { key: "build", title: "Bygge og dokumentere" }
+  ],
   tools: [
-    { name: "Zendesk", sentence: "Eide Zendesk for Lyse-konsernet, og setter det nå opp og optimaliserer det for Kundelabs kunder." },
-    { name: "HubSpot", sentence: "Superadmin for Customer Operations i Aritma." },
-    { name: "Notion", sentence: "Intern dokumentasjon." },
-    { name: "Microsoft SQL Server", sentence: "Brukte SQL til feilsøking i Aritma." },
-    { name: "Microsoft Power Automate", sentence: "Bygde flyter for ulike prosesser i Lyse Dialog." },
-    { name: "Azure DevOps", sentence: "Skrev brukerhistorier og testet nye versjoner i Aritma." },
-    { name: "Postman", sentence: "Testing av API-er, samtykkeflyter og enkle forespørsler." },
-    { name: "ChatGPT og Claude", sentence: "Idémyldring og kritikk." }
+    { group: "contact", name: "Zendesk", sentence: "Eide Zendesk for Lyse-konsernet, og setter det nå opp og optimaliserer det for Kundelabs kunder." },
+    { group: "contact", name: "Puzzel", sentence: "Endret samtaleflyt, ruting og talemeldinger." },
+    { group: "contact", name: "HubSpot", sentence: "Admin for Customer Operations i Aritma." },
+    { group: "data", name: "Microsoft Power Automate", sentence: "Lagde flyter i Lyse Dialog, blant annet én for å rapportere om fellesfeil og én som sender gårsdagens driftstall fra Power BI-scorecards til ledergruppen på SMS." },
+    { group: "data", name: "Microsoft SQL Server", sentence: "Feilsøking av betalingsfiler i Aritma, og oppdateringsspørringer for å rette feil ved bankmigreringer, alltid med BEGIN TRANSACTION." },
+    { group: "data", name: "Postman", sentence: "Testing av API-er, samtykkeflyter og enkle forespørsler." },
+    { group: "build", name: "Azure DevOps", sentence: "Skrev brukerhistorier og testet nye versjoner i Aritma." },
+    { group: "build", name: "Notion", sentence: "Intern dokumentasjon og SOP-er (standardrutiner) for avdelingen min." },
+    { group: "build", name: "ChatGPT og Claude", sentence: "Bygge egne apper, idémyldring og kritikk av design, og gjennomgang av prosesskart." }
   ],
   certificates: SITE.certificates.map(c => ({ ...c,
     issued: c.issued.replace("Nov", "nov.").replace("Aug", "aug.").replace("Apr", "apr.").replace("Feb", "feb.").replace("Jan", "jan.").replace("Mar", "mars"),
