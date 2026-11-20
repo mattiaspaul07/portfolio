@@ -126,7 +126,7 @@ const SITE_NO = {
     { group: "contact", name: "Puzzel", sentence: "Endret samtaleflyt, ruting og talemeldinger." },
     { group: "contact", name: "HubSpot", sentence: "Admin for Customer Operations i Aritma." },
     { group: "data", name: "Microsoft Power Automate", sentence: "Lagde flyter i Lyse Dialog, blant annet én for å rapportere om fellesfeil og én som sender gårsdagens driftstall fra Power BI-scorecards til ledergruppen på SMS." },
-    { group: "data", name: "Microsoft SQL Server", sentence: "Feilsøking av betalingsfiler i Aritma, og oppdateringsspørringer for å rette feil ved bankmigreringer, alltid med BEGIN TRANSACTION." },
+    { group: "data", name: "Microsoft SQL Server", sentence: "Feilsøking av betalingsfiler i Aritma, og oppdateringsspørringer for å rette feil ved bankmigreringer." },
     { group: "data", name: "Postman", sentence: "Testing av API-er, samtykkeflyter og enkle forespørsler." },
     { group: "build", name: "Azure DevOps", sentence: "Skrev brukerhistorier og testet nye versjoner i Aritma." },
     { group: "build", name: "Notion", sentence: "Intern dokumentasjon og SOP-er (standardrutiner) for avdelingen min." },

@@ -134,7 +134,7 @@ var SITE = {   // var, so js/i18n.js can swap in the Norwegian version
     { group: "contact", name: "Puzzel", sentence: "Changed call flows, routing and voice messages." },
     { group: "contact", name: "HubSpot", sentence: "Admin for Customer Operations at Aritma." },
     { group: "data", name: "Microsoft Power Automate", sentence: "Built flows at Lyse Dialog, including one for reporting widespread faults and one that texts yesterday's operational figures from Power BI scorecards to the management team." },
-    { group: "data", name: "Microsoft SQL Server", sentence: "Troubleshooting payment files at Aritma, and update queries to fix issues during bank migrations, always wrapped in BEGIN TRANSACTION." },
+    { group: "data", name: "Microsoft SQL Server", sentence: "Troubleshooting payment files at Aritma, and update queries to fix issues during bank migrations." },
     { group: "data", name: "Postman", sentence: "Testing APIs, consent flows and basic requests." },
     { group: "build", name: "Azure DevOps", sentence: "Wrote user stories and tested new releases at Aritma." },
     { group: "build", name: "Notion", sentence: "Internal documentation and SOPs (standard operating procedures) for my department." },
