@@ -152,7 +152,12 @@ button{font:inherit}
 .tl li{display:grid; grid-template-columns:100px minmax(0,1fr); gap:10px; padding:9px 0; border-top:1px solid var(--line)}
 .tl .yr{font-family:var(--mono); font-size:.78rem; color:var(--muted); padding-top:2px}
 .tl b{display:block}
-.tool-group{font-family:var(--mono); font-size:.72rem; font-weight:500; letter-spacing:.08em; text-transform:uppercase; color:var(--accent); margin:10px 0 -4px}
+/* toolkit: one card per category, the category name a level above the tool names */
+.tool-card{background:var(--chip); border:1px solid var(--line); border-radius:12px; padding:14px 16px 4px}
+.panel .tool-group{font-family:var(--display); font-weight:700; font-size:1.15rem; color:var(--accent); margin:0 0 8px}
+.tool-card .tools li{border-top-color:rgba(0,0,0,.08)}
+.evening .tool-card .tools li{border-top-color:rgba(255,255,255,.1)}
+@media print{ .tool-card{background:none; border:0; padding:0} }
 .tools{list-style:none; margin:0; padding:0; display:grid}
 .tools li{display:grid; gap:2px; padding:10px 0; border-top:1px solid var(--line)}
 .tools li:first-child{border-top:0; padding-top:0}

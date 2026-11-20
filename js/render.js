@@ -99,8 +99,8 @@ const RENDERERS = {
   projects: (lvl, opts = {}) => heading("projects", lvl)
     + SITE.projects.map(p => p.placeholder ? placeholderBox(p) : projectCard(p, opts.plain)).join(""),
   toolkit: (lvl) => heading("toolkit", lvl)
-    + SITE.toolGroups.map(g => `<h${lvl + 1} class="tool-group">${esc(g.title)}</h${lvl + 1}>`
-      + `<ul class="tools">${SITE.tools.filter(t => t.group === g.key).map(t => `<li><b>${esc(t.name)}</b><span>${esc(t.sentence)}</span></li>`).join("")}</ul>`).join(""),
+    + SITE.toolGroups.map(g => `<div class="tool-card"><h${lvl + 1} class="tool-group">${esc(g.title)}</h${lvl + 1}>`
+      + `<ul class="tools">${SITE.tools.filter(t => t.group === g.key).map(t => `<li><b>${esc(t.name)}</b><span>${esc(t.sentence)}</span></li>`).join("")}</ul></div>`).join(""),
   education: (lvl, opts = {}) => heading("education", lvl) + (opts.plain
     ? `<h${lvl + 1}>${SITE.ui.certificates}</h${lvl + 1}>${timeline(certificateRows())}<h${lvl + 1}>${SITE.ui.education}</h${lvl + 1}>${timeline(educationRows())}`
     : `<div class="tabs" role="tablist" aria-label="${SITE.ui.show}">
