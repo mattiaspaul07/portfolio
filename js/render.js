@@ -15,11 +15,21 @@ function esc(text) {
   return String(text).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 }
 
+// Small inline icons for buttons (decorative: the button text says what happens)
+const BTN_ICONS = {
+  arrow: '<path d="M3 8h10M9 4l4 4-4 4"/>',
+  plane: '<path d="M14.5 1.5 7 9M14.5 1.5 10 14.5 7 9 1.5 6z"/>',
+  plus: '<path d="M8 3v10M3 8h10"/>'
+};
+function btnIcon(name) {
+  return `<svg class="btn-ico" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${BTN_ICONS[name]}</svg>`;
+}
+
 function aboutNextSteps() {
   const f = SITE.about.featured;
   return `<div class="next-steps">
-      <a class="cta" href="#projects" data-go="projects">${SITE.ui.seeWork}</a>
-      <a class="ghost" href="#contact" data-go="contact">${SITE.ui.getInTouch}</a>
+      <a class="cta" href="#projects" data-go="projects">${SITE.ui.seeWork}${btnIcon("arrow")}</a>
+      <a class="ghost" href="#contact" data-go="contact">${SITE.ui.getInTouch}${btnIcon("arrow")}</a>
     </div>
     <article class="card featured-work">
       <span class="kicker">${SITE.ui.featuredWork}</span>
@@ -113,8 +123,8 @@ const RENDERERS = {
        ${SITE.contact.photo ? `<img class="contact-photo" src="${esc(SITE.contact.photo.src)}" width="${SITE.contact.photo.width}" height="${SITE.contact.photo.height}" alt="${esc(SITE.contact.photo.alt)}" loading="lazy" decoding="async">` : ""}
        <div class="contact-text"><p>${esc(SITE.contact.intro)}</p>
        <div class="contact-actions">
-         <a class="cta" href="mailto:${esc(SITE.person.email)}">${SITE.ui.emailMe}</a>
-         <a class="ghost" href="${esc(SITE.person.linkedin)}" target="_blank" rel="noopener">${SITE.ui.linkedin}</a>
+         <a class="cta" href="mailto:${esc(SITE.person.email)}">${btnIcon("plane")}${SITE.ui.emailMe}</a>
+         <a class="ghost" href="${esc(SITE.person.linkedin)}" target="_blank" rel="noopener">${btnIcon("plus")}${SITE.ui.linkedin}</a>
        </div></div></div>
        <div class="copyrow"><code>${esc(SITE.person.email)}</code><button type="button" class="btn small" data-copy="${esc(SITE.person.email)}">${SITE.ui.copy}</button></div>
        <div class="icebreakers"><h3>${SITE.ui.icebreaker}</h3>
